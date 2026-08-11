@@ -40,16 +40,16 @@ export default async function OQueMovemosPagina({
               id={ANCORAS[i]}
               className="max-w-md scroll-mt-32 md:pl-10"
             >
-              <span className="font-montserrat text-xl font-semibold text-terracota">
+              <span className="font-montserrat text-xl font-medium text-terracota">
                 {NUMEROS[i]}
               </span>
-              <h2 className="font-montserrat mt-2 text-2xl font-semibold text-verde">
+              <h2 className="font-montserrat mt-2 text-2xl font-medium text-verde">
                 {terr.titulo}
               </h2>
               {terr.paragrafos.map((paragrafo) => (
                 <p
                   key={paragrafo.slice(0, 24)}
-                  className="mt-4 leading-relaxed text-grafite/80"
+                  className="mt-4 leading-relaxed text-grafite"
                 >
                   {paragrafo}
                 </p>

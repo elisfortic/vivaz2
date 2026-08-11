@@ -33,10 +33,10 @@ export default async function QuemSomosPagina({
       <CabecalhoPagina eyebrow={t.eyebrow} titulo={t.h1} lead={t.lead} />
 
       <section className="mx-auto w-full max-w-6xl px-6 py-14">
-        <p className="font-montserrat max-w-3xl text-2xl font-medium leading-snug text-verde md:text-3xl">
+        <p className="titulo-manifesto max-w-3xl">
           {t.proposito}
         </p>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite/85">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite">
           {t.descritor}
         </p>
         <div className="mt-8 max-w-2xl">
@@ -59,10 +59,10 @@ export default async function QuemSomosPagina({
                   className="object-cover transition-transform duration-500 hover:scale-[1.03]"
                 />
               </div>
-              <h2 className="font-montserrat mt-5 text-xl font-semibold text-verde">
+              <h2 className="font-montserrat mt-5 text-xl font-medium text-verde">
                 {socia.nome}
               </h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-grafite/80">
+              <p className="mt-3 text-[15px] leading-relaxed text-grafite">
                 {t.bios[i]}
               </p>
               <div className="mt-4">
@@ -76,10 +76,10 @@ export default async function QuemSomosPagina({
       <ComoTrabalhamos lang={lang} />
 
       <section className="mx-auto w-full max-w-6xl px-6 py-20">
-        <h2 className="font-montserrat max-w-2xl text-3xl font-semibold leading-tight text-verde md:text-4xl">
+        <h2 className="font-montserrat max-w-2xl text-3xl font-medium leading-tight text-verde md:text-4xl">
           {t.redeH2}
         </h2>
-        <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-grafite/85">
+        <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-grafite">
           <p>{t.redeP1}</p>
           <p>{t.redeP2}</p>
         </div>

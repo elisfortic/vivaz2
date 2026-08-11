@@ -30,7 +30,7 @@ export default function Cases() {
         <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-terracota">
           EXEMPLO — conteúdo ilustrativo
         </p>
-        <h2 className="font-montserrat text-3xl font-semibold text-verde">
+        <h2 className="font-montserrat text-3xl font-medium text-verde">
           Sistemas que se moveram
         </h2>
         <div className="mt-10 grid gap-10 md:grid-cols-3">
@@ -39,10 +39,10 @@ export default function Cases() {
               <p className="text-xs uppercase tracking-[0.18em] text-grafite/60">
                 {caso.setor}
               </p>
-              <h3 className="font-montserrat mt-2 text-xl font-semibold text-verde">
+              <h3 className="font-montserrat mt-2 text-xl font-medium text-verde">
                 {caso.titulo}
               </h3>
-              <p className="mt-3 leading-relaxed text-grafite/80">
+              <p className="mt-3 leading-relaxed text-grafite">
                 {caso.resumo}
               </p>
             </article>

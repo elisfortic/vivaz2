@@ -41,15 +41,15 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
       <div className="mx-auto w-full max-w-6xl px-6 py-28">
         <div className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr]">
           <div>
-            <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
+            <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
               {t.eyebrow}
             </p>
-            <h2 className="font-montserrat text-4xl font-semibold leading-tight text-verde md:text-5xl">
+            <h2 className="titulo-h2">
               {t.h2Linha1}
               <br />
               {t.h2Linha2}
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-grafite/85">
+            <p className="texto-deck mt-6 max-w-xl">
               {t.lead}
             </p>
             <Link
@@ -111,7 +111,7 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
           <p className="text-xs uppercase tracking-[0.22em] text-grafite/60">
             {t.trajetoriaRotulo}
           </p>
-          <p className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm text-grafite/80">
+          <p className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm text-grafite">
             {trajetoria.map((empresa, i) => (
               <span key={empresa}>
                 {empresa}

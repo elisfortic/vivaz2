@@ -28,14 +28,14 @@ export default function Hero({ lang = "pt" }: { lang?: Idioma }) {
     <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
       <motion.p
         {...emergir(0.5)}
-        className="mb-6 text-sm uppercase tracking-[0.22em] text-grafite/70"
+        className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-grafite/70"
       >
         {t.eyebrow}
       </motion.p>
 
       <motion.h1
         {...emergir(0.8)}
-        className="font-montserrat max-w-4xl text-5xl font-medium leading-[1.08] text-verde md:text-7xl"
+        className="titulo-h1 max-w-4xl"
       >
         {t.h1Antes}
         <strong className="font-bold text-terracota">{t.h1Destaque}</strong>
@@ -45,7 +45,7 @@ export default function Hero({ lang = "pt" }: { lang?: Idioma }) {
 
       <motion.p
         {...emergir(1.15)}
-        className="mt-8 max-w-xl text-lg leading-relaxed text-grafite/85 md:text-xl"
+        className="mt-8 max-w-xl text-lg leading-relaxed text-grafite md:text-xl"
       >
         {t.lead}
       </motion.p>

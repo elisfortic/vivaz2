@@ -11,13 +11,13 @@ export default function MoverSistemas({ lang = "pt" }: { lang?: Idioma }) {
     >
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-16 pb-8">
         <div className="max-w-3xl">
-          <p className="mb-10 text-sm uppercase tracking-[0.22em] text-terracota">
+          <p className="mb-10 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
             {t.eyebrow}
           </p>
           <p className="font-lato text-[1.7rem] font-light leading-snug text-verde md:text-[2.05rem]">
             {t.frase}
           </p>
-          <p className="mt-8 text-lg leading-relaxed text-grafite/85 md:text-xl">
+          <p className="mt-8 text-lg leading-relaxed text-grafite md:text-xl">
             {t.lead}
           </p>
           <p className="mt-12 max-w-2xl text-[18px] leading-relaxed text-grafite">

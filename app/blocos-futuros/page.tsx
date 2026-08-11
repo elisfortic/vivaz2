@@ -27,13 +27,13 @@ export default function BlocosFuturosPagina() {
         ]}
       />
       <div className="mx-auto w-full max-w-6xl px-6 pb-4 pt-40">
-        <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
+        <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           Prévia interna
         </p>
-        <h1 className="font-montserrat max-w-3xl text-4xl font-semibold leading-tight text-verde">
+        <h1 className="titulo-h2 max-w-3xl">
           Blocos do estado futuro
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite/85">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite">
           Três blocos prontos, fora do ar, aguardando conteúdo real:
           depoimentos, cases e rede de parceiros. Os textos são exemplos
           ilustrativos — nunca serão publicados como reais.

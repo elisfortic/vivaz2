@@ -12,7 +12,7 @@ export default function Fechamento({ lang = "pt" }: { lang?: Idioma }) {
         <RedeViva variante="verde" seed={20260812} />
       </div>
       <div className="relative mx-auto max-w-3xl px-6 py-28 text-center">
-        <h2 className="font-montserrat text-4xl font-semibold leading-tight text-off-white md:text-6xl">
+        <h2 className="font-montserrat text-4xl font-normal leading-[1.1] text-off-white md:text-6xl">
           {t.h2Antes}
           <strong className="font-bold text-terracota">{t.h2Destaque}</strong>
           {t.h2Depois}

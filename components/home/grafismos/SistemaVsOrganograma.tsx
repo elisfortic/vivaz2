@@ -199,10 +199,10 @@ export default function SistemaVsOrganograma({
                 : "translate(4px, -50%)",
           }}
         >
-          <span className="font-montserrat block text-base font-semibold text-verde md:text-[17px]">
+          <span className="font-montserrat block text-base font-medium text-verde md:text-[17px]">
             {rotulos[i].texto}
           </span>
-          <span className="font-lato mt-1 block text-[15px] leading-normal text-grafite/85">
+          <span className="font-lato mt-1 block text-[15px] leading-normal text-grafite">
             {rotulos[i].linha}
           </span>
         </motion.div>

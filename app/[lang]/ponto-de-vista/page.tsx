@@ -34,7 +34,7 @@ export default async function PontoDeVistaPagina({
           href={`/${lang}/ponto-de-vista/por-que-transformacoes-falham`}
           className="group block max-w-2xl border-t border-linha pt-8"
         >
-          <h2 className="font-montserrat text-2xl font-semibold leading-snug text-verde transition-colors duration-300 group-hover:text-terracota md:text-3xl">
+          <h2 className="font-montserrat text-2xl font-medium leading-snug text-verde transition-colors duration-300 group-hover:text-terracota md:text-3xl">
             {t.artigoTitulo}
           </h2>
           <p className="mt-3 text-sm text-grafite/70">{t.assinatura}</p>

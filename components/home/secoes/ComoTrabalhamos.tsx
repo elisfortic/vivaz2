@@ -18,10 +18,10 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-off-white">
       <div className="mx-auto w-full max-w-6xl px-6 py-28">
-        <p className="mb-6 text-center text-sm uppercase tracking-[0.22em] text-terracota">
+        <p className="mb-6 text-center text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>
-        <h2 className="font-montserrat text-center text-4xl font-semibold leading-tight text-verde md:text-5xl">
+        <h2 className="titulo-h2 text-center">
           {t.h2}
         </h2>
 
@@ -52,14 +52,14 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
                 onMouseLeave={() => setAtivo(null)}
               >
                 <h3
-                  className={`font-montserrat text-xl font-semibold transition-colors duration-700 ${
+                  className={`font-montserrat text-xl font-medium transition-colors duration-700 ${
                     emFoco === i ? "text-terracota" : "text-verde"
                   }`}
                 >
                   <span className="text-terracota">{p.numero}</span> ·{" "}
                   {p.titulo}
                 </h3>
-                <p className="font-lato mt-1 italic text-grafite/90">
+                <p className="font-lato mt-1 italic text-grafite">
                   “{p.frase}”
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-grafite/75">
@@ -78,11 +78,11 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
           <div className="mt-10 space-y-8">
             {t.principios.map((p) => (
               <div key={p.numero}>
-                <h3 className="font-montserrat text-lg font-semibold text-verde">
+                <h3 className="font-montserrat text-lg font-medium text-verde">
                   <span className="text-terracota">{p.numero}</span> ·{" "}
                   {p.titulo}
                 </h3>
-                <p className="font-lato mt-1 italic text-grafite/90">
+                <p className="font-lato mt-1 italic text-grafite">
                   “{p.frase}”
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-grafite/75">

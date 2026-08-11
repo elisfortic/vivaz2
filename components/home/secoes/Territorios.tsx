@@ -15,13 +15,13 @@ export default function Territorios({ lang = "pt" }: { lang?: Idioma }) {
   return (
     <section className="relative flex min-h-screen items-center bg-off-white/90">
       <div className="relative mx-auto w-full max-w-5xl px-6 py-28">
-        <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
+        <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>
-        <h2 className="font-montserrat text-4xl font-semibold leading-tight text-verde md:text-5xl">
+        <h2 className="titulo-h2">
           {t.h2}
         </h2>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite/85">
+        <p className="texto-deck mt-6 max-w-2xl">
           {t.lead}
         </p>
 
@@ -35,10 +35,10 @@ export default function Territorios({ lang = "pt" }: { lang?: Idioma }) {
               <span className="font-montserrat text-sm text-terracota">
                 {NUMEROS[i]}
               </span>
-              <h3 className="font-montserrat mt-3 text-2xl font-semibold text-verde transition-colors duration-500 group-hover:text-off-white">
+              <h3 className="font-montserrat mt-3 text-2xl font-medium text-verde transition-colors duration-500 group-hover:text-off-white">
                 {terr.titulo}
               </h3>
-              <p className="mt-4 leading-relaxed text-grafite/80 transition-colors duration-500 group-hover:text-off-white/85">
+              <p className="mt-4 leading-relaxed text-grafite transition-colors duration-500 group-hover:text-off-white/85">
                 {terr.corpo}
               </p>
             </Link>
