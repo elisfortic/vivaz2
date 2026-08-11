@@ -2,56 +2,27 @@
 
 import { useState } from "react";
 import OrbitaPrincipios from "@/components/home/grafismos/OrbitaPrincipios";
-
-const principios = [
-  {
-    numero: "01",
-    titulo: "Profundidade",
-    frase: "Entender antes de propor.",
-    corpo:
-      "Cada organização funciona de um jeito. Antes de desenhar qualquer solução, investimos tempo entendendo como as coisas realmente acontecem.",
-  },
-  {
-    numero: "02",
-    titulo: "Humanização",
-    frase: "Pessoas não são indicadores.",
-    corpo:
-      "Gente não é dado a ser gerenciado. É por onde toda mudança começa ou trava. Por isso escutamos as pessoas antes de qualquer intervenção.",
-  },
-  {
-    numero: "03",
-    titulo: "Conexão",
-    frase: "Ninguém se desenvolve sozinho.",
-    corpo:
-      "O conhecimento circula pelas relações. É no encontro entre pessoas que crescemos, que a rede se fortalece e que a inovação surge.",
-  },
-  {
-    numero: "04",
-    titulo: "Impacto",
-    frase: "O que fica depois que a gente sai.",
-    corpo:
-      "Não tratamos sintoma. Buscamos o que está travando o sistema para que ele volte a andar e continue andando por conta própria.",
-  },
-];
+import { COMO_TRABALHAMOS } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
 /**
- * Os quatro princípios ao redor do anel vivo — hover num princípio acende
- * o arco do quadrante correspondente (0 sup-esq · 1 sup-dir · 2 inf-esq ·
- * 3 inf-dir, mesma ordem dos textos).
+ * Os quatro princípios ao redor do anel vivo — o nó do próprio anel faz o
+ * gesto até cada princípio; o título correspondente muda de cor no toque.
  */
-export default function ComoTrabalhamos() {
+export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
   const [ativo, setAtivo] = useState<number | null>(null);
   const [agindo, setAgindo] = useState<number | null>(null);
   const emFoco = ativo ?? agindo;
+  const t = COMO_TRABALHAMOS[lang];
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-off-white">
       <div className="mx-auto w-full max-w-6xl px-6 py-28">
         <p className="mb-6 text-center text-sm uppercase tracking-[0.22em] text-terracota">
-          Como trabalhamos
+          {t.eyebrow}
         </p>
         <h2 className="font-montserrat text-center text-4xl font-semibold leading-tight text-verde md:text-5xl">
-          O que orienta cada projeto
+          {t.h2}
         </h2>
 
         <div className="relative mt-12 hidden md:block">
@@ -71,7 +42,7 @@ export default function ComoTrabalhamos() {
             />
           </div>
           <div className="relative grid min-h-[640px] grid-cols-2 content-between gap-x-[380px] py-6">
-            {principios.map((p, i) => (
+            {t.principios.map((p, i) => (
               <div
                 key={p.numero}
                 className={`max-w-xs ${
@@ -105,7 +76,7 @@ export default function ComoTrabalhamos() {
             <OrbitaPrincipios ativo={ativo} />
           </div>
           <div className="mt-10 space-y-8">
-            {principios.map((p) => (
+            {t.principios.map((p) => (
               <div key={p.numero}>
                 <h3 className="font-montserrat text-lg font-semibold text-verde">
                   <span className="text-terracota">{p.numero}</span> ·{" "}

@@ -6,6 +6,8 @@ import Link from "next/link";
 import TrioAncoragem, {
   ANCORAS,
 } from "@/components/home/grafismos/TrioAncoragem";
+import { QUEM_SOMOS_TEASER } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
 const socias = [
   { nome: "Elisângela Chitero", foto: "/socias/elisangela.jpg" },
@@ -30,8 +32,9 @@ const trajetoria = [
  * exatamente sobre as âncoras do grafismo vivo, e o hover em cada uma
  * acende o feixe de fibras que converge nela.
  */
-export default function QuemSomos() {
+export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
   const [ativa, setAtiva] = useState<number | null>(null);
+  const t = QUEM_SOMOS_TEASER[lang];
 
   return (
     <section className="flex min-h-screen items-center overflow-hidden bg-off-white">
@@ -39,23 +42,21 @@ export default function QuemSomos() {
         <div className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
-              Quem somos
+              {t.eyebrow}
             </p>
             <h2 className="font-montserrat text-4xl font-semibold leading-tight text-verde md:text-5xl">
-              Três percursos,
+              {t.h2Linha1}
               <br />
-              um trio alinhado.
+              {t.h2Linha2}
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-grafite/85">
-              Carreira executiva em algumas das organizações mais complexas
-              do país — e a decisão de colocar essa experiência a serviço de
-              empresas que precisam mover seus sistemas.
+              {t.lead}
             </p>
             <Link
-              href="/quem-somos"
+              href={`/${lang}/quem-somos`}
               className="mt-10 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
             >
-              Conheça Elisângela, Flavia e Leila →
+              {t.link}
             </Link>
           </div>
 
@@ -108,7 +109,7 @@ export default function QuemSomos() {
 
         <div className="mt-16 border-t border-linha pt-8">
           <p className="text-xs uppercase tracking-[0.22em] text-grafite/60">
-            Trajetória construída em
+            {t.trajetoriaRotulo}
           </p>
           <p className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm text-grafite/80">
             {trajetoria.map((empresa, i) => (

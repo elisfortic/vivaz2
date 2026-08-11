@@ -52,41 +52,26 @@ const LIGACOES: [number, number][] = [
   [0, 5],
 ];
 
-const ROTULOS = [
-  {
-    texto: "A Ilusão",
-    linha: "O que mantém esse sistema vivo não é o organograma.",
-    no: 9,
-    dx: -0.05,
-    dy: -0.17,
-    alinhamento: "right",
-  },
-  {
-    texto: "A Realidade",
-    linha:
-      "É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
-    no: 6,
-    dx: 0.11,
-    dy: 0.08,
-    alinhamento: "left",
-  },
-  {
-    texto: "O Risco",
-    linha:
-      "Quando se rompem, nem a melhor estratégia do mundo faz a empresa sair do lugar.",
-    no: 1,
-    dx: 0.02,
-    dy: 0.13,
-    alinhamento: "left",
-  },
+/** posições dos três rótulos; os textos chegam por prop (i18n) */
+const POSICOES_ROTULOS = [
+  { no: 9, dx: -0.05, dy: -0.17, alinhamento: "right" },
+  { no: 6, dx: 0.11, dy: 0.08, alinhamento: "left" },
+  { no: 1, dx: 0.02, dy: 0.13, alinhamento: "left" },
 ] as const;
+
+export interface RotuloSistema {
+  texto: string;
+  linha: string;
+}
 
 /** as três curvas-guia (grossas) — 2 verdes, 1 terracota, como no deck */
 const GUIAS = new Set([2, 5, 6]);
 
 export default function SistemaVsOrganograma({
+  rotulos,
   className,
 }: {
+  rotulos: readonly RotuloSistema[];
   className?: string;
 }) {
   const refCanvas = useRef<HTMLCanvasElement>(null);
@@ -151,7 +136,7 @@ export default function SistemaVsOrganograma({
 
       // linhas-guia dos rótulos
       ctx.beginPath();
-      for (const rotulo of ROTULOS) {
+      for (const rotulo of POSICOES_ROTULOS) {
         const alvo = posicoes[rotulo.no];
         const lx = (NOS[rotulo.no].nx + rotulo.dx) * largura;
         const ly = (NOS[rotulo.no].ny + rotulo.dy) * altura;
@@ -195,9 +180,9 @@ export default function SistemaVsOrganograma({
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       />
-      {ROTULOS.map((rotulo, i) => (
+      {POSICOES_ROTULOS.map((rotulo, i) => (
         <motion.div
-          key={rotulo.texto}
+          key={rotulo.no}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
@@ -215,10 +200,10 @@ export default function SistemaVsOrganograma({
           }}
         >
           <span className="font-montserrat block text-base font-semibold text-verde md:text-[17px]">
-            {rotulo.texto}
+            {rotulos[i].texto}
           </span>
           <span className="font-lato mt-1 block text-[15px] leading-normal text-grafite/85">
-            {rotulo.linha}
+            {rotulos[i].linha}
           </span>
         </motion.div>
       ))}

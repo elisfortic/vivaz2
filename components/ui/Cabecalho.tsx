@@ -4,19 +4,23 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const itens = [
-  { rotulo: "Quem somos", href: "/quem-somos" },
-  { rotulo: "O que movemos", href: "/o-que-movemos" },
-  { rotulo: "Ponto de vista", href: "/ponto-de-vista" },
-  { rotulo: "Contato", href: "/contato" },
-];
+export interface ItemNav {
+  rotulo: string;
+  href: string;
+}
 
 /**
  * Header fixo que adapta a cor quando uma superfície verde passa por baixo
  * (fechamento, rodapé) — grafite sobre claro, off-white sobre verde.
- * Em telas estreitas, menu de sobreposição.
+ * Em telas estreitas, menu de sobreposição. Itens chegam por prop (i18n).
  */
-export default function Cabecalho() {
+export default function Cabecalho({
+  itens,
+  hrefInicio = "/",
+}: {
+  itens: ItemNav[];
+  hrefInicio?: string;
+}) {
   const [sobreVerde, setSobreVerde] = useState(false);
   const [aberto, setAberto] = useState(false);
 
@@ -61,7 +65,7 @@ export default function Cabecalho() {
           aberto ? "bg-off-white" : ""
         }`}
       >
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href={hrefInicio} className="flex items-center gap-2.5">
           <Image
             src={
               claro

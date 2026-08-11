@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { IDIOMAS, ehIdioma } from "@/lib/idiomas";
+import Cabecalho from "@/components/ui/Cabecalho";
+import { IDIOMAS, dicionario, ehIdioma } from "@/lib/idiomas";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -29,5 +30,17 @@ export default async function LayoutIdioma({
 }) {
   const { lang } = await params;
   if (!ehIdioma(lang)) notFound();
-  return children;
+  const t = dicionario(lang);
+  const itens = [
+    { rotulo: t.nav.quemSomos, href: `/${lang}/quem-somos` },
+    { rotulo: t.nav.oQueMovemos, href: `/${lang}/o-que-movemos` },
+    { rotulo: t.nav.pontoDeVista, href: `/${lang}/ponto-de-vista` },
+    { rotulo: t.nav.contato, href: `/${lang}/contato` },
+  ];
+  return (
+    <>
+      <Cabecalho itens={itens} hrefInicio={`/${lang}`} />
+      {children}
+    </>
+  );
 }

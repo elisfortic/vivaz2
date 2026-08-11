@@ -1,61 +1,39 @@
 import Link from "next/link";
+import { TERRITORIOS } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
-const territorios = [
-  {
-    numero: "01",
-    titulo: "Cultura & Ética",
-    corpo:
-      "Transformação cultural, valores em uso versus valores declarados, ouvidoria, integridade e riscos psicossociais.",
-    ancora: "cultura-etica",
-  },
-  {
-    numero: "02",
-    titulo: "Estrutura & Estratégia de Pessoas",
-    corpo:
-      "Estruturas organizacionais, governança, desempenho, sucessão, arquitetura de cargos e remuneração.",
-    ancora: "estrutura-estrategia",
-  },
-  {
-    numero: "03",
-    titulo: "Liderança & Desenvolvimento",
-    corpo:
-      "Mentoria, coaching executivo, trilhas de capacitação sob medida e transformação de times.",
-    ancora: "lideranca-desenvolvimento",
-  },
-  {
-    numero: "04",
-    titulo: "Transformação & Mudança",
-    corpo:
-      "Gestão de mudança, integração pós-M&A e comunicação interna em transformações amplas.",
-    ancora: "transformacao-mudanca",
-  },
+const ANCORAS = [
+  "cultura-etica",
+  "estrutura-estrategia",
+  "lideranca-desenvolvimento",
+  "transformacao-mudanca",
 ];
+const NUMEROS = ["01", "02", "03", "04"];
 
-export default function Territorios() {
+export default function Territorios({ lang = "pt" }: { lang?: Idioma }) {
+  const t = TERRITORIOS[lang];
   return (
     <section className="relative flex min-h-screen items-center bg-off-white/90">
       <div className="relative mx-auto w-full max-w-5xl px-6 py-28">
         <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
-          O que movemos
+          {t.eyebrow}
         </p>
         <h2 className="font-montserrat text-4xl font-semibold leading-tight text-verde md:text-5xl">
-          Quatro territórios de atuação
+          {t.h2}
         </h2>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite/85">
-          Nem todo projeto começa no mesmo lugar. Qualquer que seja a porta de
-          entrada, lemos a organização como um sistema — porque mexer em uma
-          parte sempre move as outras.
+          {t.lead}
         </p>
 
         <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-linha bg-linha md:grid-cols-2">
-          {territorios.map((terr) => (
+          {t.itens.map((terr, i) => (
             <Link
-              key={terr.ancora}
-              href={`/o-que-movemos#${terr.ancora}`}
+              key={ANCORAS[i]}
+              href={`/${lang}/o-que-movemos#${ANCORAS[i]}`}
               className="group block bg-off-white p-8 transition-colors duration-500 hover:bg-verde"
             >
               <span className="font-montserrat text-sm text-terracota">
-                {terr.numero}
+                {NUMEROS[i]}
               </span>
               <h3 className="font-montserrat mt-3 text-2xl font-semibold text-verde transition-colors duration-500 group-hover:text-off-white">
                 {terr.titulo}

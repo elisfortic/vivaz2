@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Montserrat, Lato } from "next/font/google";
-import Cabecalho from "@/components/ui/Cabecalho";
 import ProvedorLenis from "@/components/ui/ProvedorLenis";
 import "./globals.css";
 
@@ -37,7 +36,6 @@ export default function RootLayout({
           Ir para o conteúdo
         </a>
         <ProvedorLenis />
-        <Cabecalho />
         {children}
       </body>
     </html>

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { HERO } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
 const suave = [0.22, 1, 0.36, 1] as const;
 
@@ -9,8 +11,9 @@ const suave = [0.22, 1, 0.36, 1] as const;
  * Hero — a rede ondula ao fundo (FundoRede, fixa); a tagline emerge dela:
  * cada linha de texto sobe devagar de dentro do movimento, sem pressa.
  */
-export default function Hero() {
+export default function Hero({ lang = "pt" }: { lang?: Idioma }) {
   const reduzido = useReducedMotion();
+  const t = HERO[lang];
 
   const emergir = (atraso: number) =>
     reduzido
@@ -27,15 +30,16 @@ export default function Hero() {
         {...emergir(0.5)}
         className="mb-6 text-sm uppercase tracking-[0.22em] text-grafite/70"
       >
-        Consultoria em cultura, liderança e gestão
+        {t.eyebrow}
       </motion.p>
 
       <motion.h1
         {...emergir(0.8)}
         className="font-montserrat max-w-4xl text-5xl font-medium leading-[1.08] text-verde md:text-7xl"
       >
-        Pessoas que{" "}
-        <strong className="font-bold text-terracota">movem</strong> sistemas
+        {t.h1Antes}
+        <strong className="font-bold text-terracota">{t.h1Destaque}</strong>
+        {t.h1Depois}
         <span className="text-terracota">.</span>
       </motion.h1>
 
@@ -43,8 +47,7 @@ export default function Hero() {
         {...emergir(1.15)}
         className="mt-8 max-w-xl text-lg leading-relaxed text-grafite/85 md:text-xl"
       >
-        Conectamos estratégia, cultura e gestão para organizações que precisam
-        se mover.
+        {t.lead}
       </motion.p>
 
       <motion.div
@@ -52,16 +55,16 @@ export default function Hero() {
         className="mt-12 flex flex-col items-center gap-6"
       >
         <Link
-          href="/contato"
+          href={`/${lang}/contato`}
           className="rounded-full bg-verde px-8 py-3.5 text-sm font-medium tracking-wide text-off-white transition-transform duration-300 hover:scale-[1.03]"
         >
-          Converse com uma sócia
+          {t.botao}
         </Link>
         <a
           href="#definicao"
           className="text-sm text-grafite/70 transition-colors duration-300 hover:text-verde"
         >
-          O que é mover sistemas ↓
+          {t.linkAncora}
         </a>
       </motion.div>
     </section>

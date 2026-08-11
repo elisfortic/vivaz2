@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Cabecalho from "@/components/ui/Cabecalho";
 import Rodape from "@/components/ui/Rodape";
 import Depoimentos from "@/components/futuro/Depoimentos";
 import Cases from "@/components/futuro/Cases";
@@ -16,6 +17,15 @@ export const metadata: Metadata = {
 export default function BlocosFuturosPagina() {
   return (
     <main id="conteudo" className="bg-off-white">
+      <Cabecalho
+        hrefInicio="/pt"
+        itens={[
+          { rotulo: "Quem somos", href: "/pt/quem-somos" },
+          { rotulo: "O que movemos", href: "/pt/o-que-movemos" },
+          { rotulo: "Ponto de vista", href: "/pt/ponto-de-vista" },
+          { rotulo: "Contato", href: "/pt/contato" },
+        ]}
+      />
       <div className="mx-auto w-full max-w-6xl px-6 pb-4 pt-40">
         <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
           Prévia interna

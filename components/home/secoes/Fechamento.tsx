@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import RedeViva from "@/components/rede/RedeViva";
+import { FECHAMENTO } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
-export default function Fechamento() {
+export default function Fechamento({ lang = "pt" }: { lang?: Idioma }) {
+  const t = FECHAMENTO[lang];
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-verde">
       <div className="absolute inset-0" aria-hidden="true">
@@ -10,19 +13,19 @@ export default function Fechamento() {
       </div>
       <div className="relative mx-auto max-w-3xl px-6 py-28 text-center">
         <h2 className="font-montserrat text-4xl font-semibold leading-tight text-off-white md:text-6xl">
-          Pessoas que{" "}
-          <strong className="font-bold text-terracota">movem</strong> sistemas
+          {t.h2Antes}
+          <strong className="font-bold text-terracota">{t.h2Destaque}</strong>
+          {t.h2Depois}
           <span className="text-terracota">.</span>
         </h2>
         <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-off-white/85">
-          Se você está diante de uma mudança que precisa acontecer ao mesmo
-          tempo na cultura, na estrutura e na gestão — vamos conversar.
+          {t.corpo}
         </p>
         <Link
-          href="/contato"
+          href={`/${lang}/contato`}
           className="mt-12 inline-block rounded-full bg-off-white px-8 py-3.5 text-sm font-medium tracking-wide text-verde transition-transform duration-300 hover:scale-[1.03]"
         >
-          Converse com uma sócia
+          {t.botao}
         </Link>
       </div>
 

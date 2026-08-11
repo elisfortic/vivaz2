@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { dicionario, type Idioma } from "@/lib/idiomas";
 
-const itens = [
-  { rotulo: "Quem somos", href: "/quem-somos" },
-  { rotulo: "O que movemos", href: "/o-que-movemos" },
-  { rotulo: "Ponto de vista", href: "/ponto-de-vista" },
-  { rotulo: "Contato", href: "/contato" },
-  { rotulo: "Privacidade", href: "/privacidade" },
-];
+export default function Rodape({ lang = "pt" }: { lang?: Idioma }) {
+  const t = dicionario(lang);
+  const itens = [
+    { rotulo: t.nav.quemSomos, href: `/${lang}/quem-somos` },
+    { rotulo: t.nav.oQueMovemos, href: `/${lang}/o-que-movemos` },
+    { rotulo: t.nav.pontoDeVista, href: `/${lang}/ponto-de-vista` },
+    { rotulo: t.nav.contato, href: `/${lang}/contato` },
+    { rotulo: t.nav.privacidade, href: `/${lang}/privacidade` },
+  ];
 
-export default function Rodape() {
   return (
     <footer className="relative z-10 bg-verde px-6 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 md:flex-row md:justify-between">
@@ -30,13 +32,15 @@ export default function Rodape() {
               <Link
                 key={idioma}
                 href={`/${idioma}`}
-                className="text-off-white/55 transition-colors duration-300 hover:text-off-white"
+                className={`transition-colors duration-300 hover:text-off-white ${
+                  idioma === lang ? "text-off-white" : "text-off-white/55"
+                }`}
               >
                 {idioma}
               </Link>
             ))}
           </nav>
-          <p className="text-xs text-off-white/60">© 2026 Vivaz Consultoria</p>
+          <p className="text-xs text-off-white/60">{t.rodape.copyright}</p>
         </div>
       </div>
     </footer>

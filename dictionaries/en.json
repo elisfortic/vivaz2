@@ -1,24 +1,12 @@
 {
   "nav": {
-    "quemSomos": "{{TRADUZIR: Quem somos}}",
-    "oQueMovemos": "{{TRADUZIR: O que movemos}}",
-    "pontoDeVista": "{{TRADUZIR: Ponto de vista}}",
-    "contato": "{{TRADUZIR: Contato}}",
-    "privacidade": "{{TRADUZIR: Privacidade}}"
+    "quemSomos": "Who we are",
+    "oQueMovemos": "What we move",
+    "pontoDeVista": "Point of view",
+    "contato": "Contact",
+    "privacidade": "Privacy"
   },
   "rodape": {
     "copyright": "© 2026 Vivaz Consultoria"
-  },
-  "paginaUnica": {
-    "h1Antes": "{{TRADUZIR: Pessoas que }}",
-    "h1Destaque": "{{TRADUZIR: movem}}",
-    "h1Depois": "{{TRADUZIR: sistemas}}",
-    "lead": "{{TRADUZIR: lead da página única}}",
-    "quienesSomosTitulo": "{{TRADUZIR: Quem somos}}",
-    "quienesSomos": "{{TRADUZIR: texto quem somos}}",
-    "queHacemosTitulo": "{{TRADUZIR: O que movemos}}",
-    "queHacemos": "{{TRADUZIR: lista de territórios}}",
-    "cierre": "{{TRADUZIR: fechamento}}",
-    "linkPortugues": "{{TRADUZIR: Ver o site em português →}}"
   }
 }

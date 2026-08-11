@@ -3,51 +3,32 @@
 import { useState } from "react";
 import Link from "next/link";
 import LinhaRuptura from "@/components/home/grafismos/LinhaRuptura";
-
-const linhas = [
-  {
-    titulo: "Mexe-se na estrutura,",
-    subtitulo: "mas a cultura resiste.",
-    corpo:
-      "O novo organograma não funciona se as pessoas continuam operando na cultura antiga.",
-  },
-  {
-    titulo: "Investe-se em liderança,",
-    subtitulo: "mas a governança contradiz.",
-    corpo:
-      "Um programa robusto não muda nada se a decisão segue centralizada e o líder não decide.",
-  },
-  {
-    titulo: "Anunciam-se valores,",
-    subtitulo: "mas a avaliação não muda.",
-    corpo:
-      "Valor que não aparece na avaliação de desempenho não se torna real.",
-  },
-];
+import { FALHAM } from "@/lib/copy/home";
+import type { Idioma } from "@/lib/idiomas";
 
 /**
  * Três linhas de ruptura (layout da Opção A, grafismo construído vivo):
  * título → seta → impacto → fibra que se desfaz → consequência.
  */
-export default function PorQueFalham() {
+export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
   const [ativa, setAtiva] = useState<number | null>(null);
+  const t = FALHAM[lang];
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
       <div className="relative mx-auto w-full max-w-6xl px-6 py-20">
         <p className="mb-5 text-sm uppercase tracking-[0.22em] text-terracota">
-          Nosso ponto de vista
+          {t.eyebrow}
         </p>
         <h2 className="font-montserrat max-w-3xl text-4xl font-semibold leading-tight text-verde md:text-5xl">
-          Por que tantas transformações falham
+          {t.h2}
         </h2>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-grafite/85">
-          Não por falta de método — mas por tratar partes isoladas de um
-          sistema que precisa ser avaliado de maneira coordenada.
+          {t.lead}
         </p>
 
         <div className="mt-8 space-y-5">
-          {linhas.map((linha, i) => (
+          {t.linhas.map((linha, i) => (
             <div
               key={linha.titulo}
               className="grid items-center gap-6 md:grid-cols-[minmax(0,0.85fr)_460px_minmax(0,1fr)]"
@@ -75,10 +56,10 @@ export default function PorQueFalham() {
         </div>
 
         <Link
-          href="/ponto-de-vista/por-que-transformacoes-falham"
+          href={`/${lang}/ponto-de-vista/por-que-transformacoes-falham`}
           className="mt-10 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
         >
-          Leia o ensaio completo — 8 min →
+          {t.linkEnsaio}
         </Link>
       </div>
     </section>
