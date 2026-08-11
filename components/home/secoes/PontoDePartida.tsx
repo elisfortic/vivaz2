@@ -19,6 +19,7 @@ export default function PontoDePartida({ lang = "pt" }: { lang?: Idioma }) {
           <div className="mt-10 space-y-6 text-lg leading-relaxed text-grafite/90">
             <p>{t.p1}</p>
             <p>{t.p2}</p>
+            <p>{t.p3}</p>
           </div>
         </div>
         <SistemaVsOrganograma

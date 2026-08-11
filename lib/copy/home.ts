@@ -67,7 +67,8 @@ export const PONTO_DE_PARTIDA = {
   pt: {
     h2: "Toda organização é um sistema vivo.",
     p1: "Cultura, estrutura, liderança, processos, relações e propósito estão conectados — e respondendo aos movimentos uns dos outros.",
-    p2: "Quando esses encontros acontecem, a organização aprende e se move sozinha.",
+    p2: "E o que mantém esse sistema vivo não é o organograma. É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
+    p3: "Quando esses encontros acontecem, a organização aprende e se move sozinha. Quando se rompem, nem a melhor estratégia do mundo faz a empresa sair do lugar.",
     rotulos: [
       {
         texto: "A Ilusão",
@@ -88,7 +89,8 @@ export const PONTO_DE_PARTIDA = {
   es: {
     h2: "Toda organización es un sistema vivo.",
     p1: "Cultura, estructura, liderazgo, procesos, relaciones y propósito están conectados — y responden a los movimientos unos de otros.",
-    p2: "Cuando esos encuentros suceden, la organización aprende y se mueve sola.",
+    p2: "Y lo que mantiene vivo ese sistema no es el organigrama. Es lo que sucede entre las personas: el conocimiento que circula, la confianza que sostiene, la diferencia que genera ideas nuevas.",
+    p3: "Cuando esos encuentros suceden, la organización aprende y se mueve sola. Cuando se rompen, ni la mejor estrategia del mundo hace que la empresa avance.",
     rotulos: [
       {
         texto: "La Ilusión",
@@ -109,7 +111,8 @@ export const PONTO_DE_PARTIDA = {
   en: {
     h2: "Every organization is a living system.",
     p1: "Culture, structure, leadership, processes, relationships and purpose are connected — each responding to the others' movements.",
-    p2: "When those encounters happen, the organization learns and moves on its own.",
+    p2: "And what keeps this system alive is not the org chart. It is what happens between people: knowledge that circulates, trust that sustains, difference that creates new ideas.",
+    p3: "When those encounters happen, the organization learns and moves on its own. When they break, not even the best strategy in the world moves the company forward.",
     rotulos: [
       {
         texto: "The Illusion",
