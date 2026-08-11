@@ -47,10 +47,9 @@ export default function QuemSomos() {
               um trio alinhado.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-grafite/85">
-              Carreira executiva nos assentos mais sêniores de Recursos
-              Humanos de algumas das organizações mais complexas do país — e a
-              decisão de colocar isso a serviço de quem precisa mover seu
-              sistema.
+              Carreira executiva em algumas das organizações mais complexas
+              do país — e a decisão de colocar essa experiência a serviço de
+              empresas que precisam mover seus sistemas.
             </p>
             <Link
               href="/quem-somos"

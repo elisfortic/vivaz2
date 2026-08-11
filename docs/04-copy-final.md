@@ -82,7 +82,8 @@ Card inteiro clicável → `/o-que-movemos#{ancora}`
 
 **Eyebrow:** `Quem somos`
 **H2:** `Três percursos,` / `um trio alinhado.`
-**Lead:** `Carreira executiva nos assentos mais sêniores de Recursos Humanos de algumas das organizações mais complexas do país — e a decisão de colocar isso a serviço de quem precisa mover seu sistema.`
+**Lead:** `Carreira executiva em algumas das organizações mais complexas do país — e a decisão de colocar essa experiência a serviço de empresas que precisam mover seus sistemas.`
+*(trocado pelo cliente em 2026-08-11 — igual ao lead da página Quem Somos)*
 **Link:** `Conheça Elisângela, Flavia e Leila →` → `/quem-somos`
 
 **Retratos:** três, proporção 3:4, lado a lado.
