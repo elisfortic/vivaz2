@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export interface ItemNav {
   rotulo: string;
@@ -23,8 +24,12 @@ export default function Cabecalho({
 }) {
   const [sobreVerde, setSobreVerde] = useState(false);
   const [aberto, setAberto] = useState(false);
+  const pathname = usePathname();
 
+  // religa a cada rota: o layout persiste nas navegações e as seções
+  // verdes da página nova precisam ser observadas de novo
   useEffect(() => {
+    setSobreVerde(false);
     const alvos = document.querySelectorAll(
       "section.bg-verde, footer.bg-verde",
     );
@@ -43,7 +48,7 @@ export default function Cabecalho({
     );
     alvos.forEach((el) => observador.observe(el));
     return () => observador.disconnect();
-  }, []);
+  }, [pathname]);
 
   // trava o scroll com o menu aberto
   useEffect(() => {
