@@ -5,6 +5,7 @@ import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
 import ComoTrabalhamos from "@/components/home/secoes/ComoTrabalhamos";
 import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
+import RioDeFibras from "@/components/home/grafismos/RioDeFibras";
 
 export const metadata: Metadata = {
   title: "Quem somos · Vivaz",
@@ -58,17 +59,19 @@ export default async function QuemSomosPagina({
         </div>
       </section>
 
+      <RioDeFibras className="pointer-events-none h-32 w-full" />
+
       <section className="mx-auto w-full max-w-6xl px-6 py-14">
         <div className="grid gap-12 md:grid-cols-3">
           {socias.map((socia) => (
             <article key={socia.nome}>
-              <div className="relative aspect-[3/4] overflow-hidden rounded-md">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-md border-[3px] border-verde">
                 <Image
                   src={socia.foto}
                   alt={socia.nome}
                   fill
                   sizes="(min-width: 768px) 360px, 90vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 hover:scale-[1.03]"
                 />
               </div>
               <h2 className="font-montserrat mt-5 text-xl font-semibold text-verde">

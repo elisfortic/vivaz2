@@ -3,6 +3,7 @@ import Link from "next/link";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import Rodape from "@/components/ui/Rodape";
 import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
+import LinhaRuptura from "@/components/home/grafismos/LinhaRuptura";
 
 export const metadata: Metadata = {
   title: "Ponto de vista · Vivaz",
@@ -26,6 +27,11 @@ export default async function PontoDeVistaPagina({
       />
 
       <section className="mx-auto w-full max-w-6xl flex-1 px-6 py-16">
+        <LinhaRuptura
+          semente={4}
+          intensa={false}
+          className="pointer-events-none mb-12 hidden h-36 w-full max-w-2xl md:block"
+        />
         <Link
           href="/ponto-de-vista/por-que-transformacoes-falham"
           className="group block max-w-2xl border-t border-linha pt-8"
