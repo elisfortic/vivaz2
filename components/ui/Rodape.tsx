@@ -25,23 +25,8 @@ export default function Rodape({ lang = "pt" }: { lang?: Idioma }) {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-6">
-          {/* seletor de idioma discreto (spec 3.4) */}
-          <nav className="flex gap-3 text-xs uppercase tracking-wide">
-            {(["pt", "es", "en"] as const).map((idioma) => (
-              <Link
-                key={idioma}
-                href={`/${idioma}`}
-                className={`transition-colors duration-300 hover:text-off-white ${
-                  idioma === lang ? "text-off-white" : "text-off-white/55"
-                }`}
-              >
-                {idioma}
-              </Link>
-            ))}
-          </nav>
-          <p className="text-xs text-off-white/60">{t.rodape.copyright}</p>
-        </div>
+        {/* seletor de idioma volta quando a fase ES/EN for aprovada */}
+        <p className="text-xs text-off-white/60">{t.rodape.copyright}</p>
       </div>
     </footer>
   );

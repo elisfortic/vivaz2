@@ -1,4 +1,4 @@
-import type { Idioma } from "@/lib/idiomas";
+import type { IdiomaFuturo } from "@/lib/idiomas";
 
 /**
  * Copy trilíngue da home. PT é a fonte (docs/04-copy-final.md).
@@ -34,7 +34,7 @@ export const HERO = {
     botao: "Talk to a partner",
     linkAncora: "What moving systems means ↓",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const MOVER = {
   pt: {
@@ -61,7 +61,7 @@ export const MOVER = {
     recusa:
       " We connect the strategy you already have to culture and people management — so it stops being an intention on paper and starts happening day to day.",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const PONTO_DE_PARTIDA = {
   pt: {
@@ -127,7 +127,7 @@ export const PONTO_DE_PARTIDA = {
       },
     ],
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const FALHAM = {
   pt: {
@@ -208,7 +208,7 @@ export const FALHAM = {
     ],
     linkEnsaio: "Read the full essay — 8 min →",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const TERRITORIOS = {
   pt: {
@@ -292,7 +292,7 @@ export const TERRITORIOS = {
       },
     ],
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const QUEM_SOMOS_TEASER = {
   pt: {
@@ -319,7 +319,7 @@ export const QUEM_SOMOS_TEASER = {
     link: "Meet Elisângela, Flavia and Leila →",
     trajetoriaRotulo: "Track record built at",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const COMO_TRABALHAMOS = {
   pt: {
@@ -424,7 +424,7 @@ export const COMO_TRABALHAMOS = {
       },
     ],
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const FECHAMENTO = {
   pt: {
@@ -451,4 +451,4 @@ export const FECHAMENTO = {
       "If you are facing a change that needs to happen in culture, structure and management at the same time — let's talk.",
     botao: "Talk to a partner",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;

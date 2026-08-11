@@ -2,8 +2,12 @@ import pt from "@/dictionaries/pt.json";
 import es from "@/dictionaries/es.json";
 import en from "@/dictionaries/en.json";
 
-export const IDIOMAS = ["pt", "es", "en"] as const;
+// ES/EN traduzidos e guardados em lib/copy/*, mas DESLIGADOS até o
+// cliente aprovar a fase de idiomas — só português no ar (2026-08-11)
+export const IDIOMAS = ["pt"] as const;
 export type Idioma = (typeof IDIOMAS)[number];
+/** os três idiomas dos módulos de copy (es/en dormentes até aprovação) */
+export type IdiomaFuturo = "pt" | "es" | "en";
 
 export const ehIdioma = (valor: string): valor is Idioma =>
   (IDIOMAS as readonly string[]).includes(valor);

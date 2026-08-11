@@ -1,4 +1,4 @@
-import type { Idioma } from "@/lib/idiomas";
+import type { IdiomaFuturo } from "@/lib/idiomas";
 
 /**
  * Copy trilíngue das páginas internas. PT é a fonte (docs/04-copy-final.md).
@@ -72,7 +72,7 @@ export const QUEM_SOMOS_PAGINA = {
       "30 years in Human Resources, Ombudsman & Quality of Relationships at BankBoston, Banco Itaú and Natura, in regional and global leadership positions, leading organizational transformation and post-M&A integration. Consultant and associate professor at FIA-USP, with additional training in Psychoanalysis. Degree in Business Administration from FEA-USP. MBA in Business Management from Boston School with an international module at New York University.",
     ],
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const O_QUE_MOVEMOS_PAGINA = {
   pt: {
@@ -177,7 +177,7 @@ export const O_QUE_MOVEMOS_PAGINA = {
       },
     ],
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const PONTO_DE_VISTA_PAGINA = {
   pt: {
@@ -210,7 +210,7 @@ export const PONTO_DE_VISTA_PAGINA = {
     pendenteEnsaio:
       "essay to be written by the partners (900–1,200 words) — will be published in Portuguese first",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const CONTATO_PAGINA = {
   pt: {
@@ -293,7 +293,7 @@ export const CONTATO_PAGINA = {
     pendenteEmail: "corporate e-mail",
     pendenteLinkedin: "company LinkedIn page URL",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;
 
 export const PRIVACIDADE_PAGINA = {
   pt: {
@@ -314,4 +314,4 @@ export const PRIVACIDADE_PAGINA = {
     pendente:
       "privacy policy (LGPD) to be provided by the client — the site does not draft legal text",
   },
-} satisfies Record<Idioma, unknown>;
+} satisfies Record<IdiomaFuturo, unknown>;

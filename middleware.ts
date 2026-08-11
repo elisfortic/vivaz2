@@ -2,16 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const IDIOMAS = ["pt", "es", "en"] as const;
 
-/**
- * Os três idiomas têm conteúdo completo (traduções autorizadas pelo
- * cliente em 2026-08-11) — detecta o preferido do navegador; padrão pt.
- */
-function detectar(pedido: NextRequest): string {
-  const aceita = pedido.headers.get("accept-language") ?? "";
-  for (const trecho of aceita.split(",")) {
-    const codigo = trecho.split(";")[0]?.trim().slice(0, 2).toLowerCase();
-    if ((IDIOMAS as readonly string[]).includes(codigo)) return codigo;
-  }
+/** Só português no ar — toda rota sem idioma vai para /pt. */
+function detectar(_pedido: NextRequest): string {
   return "pt";
 }
 
