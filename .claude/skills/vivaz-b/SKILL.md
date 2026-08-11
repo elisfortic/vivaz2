@@ -72,6 +72,14 @@ extraídos em scratchpad), `public/grafismos/*.png` (curadoria da Opção A).
 Slide "falham" = image3 MLS2; anel = image7; trio = trio-v2.png.
 Opção A em `C:\Users\House_Fol\Vivaz` — LER apenas, nunca tocar.
 
+## REGRA DURA de publicação
+NUNCA `git push` para elisfortic/vivaz2 sem aprovação explícita do estado
+exato. Fluxo: mostrar local → cliente aprova → push. O remoto contém SÓ o
+que foi aprovado (hoje: a home, commit abfee64). Uma língua por vez: PT
+fecha primeiro; ES/EN estão traduzidos e dormentes em lib/copy/*
+(IdiomaFuturo) — religar só com aprovação (IDIOMAS em lib/idiomas.ts,
+seletor no Rodape, middleware).
+
 ## Estado (2026-08-11)
 Home APROVADA e fechada (fases 1–3). Restam: 4 rotas internas, 5 i18n
 (/pt /es /en, PT completo, ES/EN {{TRADUZIR}}), 6 formulário Resend
