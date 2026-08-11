@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import FaixaRupturas from "@/components/home/grafismos/FaixaRupturas";
+import LinhaRuptura from "@/components/home/grafismos/LinhaRuptura";
 
-const colunas = [
+const linhas = [
   {
     titulo: "Mexe-se na estrutura,",
     subtitulo: "mas a cultura resiste.",
@@ -26,16 +26,15 @@ const colunas = [
 ];
 
 /**
- * O bloco do impacto: uma única faixa de fibras atravessa as três colunas
- * e rompe nas divisórias (motivo do deck) — o hover em cada coluna acentua
- * a ruptura daquele terço.
+ * Três linhas de ruptura (layout da Opção A, grafismo construído vivo):
+ * título → seta → impacto → fibra que se desfaz → consequência.
  */
 export default function PorQueFalham() {
   const [ativa, setAtiva] = useState<number | null>(null);
 
   return (
-    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-areia">
-      <div className="relative mx-auto w-full max-w-5xl px-6 pt-28">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-28">
         <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
           Nosso ponto de vista
         </p>
@@ -46,43 +45,38 @@ export default function PorQueFalham() {
           Não por falta de método — mas por tratar partes isoladas de um
           sistema que precisa ser avaliado de maneira coordenada.
         </p>
-      </div>
 
-      {/* sangra a largura toda, com fade nas bordas — tira o ar de gráfico */}
-      <FaixaRupturas
-        intensa={ativa}
-        className="mt-12 h-56 w-full"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 9%, black 91%, transparent)",
-          maskImage:
-            "linear-gradient(to right, transparent, black 9%, black 91%, transparent)",
-        }}
-      />
-
-      <div className="relative mx-auto w-full max-w-5xl px-6 pb-28">
-        <div className="mt-8 grid gap-10 md:grid-cols-3">
-          {colunas.map((col, i) => (
+        <div className="mt-16 space-y-12">
+          {linhas.map((linha, i) => (
             <div
-              key={col.titulo}
+              key={linha.titulo}
+              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.9fr)_400px_minmax(0,1.1fr)]"
               onMouseEnter={() => setAtiva(i)}
               onMouseLeave={() => setAtiva(null)}
             >
-              <h3 className="font-montserrat text-xl font-semibold text-grafite">
-                {col.titulo}
-                <br />
-                <span className="text-terracota">{col.subtitulo}</span>
+              <h3 className="font-montserrat text-xl font-semibold leading-snug text-verde md:text-right md:text-2xl">
+                {linha.titulo}
               </h3>
-              <p className="mt-4 leading-relaxed text-grafite/80">
-                {col.corpo}
-              </p>
+              <LinhaRuptura
+                semente={i + 1}
+                intensa={ativa === i}
+                className="hidden h-32 w-full md:block"
+              />
+              <div>
+                <p className="font-montserrat text-xl font-semibold text-terracota md:text-2xl">
+                  {linha.subtitulo}
+                </p>
+                <p className="mt-2 max-w-md leading-relaxed text-grafite/80">
+                  {linha.corpo}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
         <Link
           href="/ponto-de-vista/por-que-transformacoes-falham"
-          className="mt-14 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+          className="mt-16 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
         >
           Leia o ensaio completo — 8 min →
         </Link>

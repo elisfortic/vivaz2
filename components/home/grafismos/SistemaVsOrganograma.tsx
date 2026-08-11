@@ -57,8 +57,8 @@ const ROTULOS = [
     texto: "A Ilusão",
     linha: "O que mantém esse sistema vivo não é o organograma.",
     no: 9,
-    dx: -0.03,
-    dy: -0.08,
+    dx: -0.06,
+    dy: -0.13,
     alinhamento: "right",
   },
   {
@@ -66,8 +66,8 @@ const ROTULOS = [
     linha:
       "É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
     no: 6,
-    dx: 0.09,
-    dy: 0.04,
+    dx: 0.1,
+    dy: 0.09,
     alinhamento: "left",
   },
   {
@@ -75,8 +75,8 @@ const ROTULOS = [
     linha:
       "Quando se rompem, nem a melhor estratégia do mundo faz a empresa sair do lugar.",
     no: 1,
-    dx: 0.03,
-    dy: 0.1,
+    dx: 0.02,
+    dy: 0.13,
     alinhamento: "left",
   },
 ] as const;
@@ -202,7 +202,7 @@ export default function SistemaVsOrganograma({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.45 }}
-          className={`absolute w-[175px] ${
+          className={`absolute w-[180px] rounded-md bg-off-white/85 px-2 py-1.5 ${
             rotulo.alinhamento === "right" ? "text-right" : ""
           }`}
           style={{

@@ -214,7 +214,9 @@ export class LoopCanvas {
   }
 
   private quadro = (agora: number) => {
-    const dt = Math.min((agora - this.ultimo) / 1000, 0.05);
+    // clamp inferior: o timestamp do rAF pode ser anterior ao
+    // performance.now() da retomada — dt negativo quebraria os ciclos
+    const dt = Math.min(Math.max((agora - this.ultimo) / 1000, 0), 0.05);
     this.ultimo = agora;
     this.t += dt;
     this.ctx.clearRect(0, 0, this.largura, this.altura);

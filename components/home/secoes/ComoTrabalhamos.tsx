@@ -65,15 +65,18 @@ export default function ComoTrabalhamos() {
             className="pointer-events-none absolute bottom-4 left-1/2 top-4 w-px bg-grafite/15"
           />
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2">
-            <OrbitaPrincipios ativo={ativo} aoAgir={setAgindo} />
+            <OrbitaPrincipios
+              ativo={ativo}
+              aoAgir={(q) => setAgindo(q < 0 ? null : q)}
+            />
           </div>
           <div className="relative grid min-h-[640px] grid-cols-2 content-between gap-x-[380px] py-6">
             {principios.map((p, i) => (
               <div
                 key={p.numero}
-                className={`max-w-xs transition-opacity duration-700 ${
+                className={`max-w-xs ${
                   i % 2 === 1 ? "justify-self-end text-right" : ""
-                } ${emFoco !== null && emFoco !== i ? "opacity-60" : ""}`}
+                }`}
                 onMouseEnter={() => setAtivo(i)}
                 onMouseLeave={() => setAtivo(null)}
               >

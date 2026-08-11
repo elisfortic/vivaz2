@@ -32,7 +32,7 @@ export default function Fechamento() {
         aria-hidden="true"
         width={380}
         height={290}
-        className="pointer-events-none absolute -bottom-10 -right-6 opacity-[0.07]"
+        className="pointer-events-none absolute -bottom-10 -right-6 h-auto opacity-[0.07]"
       />
     </section>
   );

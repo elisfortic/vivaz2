@@ -450,7 +450,7 @@ export default function RedeViva({
     let quadrosRuins = 0;
 
     const quadro = (agora: number) => {
-      const dt = Math.min((agora - ultimo) / 1000, 0.05);
+      const dt = Math.min(Math.max((agora - ultimo) / 1000, 0), 0.05);
       ultimo = agora;
       t += dt;
 

@@ -63,9 +63,9 @@ export default function OrbitaPrincipios({
     const feixes: ParamsFibra[][] = Array.from({ length: NOS }, () =>
       Array.from({ length: 5 }, () => criarFibra(rng, 6, 15)),
     );
-    const fibrasBraco = [criarFibra(rng, 5, 10), criarFibra(rng, 5, 10)];
-    const brilho = new Array(4).fill(0.55);
     let ultimaAcao = -1;
+    let escolhido = -1;
+    let tocado = false;
 
     const loop = new LoopCanvas(canvas, (ctx, largura, altura, t, dt) => {
       const cx = largura / 2;
@@ -73,7 +73,7 @@ export default function OrbitaPrincipios({
       const raio = Math.min(largura, altura) * 0.4;
       const rotacao = (Math.PI * 2 * t) / 100;
 
-      const posicao = (i: number) => {
+      const posicaoBase = (i: number) => {
         const angulo = rotacao + (Math.PI * 2 * i) / NOS - Math.PI / 2;
         const r = raio * (1 + 0.045 * ruido(i * 23.1, 0, t / 30));
         return {
@@ -82,10 +82,8 @@ export default function OrbitaPrincipios({
         };
       };
 
-      const quadranteDe = (x: number, y: number) =>
-        (y < cy ? 0 : 2) + (x < cx ? 0 : 1);
-
-      // a ação em curso: qual princípio, quanto estendida
+      // a ação: um dos nós DO PRÓPRIO ANEL se estende até quase tocar o
+      // princípio da vez e volta — cada ação ocorrendo e retornando
       const acao = Math.floor(t / DURACAO_ACAO) % 4;
       const p = (t % DURACAO_ACAO) / DURACAO_ACAO;
       const extensao =
@@ -96,32 +94,59 @@ export default function OrbitaPrincipios({
             : p < 0.9
               ? 1 - suavizar((p - 0.55) / 0.35)
               : 0;
-      if (dt > 0 && acao !== ultimaAcao) {
+      const alvoX = ALVOS[acao].nx * largura;
+      const alvoY = ALVOS[acao].ny * altura;
+      if (acao !== ultimaAcao) {
         ultimaAcao = acao;
-        refAoAgir.current?.(acao);
+        tocado = false;
+        // o nó mais próximo do princípio assume o gesto
+        let melhor = 0;
+        let melhorDist = Infinity;
+        for (let i = 0; i < NOS; i++) {
+          const ponto = posicaoBase(i);
+          const d = (ponto.x - alvoX) ** 2 + (ponto.y - alvoY) ** 2;
+          if (d < melhorDist) {
+            melhorDist = d;
+            melhor = i;
+          }
+        }
+        escolhido = melhor;
+      }
+      if (dt > 0) {
+        if (!tocado && extensao > 0.88) {
+          tocado = true;
+          refAoAgir.current?.(acao);
+        }
+        if (tocado && extensao < 0.15) {
+          tocado = false;
+          refAoAgir.current?.(-1);
+        }
       }
 
-      const emFoco = refAtivo.current ?? (extensao > 0.04 ? acao : null);
-      const k = dt === 0 ? 1 : 1 - Math.exp(-dt / 0.35);
-      for (let q = 0; q < 4; q++) {
-        const alvo = emFoco === null ? 0.55 : emFoco === q ? 1 : 0.25;
-        brilho[q] += (alvo - brilho[q]) * k;
-      }
+      const posicao = (i: number) => {
+        const base = posicaoBase(i);
+        if (i !== escolhido || extensao <= 0.01) return base;
+        // quase toca: 72% do caminho até o texto
+        return {
+          x: base.x + (alvoX - base.x) * 0.72 * extensao,
+          y: base.y + (alvoY - base.y) * 0.72 * extensao,
+        };
+      };
 
-      // arcos entrelaçados
+      // arcos entrelaçados — presença constante, nada esmaece;
+      // quando o nó escolhido sai, os arcos vizinhos se esticam com ele
+      ctx.beginPath();
       for (let i = 0; i < NOS; i++) {
         const a = posicao(i);
         const b = posicao((i + 1) % NOS);
-        const q = quadranteDe((a.x + b.x) / 2, (a.y + b.y) / 2);
-        ctx.beginPath();
         for (const fibra of feixes[i]) {
           tracarFibra(ctx, ruido, fibra, a.x, a.y, b.x, b.y, t, 12, 0.3);
         }
-        ctx.strokeStyle = cores.verde;
-        ctx.globalAlpha = 0.14 + brilho[q] * 0.38;
-        ctx.lineWidth = 1;
-        ctx.stroke();
       }
+      ctx.strokeStyle = cores.verde;
+      ctx.globalAlpha = 0.3;
+      ctx.lineWidth = 1;
+      ctx.stroke();
       ctx.globalAlpha = 1;
 
       // fibras-líder serpenteando por cima do pente (deck): o corpo do anel
@@ -151,46 +176,6 @@ export default function OrbitaPrincipios({
       }
       ctx.globalAlpha = 1;
 
-      // o braço da ação: do ponto do anel mais próximo até o princípio
-      if (extensao > 0.01) {
-        const alvo = ALVOS[acao];
-        const tx = alvo.nx * largura;
-        const ty = alvo.ny * altura;
-        const anguloAlvo = Math.atan2(ty - cy, tx - cx);
-        const origemX = cx + Math.cos(anguloAlvo) * raio;
-        const origemY = cy + Math.sin(anguloAlvo) * raio;
-        const pontaX = origemX + (tx - origemX) * extensao;
-        const pontaY = origemY + (ty - origemY) * extensao;
-
-        ctx.beginPath();
-        for (const fibra of fibrasBraco) {
-          tracarFibra(
-            ctx,
-            ruido,
-            fibra,
-            origemX,
-            origemY,
-            pontaX,
-            pontaY,
-            t,
-            12,
-            0.18,
-          );
-        }
-        ctx.strokeStyle = cores.verde;
-        ctx.globalAlpha = 0.35 + extensao * 0.35;
-        ctx.lineWidth = 1.6;
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-
-        ctx.beginPath();
-        ctx.arc(pontaX, pontaY, 4.5 * extensao, 0, Math.PI * 2);
-        ctx.fillStyle = cores.terracota;
-        ctx.globalAlpha = 0.9;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-
       // nós — alternando verde e terracota, respirando
       for (const cor of ["verde", "terracota"] as const) {
         ctx.beginPath();
@@ -203,6 +188,18 @@ export default function OrbitaPrincipios({
         }
         ctx.fillStyle = cor === "verde" ? cores.verde : cores.terracota;
         ctx.fill();
+      }
+
+      // o nó em gesto ganha um halo terracota enquanto está fora do anel
+      if (escolhido >= 0 && extensao > 0.4) {
+        const ponto = posicao(escolhido);
+        ctx.beginPath();
+        ctx.arc(ponto.x, ponto.y, 19, 0, Math.PI * 2);
+        ctx.strokeStyle = cores.terracota;
+        ctx.globalAlpha = (extensao - 0.4) * 1.2;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
       }
     });
 
