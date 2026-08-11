@@ -30,7 +30,7 @@ const NOS = [
   { nx: 0.52, ny: 0.82, cor: "verde", r: 6 },
   { nx: 0.6, ny: 0.56, cor: "verde", r: 12 },
   { nx: 0.62, ny: 0.3, cor: "terracota", r: 6 },
-  { nx: 0.72, ny: 0.72, cor: "terracota", r: 5 },
+  { nx: 0.64, ny: 0.8, cor: "terracota", r: 5 },
   { nx: 0.74, ny: 0.14, cor: "terracota", r: 7 },
   { nx: 0.82, ny: 0.44, cor: "verde", r: 7 },
 ] as const;
@@ -57,8 +57,8 @@ const ROTULOS = [
     texto: "A Ilusão",
     linha: "O que mantém esse sistema vivo não é o organograma.",
     no: 9,
-    dx: -0.06,
-    dy: -0.13,
+    dx: -0.05,
+    dy: -0.17,
     alinhamento: "right",
   },
   {
@@ -66,8 +66,8 @@ const ROTULOS = [
     linha:
       "É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
     no: 6,
-    dx: 0.1,
-    dy: 0.09,
+    dx: 0.11,
+    dy: 0.08,
     alinhamento: "left",
   },
   {
@@ -202,7 +202,7 @@ export default function SistemaVsOrganograma({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.45 }}
-          className={`absolute w-[180px] rounded-md bg-off-white/85 px-2 py-1.5 ${
+          className={`absolute w-[180px] ${
             rotulo.alinhamento === "right" ? "text-right" : ""
           }`}
           style={{

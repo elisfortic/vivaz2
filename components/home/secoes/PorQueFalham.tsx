@@ -46,11 +46,11 @@ export default function PorQueFalham() {
           sistema que precisa ser avaliado de maneira coordenada.
         </p>
 
-        <div className="mt-16 space-y-12">
+        <div className="mt-14 space-y-10">
           {linhas.map((linha, i) => (
             <div
               key={linha.titulo}
-              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.9fr)_400px_minmax(0,1.1fr)]"
+              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.85fr)_480px_minmax(0,1fr)]"
               onMouseEnter={() => setAtiva(i)}
               onMouseLeave={() => setAtiva(null)}
             >
@@ -60,7 +60,7 @@ export default function PorQueFalham() {
               <LinhaRuptura
                 semente={i + 1}
                 intensa={ativa === i}
-                className="hidden h-32 w-full md:block"
+                className="hidden h-40 w-full md:block"
               />
               <div>
                 <p className="font-montserrat text-xl font-semibold text-terracota md:text-2xl">

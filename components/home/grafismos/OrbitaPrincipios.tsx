@@ -68,6 +68,9 @@ export default function OrbitaPrincipios({
     let tocado = false;
 
     const loop = new LoopCanvas(canvas, (ctx, largura, altura, t, dt) => {
+      // sem dentilhado: junções e pontas arredondadas em todos os traços
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
       const cx = largura / 2;
       const cy = altura / 2;
       const raio = Math.min(largura, altura) * 0.4;
@@ -140,7 +143,7 @@ export default function OrbitaPrincipios({
         const a = posicao(i);
         const b = posicao((i + 1) % NOS);
         for (const fibra of feixes[i]) {
-          tracarFibra(ctx, ruido, fibra, a.x, a.y, b.x, b.y, t, 12, 0.3);
+          tracarFibra(ctx, ruido, fibra, a.x, a.y, b.x, b.y, t, 20, 0.3);
         }
       }
       ctx.strokeStyle = cores.verde;
@@ -156,7 +159,7 @@ export default function OrbitaPrincipios({
       ];
       for (const lider of lideres) {
         ctx.beginPath();
-        const AMOSTRAS = 96;
+        const AMOSTRAS = 240;
         for (let s = 0; s <= AMOSTRAS; s++) {
           const angulo = rotacao + (Math.PI * 2 * s) / AMOSTRAS - Math.PI / 2;
           const serpente =

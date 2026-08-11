@@ -1,4 +1,3 @@
-import FioCondutor from "@/components/home/FioCondutor";
 import FundoRede from "@/components/home/FundoRede";
 import Hero from "@/components/home/Hero";
 import PilhaSecoes from "@/components/home/PilhaSecoes";
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <main id="conteudo">
       <FundoRede />
-      <FioCondutor />
       <PilhaSecoes>
         <Hero />
         <MoverSistemas />
