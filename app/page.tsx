@@ -8,6 +8,7 @@ import Territorios from "@/components/home/secoes/Territorios";
 import QuemSomos from "@/components/home/secoes/QuemSomos";
 import ComoTrabalhamos from "@/components/home/secoes/ComoTrabalhamos";
 import Fechamento from "@/components/home/secoes/Fechamento";
+import Rodape from "@/components/ui/Rodape";
 
 export default function Home() {
   return (
@@ -23,9 +24,7 @@ export default function Home() {
         <ComoTrabalhamos />
         <Fechamento />
       </PilhaSecoes>
-      <footer className="relative z-10 bg-verde px-6 py-6 text-center text-xs text-off-white/60">
-        © 2026 Vivaz Consultoria
-      </footer>
+      <Rodape />
     </main>
   );
 }
