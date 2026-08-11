@@ -34,8 +34,8 @@ export default function PorQueFalham() {
   const [ativa, setAtiva] = useState<number | null>(null);
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
-      <div className="relative mx-auto w-full max-w-5xl px-6 py-28">
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-areia">
+      <div className="relative mx-auto w-full max-w-5xl px-6 pt-28">
         <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
           Nosso ponto de vista
         </p>
@@ -46,10 +46,22 @@ export default function PorQueFalham() {
           Não por falta de método — mas por tratar partes isoladas de um
           sistema que precisa ser avaliado de maneira coordenada.
         </p>
+      </div>
 
-        <FaixaRupturas intensa={ativa} className="mt-14 h-44 w-full" />
+      {/* sangra a largura toda, com fade nas bordas — tira o ar de gráfico */}
+      <FaixaRupturas
+        intensa={ativa}
+        className="mt-12 h-56 w-full"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 9%, black 91%, transparent)",
+          maskImage:
+            "linear-gradient(to right, transparent, black 9%, black 91%, transparent)",
+        }}
+      />
 
-        <div className="mt-6 grid gap-10 md:grid-cols-3">
+      <div className="relative mx-auto w-full max-w-5xl px-6 pb-28">
+        <div className="mt-8 grid gap-10 md:grid-cols-3">
           {colunas.map((col, i) => (
             <div
               key={col.titulo}

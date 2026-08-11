@@ -70,7 +70,7 @@ export default function OrbitaPrincipios({
     const loop = new LoopCanvas(canvas, (ctx, largura, altura, t, dt) => {
       const cx = largura / 2;
       const cy = altura / 2;
-      const raio = Math.min(largura, altura) * 0.3;
+      const raio = Math.min(largura, altura) * 0.4;
       const rotacao = (Math.PI * 2 * t) / 100;
 
       const posicao = (i: number) => {
@@ -118,16 +118,16 @@ export default function OrbitaPrincipios({
           tracarFibra(ctx, ruido, fibra, a.x, a.y, b.x, b.y, t, 12, 0.3);
         }
         ctx.strokeStyle = cores.verde;
-        ctx.globalAlpha = 0.18 + brilho[q] * 0.45;
+        ctx.globalAlpha = 0.14 + brilho[q] * 0.38;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
       ctx.globalAlpha = 1;
 
-      // fibras-líder finas serpenteando (deck): verde + terracota
+      // fibras-líder serpenteando por cima do pente (deck): o corpo do anel
       const lideres = [
-        { cor: cores.verde, peso: 2.4, fase: 0, alfa: 0.6 },
-        { cor: cores.terracota, peso: 2.1, fase: Math.PI / NOS, alfa: 0.55 },
+        { cor: cores.verde, peso: 3.5, fase: 0, alfa: 0.8 },
+        { cor: cores.terracota, peso: 3, fase: Math.PI / NOS, alfa: 0.9 },
       ];
       for (const lider of lideres) {
         ctx.beginPath();
@@ -135,8 +135,8 @@ export default function OrbitaPrincipios({
         for (let s = 0; s <= AMOSTRAS; s++) {
           const angulo = rotacao + (Math.PI * 2 * s) / AMOSTRAS - Math.PI / 2;
           const serpente =
-            Math.sin(angulo * (NOS / 2) + lider.fase * (NOS / 2)) * 13;
-          const wobble = ruido(lider.fase * 7 + 40, s * 0.09, t / 34) * 6;
+            Math.sin(angulo * (NOS / 2) + lider.fase * (NOS / 2)) * 18;
+          const wobble = ruido(lider.fase * 7 + 40, s * 0.09, t / 34) * 7;
           const r = raio + serpente + wobble;
           const x = cx + Math.cos(angulo) * r;
           const y = cy + Math.sin(angulo) * r;
@@ -197,7 +197,7 @@ export default function OrbitaPrincipios({
         for (let i = 0; i < NOS; i++) {
           if ((i % 2 === 0 ? "verde" : "terracota") !== cor) continue;
           const ponto = posicao(i);
-          const r = 7.5 * (1 + 0.07 * ruido(140 + i * 9, 0, t / 26));
+          const r = 14 * (1 + 0.07 * ruido(140 + i * 9, 0, t / 26));
           ctx.moveTo(ponto.x + r, ponto.y);
           ctx.arc(ponto.x, ponto.y, r, 0, Math.PI * 2);
         }

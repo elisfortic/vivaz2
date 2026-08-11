@@ -57,17 +57,17 @@ const ROTULOS = [
     texto: "A Ilusão",
     linha: "O que mantém esse sistema vivo não é o organograma.",
     no: 9,
-    dx: 0.05,
+    dx: -0.03,
     dy: -0.08,
-    alinhamento: "left",
+    alinhamento: "right",
   },
   {
     texto: "A Realidade",
     linha:
       "É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
     no: 6,
-    dx: 0.13,
-    dy: 0.02,
+    dx: 0.09,
+    dy: 0.04,
     alinhamento: "left",
   },
   {
@@ -75,9 +75,9 @@ const ROTULOS = [
     linha:
       "Quando se rompem, nem a melhor estratégia do mundo faz a empresa sair do lugar.",
     no: 1,
-    dx: -0.04,
-    dy: 0.13,
-    alinhamento: "right",
+    dx: 0.03,
+    dy: 0.1,
+    alinhamento: "left",
   },
 ] as const;
 
@@ -202,7 +202,7 @@ export default function SistemaVsOrganograma({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.45 }}
-          className={`absolute w-[190px] ${
+          className={`absolute w-[175px] ${
             rotulo.alinhamento === "right" ? "text-right" : ""
           }`}
           style={{
@@ -217,7 +217,7 @@ export default function SistemaVsOrganograma({
           <span className="font-montserrat block text-sm font-semibold text-verde md:text-base">
             {rotulo.texto}
           </span>
-          <span className="font-lato mt-1 block text-[13px] leading-snug text-grafite/85">
+          <span className="font-lato mt-1 block text-[14px] leading-normal text-grafite/85">
             {rotulo.linha}
           </span>
         </motion.div>

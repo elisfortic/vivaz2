@@ -6,7 +6,7 @@ export default function MoverSistemas() {
       id="definicao"
       className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-off-white"
     >
-      <div className="relative mx-auto w-full max-w-6xl px-6 pt-28 pb-10">
+      <div className="relative mx-auto w-full max-w-6xl px-6 pt-16 pb-8">
         <div className="max-w-3xl">
         <p className="mb-10 text-sm uppercase tracking-[0.22em] text-terracota">
           Mover sistemas

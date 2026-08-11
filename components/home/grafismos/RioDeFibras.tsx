@@ -72,9 +72,9 @@ export default function RioDeFibras({ className }: { className?: string }) {
     }));
 
     // fios verticais leves cruzando a trama — é o que faz tecido, não listras
-    const verticais = Array.from({ length: 7 }, () => ({
+    const verticais = Array.from({ length: 4 }, () => ({
       fibra: criarFibra(rng, 4, 9),
-      x: entre(rng, 0.05, 0.95),
+      x: entre(rng, 0.1, 0.9),
       deriva: entre(rng, -0.04, 0.04),
     }));
 
@@ -113,8 +113,8 @@ export default function RioDeFibras({ className }: { className?: string }) {
         );
       }
       ctx.strokeStyle = cores.sage;
-      ctx.globalAlpha = 0.4;
-      ctx.lineWidth = 0.8;
+      ctx.globalAlpha = 0.3;
+      ctx.lineWidth = 1;
       ctx.stroke();
       ctx.globalAlpha = 1;
 

@@ -64,7 +64,17 @@ export default function QuemSomos() {
             {/* o quadro do grafismo é maior que a coluna — as fibras
                 entram e saem sem parecer cortadas */}
             <div className="absolute -inset-x-24 -inset-y-14">
-              <TrioAncoragem ativa={ativa} />
+              {/* fade elíptico: some antes do texto, do nav e da régua —
+                  nunca corte seco */}
+              <TrioAncoragem
+                ativa={ativa}
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(115% 100% at 55% 48%, black 58%, transparent 95%)",
+                  maskImage:
+                    "radial-gradient(115% 100% at 55% 48%, black 58%, transparent 95%)",
+                }}
+              />
               {socias.map((socia, i) => (
                 <button
                   key={socia.nome}

@@ -45,7 +45,7 @@ export default function ComoTrabalhamos() {
   const emFoco = ativo ?? agindo;
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-off-white">
       <div className="mx-auto w-full max-w-6xl px-6 py-28">
         <p className="mb-6 text-center text-sm uppercase tracking-[0.22em] text-terracota">
           Como trabalhamos
@@ -55,10 +55,19 @@ export default function ComoTrabalhamos() {
         </h2>
 
         <div className="relative mt-12 hidden md:block">
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2">
+          {/* a cruz que organiza os quadrantes, como no deck */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 right-0 top-1/2 h-px bg-grafite/15"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-4 left-1/2 top-4 w-px bg-grafite/15"
+          />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2">
             <OrbitaPrincipios ativo={ativo} aoAgir={setAgindo} />
           </div>
-          <div className="relative grid min-h-[580px] grid-cols-2 content-between gap-x-[400px] py-6">
+          <div className="relative grid min-h-[640px] grid-cols-2 content-between gap-x-[380px] py-6">
             {principios.map((p, i) => (
               <div
                 key={p.numero}

@@ -125,7 +125,8 @@ export default function FioCondutor() {
           }
           ctx.strokeStyle =
             tom === "escuro" ? cores.verde : "rgba(250, 249, 246, 0.65)";
-          ctx.globalAlpha = fio.alfa;
+          // sobre o verde do fechamento, metade da presença
+          ctx.globalAlpha = tom === "claro" ? fio.alfa * 0.45 : fio.alfa;
           ctx.lineWidth = fio.peso;
           ctx.stroke();
         }

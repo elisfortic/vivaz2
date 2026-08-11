@@ -19,9 +19,9 @@ import {
  * Ordem: Elisângela, Flavia, Leila.
  */
 export const ANCORAS = [
-  { nx: 0.56, ny: 0.2 },
-  { nx: 0.26, ny: 0.62 },
-  { nx: 0.76, ny: 0.72 },
+  { nx: 0.52, ny: 0.24 },
+  { nx: 0.33, ny: 0.62 },
+  { nx: 0.71, ny: 0.68 },
 ] as const;
 
 interface Feixe {
@@ -50,9 +50,11 @@ interface Entrelace {
 export default function TrioAncoragem({
   ativa,
   className,
+  style,
 }: {
   ativa: number | null;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const refCanvas = useRef<HTMLCanvasElement>(null);
   const refAtiva = useRef<number | null>(ativa);
@@ -211,6 +213,7 @@ export default function TrioAncoragem({
     <canvas
       ref={refCanvas}
       className={className ?? "absolute inset-0 h-full w-full"}
+      style={style}
       aria-hidden="true"
     />
   );

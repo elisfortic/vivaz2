@@ -33,7 +33,7 @@ export default function OrganogramaFantasma({
         <path
           d="M120 172 V204 M60 204 H180 M60 204 V236 M180 204 V236
              M320 172 V204 M260 204 H380 M260 204 V236 M380 204 V236
-             M520 172 V204 M460 204 H580 M460 204 V236 M580 204 V236"
+             M520 172 V236"
           className="stroke-linha"
           fill="none"
         />
@@ -42,8 +42,6 @@ export default function OrganogramaFantasma({
         <rect x="135" y="236" width="90" height="40" className={caixa} />
         <rect x="215" y="236" width="90" height="40" className={caixa} />
         <rect x="335" y="236" width="90" height="40" className={caixa} />
-        <rect x="415" y="236" width="90" height="40" className={caixa} />
-        <rect x="535" y="236" width="90" height="40" className={caixa} />
         {/* nível 4 parcial — o organograma continua para fora do quadro */}
         <path
           d="M60 276 V308 M160 308 H60 M160 308 V340 M460 276 V308 M560 308 H460 M560 308 V340"
