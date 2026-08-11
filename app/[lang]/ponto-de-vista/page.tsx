@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Rodape from "@/components/ui/Rodape";
-import RedeViva from "@/components/rede/RedeViva";
+import FeixeVertical from "@/components/home/grafismos/FeixeVertical";
 import { PONTO_DE_VISTA_PAGINA } from "@/lib/copy/paginas";
 import { ehIdioma } from "@/lib/idiomas";
 
@@ -47,7 +47,7 @@ export default async function PontoDeVistaPagina({
                 "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
             }}
           >
-            <RedeViva quantidade={16} terracotas={2} seed={20260826} />
+            <FeixeVertical />
           </div>
         </div>
       </section>
