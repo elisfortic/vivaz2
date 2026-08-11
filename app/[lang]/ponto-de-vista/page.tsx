@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import Rodape from "@/components/ui/Rodape";
-import LinhaRuptura from "@/components/home/grafismos/LinhaRuptura";
+import RedeViva from "@/components/rede/RedeViva";
 import { PONTO_DE_VISTA_PAGINA } from "@/lib/copy/paginas";
 import { ehIdioma } from "@/lib/idiomas";
 
@@ -11,6 +9,11 @@ export const metadata: Metadata = {
   title: "Ponto de vista · Vivaz",
 };
 
+/**
+ * Estrutura da Opção A: abertura em areia com estado vazio (o ensaio ainda
+ * não foi publicado) e, à direita, a malha — aqui VIVA, com fade vertical.
+ * A rota do artigo continua existindo para quando o texto chegar.
+ */
 export default async function PontoDeVistaPagina({
   params,
 }: {
@@ -22,26 +25,31 @@ export default async function PontoDeVistaPagina({
 
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
-      <CabecalhoPagina eyebrow={t.eyebrow} titulo={t.h1} lead={t.lead} />
-
-      <section className="mx-auto w-full max-w-6xl flex-1 px-6 py-16">
-        <LinhaRuptura
-          semente={4}
-          intensa={false}
-          className="pointer-events-none mb-12 hidden h-36 w-full max-w-2xl md:block"
-        />
-        <Link
-          href={`/${lang}/ponto-de-vista/por-que-transformacoes-falham`}
-          className="group block max-w-2xl border-t border-linha pt-8"
-        >
-          <h2 className="font-montserrat text-2xl font-medium leading-snug text-verde transition-colors duration-300 group-hover:text-terracota md:text-3xl">
-            {t.artigoTitulo}
-          </h2>
-          <p className="mt-3 text-sm text-grafite/70">{t.assinatura}</p>
-          <span className="mt-5 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 group-hover:text-terracota">
-            {t.linkEnsaio}
-          </span>
-        </Link>
+      <section className="flex-1 overflow-hidden bg-areia">
+        <div className="mx-auto grid min-h-[70vh] w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-40 md:grid-cols-12">
+          <div className="flex flex-col gap-6 md:col-span-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+              {t.eyebrow}
+            </p>
+            <h1 className="titulo-h2">{t.h1}</h1>
+            <p className="texto-deck max-w-[680px]">{t.lead}</p>
+            <p className="max-w-[680px] leading-relaxed text-grafite">
+              {t.estadoVazio}
+            </p>
+          </div>
+          <div
+            aria-hidden="true"
+            className="relative hidden h-[480px] md:col-span-4 md:col-start-9 md:block"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+              maskImage:
+                "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
+            }}
+          >
+            <RedeViva quantidade={16} terracotas={2} seed={20260826} />
+          </div>
+        </div>
       </section>
 
       <Rodape lang={lang} />

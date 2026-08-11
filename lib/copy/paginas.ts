@@ -179,11 +179,47 @@ export const O_QUE_MOVEMOS_PAGINA = {
   },
 } satisfies Record<IdiomaFuturo, unknown>;
 
+/** dizeres do deck usados nos grafismos (aprovação integral do cliente na A) */
+export const GRAFISMOS_DECK = {
+  pt: {
+    manifestoTerritorios: "Mexer em uma parte sempre move as outras.",
+    nucleoOrbitas: "Evolução Organizacional",
+    frentesRede: [
+      "Arquitetura de Remuneração",
+      "Especialistas Setoriais",
+      "Riscos Psicossociais",
+      "Integração Pós-M&A",
+    ],
+  },
+  es: {
+    manifestoTerritorios: "Mover una parte siempre mueve las demás.",
+    nucleoOrbitas: "Evolución Organizacional",
+    frentesRede: [
+      "Arquitectura de Remuneración",
+      "Especialistas Sectoriales",
+      "Riesgos Psicosociales",
+      "Integración Post-M&A",
+    ],
+  },
+  en: {
+    manifestoTerritorios: "Moving one part always moves the others.",
+    nucleoOrbitas: "Organizational Evolution",
+    frentesRede: [
+      "Compensation Architecture",
+      "Sector Specialists",
+      "Psychosocial Risks",
+      "Post-M&A Integration",
+    ],
+  },
+} satisfies Record<IdiomaFuturo, unknown>;
+
 export const PONTO_DE_VISTA_PAGINA = {
   pt: {
     eyebrow: "Ponto de vista",
     h1: "Nosso ponto de vista",
     lead: "O que pensamos sobre organizações, cultura e o trabalho de fazer sistemas se moverem. Textos, entrevistas e conversas — publicados aqui e no LinkedIn.",
+    estadoVazio:
+      "Estamos preparando os primeiros textos. Enquanto isso, acompanhe a Vivaz no LinkedIn.",
     artigoTitulo: "Por que tantas transformações organizacionais falham",
     assinatura: "Elisângela Chitero, Flavia Pilan e Leila Kido",
     linkEnsaio: "Leia o ensaio completo — 8 min →",
@@ -194,6 +230,8 @@ export const PONTO_DE_VISTA_PAGINA = {
     eyebrow: "Punto de vista",
     h1: "Nuestro punto de vista",
     lead: "Lo que pensamos sobre organizaciones, cultura y el trabajo de hacer que los sistemas se muevan. Textos, entrevistas y conversaciones — publicados aquí y en LinkedIn.",
+    estadoVazio:
+      "Estamos preparando los primeros textos. Mientras tanto, sigue a Vivaz en LinkedIn.",
     artigoTitulo: "Por qué fallan tantas transformaciones organizacionales",
     assinatura: "Elisângela Chitero, Flavia Pilan y Leila Kido",
     linkEnsaio: "Lee el ensayo completo — 8 min →",
@@ -204,6 +242,8 @@ export const PONTO_DE_VISTA_PAGINA = {
     eyebrow: "Point of view",
     h1: "Our point of view",
     lead: "What we think about organizations, culture and the work of making systems move. Texts, interviews and conversations — published here and on LinkedIn.",
+    estadoVazio:
+      "We are preparing the first texts. In the meantime, follow Vivaz on LinkedIn.",
     artigoTitulo: "Why so many organizational transformations fail",
     assinatura: "Elisângela Chitero, Flavia Pilan and Leila Kido",
     linkEnsaio: "Read the full essay — 8 min →",

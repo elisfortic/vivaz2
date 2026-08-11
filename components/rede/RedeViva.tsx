@@ -16,6 +16,8 @@ interface RedeVivaProps {
   terracotas?: number;
   /** repulsão ao cursor */
   interativa?: boolean;
+  /** sobrescreve a contagem de nós (padrão: 48 desktop / 20 mobile) */
+  quantidade?: number;
   seed?: number;
   className?: string;
 }
@@ -44,6 +46,7 @@ export default function RedeViva({
   variante = "claro",
   terracotas = 4,
   interativa = true,
+  quantidade,
   seed,
   className,
 }: RedeVivaProps) {
@@ -79,7 +82,11 @@ export default function RedeViva({
 
     const mobile = window.innerWidth < 768;
     const semente = seed ?? 20260811;
-    const grafo: Grafo = construirGrafo(mobile ? 20 : 48, terracotas, semente);
+    const grafo: Grafo = construirGrafo(
+      quantidade ?? (mobile ? 20 : 48),
+      terracotas,
+      semente,
+    );
 
     const ruido = createNoise3D(mulberry32(semente ^ 0x9e37));
     const rng = mulberry32(semente ^ 0x51f2);
@@ -515,7 +522,7 @@ export default function RedeViva({
       window.removeEventListener("pointermove", aoMoverCursor);
       window.removeEventListener("pointerleave", aoSairCursor);
     };
-  }, [variante, terracotas, interativa, seed]);
+  }, [variante, terracotas, interativa, quantidade, seed]);
 
   return (
     <canvas

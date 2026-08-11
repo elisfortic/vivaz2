@@ -49,10 +49,13 @@ interface Entrelace {
  */
 export default function TrioAncoragem({
   ativa,
+  discos = false,
   className,
   style,
 }: {
   ativa: number | null;
+  /** desenha discos verdes sólidos nas âncoras (uso sem retratos) */
+  discos?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }) {
@@ -202,8 +205,24 @@ export default function TrioAncoragem({
         ctx.globalAlpha = 1;
       }
 
-      // sem discos de canvas: o anel fino é CSS no próprio retrato —
-      // alinhamento garantido em qualquer tamanho
+      // discos verdes sólidos (versão sem retratos — motivo trio-v2)
+      if (discos) {
+        const raioDisco = Math.min(largura, altura) * 0.11;
+        ctx.beginPath();
+        for (let i = 0; i < 3; i++) {
+          const respiro = 1 + 0.04 * ruido(300 + i * 17, 0, t / 28);
+          ctx.moveTo(px(ANCORAS[i].nx) + raioDisco * respiro, py(ANCORAS[i].ny));
+          ctx.arc(
+            px(ANCORAS[i].nx),
+            py(ANCORAS[i].ny),
+            raioDisco * respiro,
+            0,
+            Math.PI * 2,
+          );
+        }
+        ctx.fillStyle = cores.verde;
+        ctx.fill();
+      }
     });
 
     return () => loop.destruir();

@@ -13,7 +13,7 @@ const NUMEROS = ["01", "02", "03", "04"];
 export default function Territorios({ lang = "pt" }: { lang?: Idioma }) {
   const t = TERRITORIOS[lang];
   return (
-    <section className="relative flex min-h-screen items-center bg-off-white/90">
+    <section className="relative flex min-h-screen items-center bg-off-white">
       <div className="relative mx-auto w-full max-w-5xl px-6 py-28">
         <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
