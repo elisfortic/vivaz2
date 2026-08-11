@@ -80,6 +80,13 @@ fecha primeiro; ES/EN estão traduzidos e dormentes em lib/copy/*
 (IdiomaFuturo) — religar só com aprovação (IDIOMAS em lib/idiomas.ts,
 seletor no Rodape, middleware).
 
+## Pauta futura (discutir com as sócias após fechar a v1 — NÃO construir antes)
+- Admin/CMS para as sócias postarem conteúdo (Ponto de vista)
+- Seção de vídeos, casos de sucesso — integrada a LinkedIn e YouTube
+- Idiomas ES/EN (traduções prontas e dormentes) — ÚLTIMA parte
+- Deploy 2026-08-11: f26a8d8 no elisfortic/vivaz2 (aprovado) — sócias
+  revisando; site aguarda o retorno delas
+
 ## Estado (2026-08-11)
 Home APROVADA e fechada (fases 1–3). Restam: 4 rotas internas, 5 i18n
 (/pt /es /en, PT completo, ES/EN {{TRADUZIR}}), 6 formulário Resend
