@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/*
+ * Paleta do brandbook Vivaz (extraída de origem/Brandbook.pptx).
+ * --linha é derivada (hairline quente da família areia) — não há hex no deck.
+ */
+:root {
+  --off-white: #faf9f6;
+  --verde: #1a4d4e;
+  --terracota: #c26d53;
+  --sage: #a3b18a;
+  --areia: #d6d2c4;
+  --grafite: #333f48;
+  --linha: #ddd9cd;
+}
+
+@theme inline {
+  --color-off-white: var(--off-white);
+  --color-verde: var(--verde);
+  --color-terracota: var(--terracota);
+  --color-sage: var(--sage);
+  --color-areia: var(--areia);
+  --color-grafite: var(--grafite);
+  --color-linha: var(--linha);
+
+  --font-montserrat: var(--font-montserrat), sans-serif;
+  --font-lato: var(--font-lato), sans-serif;
+}
+
+html {
+  background: var(--off-white);
+  color: var(--grafite);
+}
+
+body {
+  font-family: var(--font-lato), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat), sans-serif;
+}
