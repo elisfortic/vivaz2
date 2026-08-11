@@ -2,32 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import MicroFalha, {
-  type TipoFalha,
-} from "@/components/home/grafismos/MicroFalha";
+import FaixaRupturas from "@/components/home/grafismos/FaixaRupturas";
 
-const colunas: {
-  tipo: TipoFalha;
-  titulo: string;
-  subtitulo: string;
-  corpo: string;
-}[] = [
+const colunas = [
   {
-    tipo: "grade",
     titulo: "Mexe-se na estrutura,",
     subtitulo: "mas a cultura resiste.",
     corpo:
       "O novo organograma não funciona se as pessoas continuam operando na cultura antiga.",
   },
   {
-    tipo: "preso",
     titulo: "Investe-se em liderança,",
     subtitulo: "mas a governança contradiz.",
     corpo:
       "Um programa robusto não muda nada se a decisão segue centralizada e o líder não decide.",
   },
   {
-    tipo: "fragmenta",
     titulo: "Anunciam-se valores,",
     subtitulo: "mas a avaliação não muda.",
     corpo:
@@ -36,8 +26,9 @@ const colunas: {
 ];
 
 /**
- * Cada falha tem seu micro-organismo vivo acima do texto; o hover na coluna
- * intensifica o movimento daquela metáfora.
+ * O bloco do impacto: uma única faixa de fibras atravessa as três colunas
+ * e rompe nas divisórias (motivo do deck) — o hover em cada coluna acentua
+ * a ruptura daquele terço.
  */
 export default function PorQueFalham() {
   const [ativa, setAtiva] = useState<number | null>(null);
@@ -56,15 +47,16 @@ export default function PorQueFalham() {
           sistema que precisa ser avaliado de maneira coordenada.
         </p>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-3">
+        <FaixaRupturas intensa={ativa} className="mt-14 h-44 w-full" />
+
+        <div className="mt-6 grid gap-10 md:grid-cols-3">
           {colunas.map((col, i) => (
             <div
-              key={col.tipo}
+              key={col.titulo}
               onMouseEnter={() => setAtiva(i)}
               onMouseLeave={() => setAtiva(null)}
             >
-              <MicroFalha tipo={col.tipo} intensa={ativa === i} />
-              <h3 className="font-montserrat mt-6 text-xl font-semibold text-grafite">
+              <h3 className="font-montserrat text-xl font-semibold text-grafite">
                 {col.titulo}
                 <br />
                 <span className="text-terracota">{col.subtitulo}</span>

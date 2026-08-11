@@ -53,10 +53,36 @@ const LIGACOES: [number, number][] = [
 ];
 
 const ROTULOS = [
-  { texto: "A Ilusão", no: 9, dx: 0.06, dy: -0.06, alinhamento: "left" },
-  { texto: "A Realidade", no: 6, dx: 0.12, dy: 0.02, alinhamento: "left" },
-  { texto: "O Risco", no: 1, dx: -0.04, dy: 0.12, alinhamento: "right" },
+  {
+    texto: "A Ilusão",
+    linha: "O que mantém esse sistema vivo não é o organograma.",
+    no: 9,
+    dx: 0.05,
+    dy: -0.08,
+    alinhamento: "left",
+  },
+  {
+    texto: "A Realidade",
+    linha:
+      "É o que acontece entre as pessoas: o conhecimento que circula, a confiança que sustenta, a diferença que gera ideia nova.",
+    no: 6,
+    dx: 0.13,
+    dy: 0.02,
+    alinhamento: "left",
+  },
+  {
+    texto: "O Risco",
+    linha:
+      "Quando se rompem, nem a melhor estratégia do mundo faz a empresa sair do lugar.",
+    no: 1,
+    dx: -0.04,
+    dy: 0.13,
+    alinhamento: "right",
+  },
 ] as const;
+
+/** as três curvas-guia (grossas) — 2 verdes, 1 terracota, como no deck */
+const GUIAS = new Set([2, 5, 6]);
 
 export default function SistemaVsOrganograma({
   className,
@@ -87,26 +113,40 @@ export default function SistemaVsOrganograma({
           ruido(canais[i].cy, 40, t / 32) * altura * 0.02,
       }));
 
-      // fibras vivas atravessando o organograma
-      ctx.beginPath();
-      LIGACOES.forEach(([a, b], i) => {
-        tracarFibra(
-          ctx,
-          ruido,
-          fibras[i],
-          posicoes[a].x,
-          posicoes[a].y,
-          posicoes[b].x,
-          posicoes[b].y,
-          t,
-          14,
-          0.2,
-        );
-      });
-      ctx.strokeStyle = cores.verde;
-      ctx.globalAlpha = 0.45;
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
+      // fibras vivas atravessando o organograma — finas de acompanhamento
+      // e três curvas-guia grossas liderando a leitura (2 verdes, 1 terracota)
+      const passadas = [
+        { guia: false, tom: "verde", alfa: 0.45, peso: 1.1 },
+        { guia: false, tom: "terracota", alfa: 0.4, peso: 1.1 },
+        { guia: true, tom: "verde", alfa: 0.7, peso: 3 },
+        { guia: true, tom: "terracota", alfa: 0.65, peso: 3 },
+      ] as const;
+      for (const passada of passadas) {
+        ctx.beginPath();
+        LIGACOES.forEach(([a, b], i) => {
+          const ehGuia = GUIAS.has(i);
+          if (ehGuia !== passada.guia) return;
+          const terracota = ehGuia ? i === 6 : i % 4 === 1;
+          if ((passada.tom === "terracota") !== terracota) return;
+          tracarFibra(
+            ctx,
+            ruido,
+            fibras[i],
+            posicoes[a].x,
+            posicoes[a].y,
+            posicoes[b].x,
+            posicoes[b].y,
+            t,
+            14,
+            0.2,
+          );
+        });
+        ctx.strokeStyle =
+          passada.tom === "verde" ? cores.verde : cores.terracota;
+        ctx.globalAlpha = passada.alfa;
+        ctx.lineWidth = passada.peso;
+        ctx.stroke();
+      }
       ctx.globalAlpha = 1;
 
       // linhas-guia dos rótulos
@@ -129,12 +169,13 @@ export default function SistemaVsOrganograma({
       ctx.stroke();
       ctx.globalAlpha = 1;
 
-      // nós — dois lotes por cor, com respiração sutil
+      // nós — terracota com massa equivalente aos verdes (deck)
       for (const cor of ["verde", "terracota"] as const) {
         ctx.beginPath();
         NOS.forEach((no, i) => {
           if (no.cor !== cor) return;
-          const r = no.r * (1 + 0.06 * ruido(200 + i * 7, 0, t / 26));
+          const base = no.cor === "terracota" ? no.r + 3 : no.r;
+          const r = base * (1 + 0.06 * ruido(200 + i * 7, 0, t / 26));
           ctx.moveTo(posicoes[i].x + r, posicoes[i].y);
           ctx.arc(posicoes[i].x, posicoes[i].y, r, 0, Math.PI * 2);
         });
@@ -155,13 +196,15 @@ export default function SistemaVsOrganograma({
         aria-hidden="true"
       />
       {ROTULOS.map((rotulo, i) => (
-        <motion.span
+        <motion.div
           key={rotulo.texto}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.9, delay: 0.5 + i * 0.45 }}
-          className="font-montserrat absolute text-sm font-semibold text-verde md:text-base"
+          className={`absolute w-[190px] ${
+            rotulo.alinhamento === "right" ? "text-right" : ""
+          }`}
           style={{
             left: `${(NOS[rotulo.no].nx + rotulo.dx) * 100}%`,
             top: `${(NOS[rotulo.no].ny + rotulo.dy) * 100}%`,
@@ -171,8 +214,13 @@ export default function SistemaVsOrganograma({
                 : "translate(4px, -50%)",
           }}
         >
-          {rotulo.texto}
-        </motion.span>
+          <span className="font-montserrat block text-sm font-semibold text-verde md:text-base">
+            {rotulo.texto}
+          </span>
+          <span className="font-lato mt-1 block text-[13px] leading-snug text-grafite/85">
+            {rotulo.linha}
+          </span>
+        </motion.div>
       ))}
     </div>
   );

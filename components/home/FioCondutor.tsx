@@ -1,19 +1,25 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { LoopCanvas, criarRuido, lerCores, mulberry32, entre } from "@/lib/fibras";
+import {
+  LoopCanvas,
+  criarFibra,
+  criarRuido,
+  entre,
+  lerCores,
+  mulberry32,
+  type ParamsFibra,
+} from "@/lib/fibras";
 
 /**
- * A linha condutora — um organismo só, do hero ao rodapé. Percorre os
- * gutters alternando de lado a cada seção e cruza a largura do conteúdo
- * exatamente nas fronteiras (a costura que marca cada parada do
- * empilhamento). Fio principal em verde com companheiro em sage; ondulação
- * lenta por ruído; partículas percorrendo o caminho inteiro; ponto
- * terracota pulsando em cada fronteira.
+ * A linha condutora, versão discreta: dois pares de fios vivos descendo
+ * pelos gutters laterais — do hero ao rodapé, sem nunca entrar na zona de
+ * conteúdo. Ondulação lenta, nós pequenos espaçados, uma partícula por
+ * lado. Sobre o fechamento verde, os fios viram off-white.
  *
- * Desenhado num canvas fixo em coordenadas de viewport: a geometria vive
- * em espaço de documento e é transladada por scrollY a cada quadro —
- * custo constante, sem canvas gigante.
+ * Desenhado em canvas fixo; geometria em espaço de documento transladada
+ * por scrollY — custo constante. Se o gutter for estreito (< 56px de faixa
+ * útil), não renderiza nada.
  */
 export default function FioCondutor() {
   const refCanvas = useRef<HTMLCanvasElement>(null);
@@ -21,220 +27,140 @@ export default function FioCondutor() {
   useEffect(() => {
     const canvas = refCanvas.current;
     if (!canvas) return;
-    if (window.innerWidth < 900) return; // sem gutter útil em telas estreitas
+    if (window.innerWidth < 1100) return;
 
     const cores = lerCores(canvas);
-    const ruido = criarRuido(20260817);
-    const rng = mulberry32(20260817 ^ 0x2fa9);
+    const ruido = criarRuido(20260821);
+    const rng = mulberry32(20260821 ^ 0x4e2f);
 
-    // geometria em espaço de documento
-    let pontosX: number[] = [];
-    let pontosY: number[] = [];
-    let fronteiras: { x: number; y: number }[] = [];
-    let yVerde = Infinity; // a partir daqui o fundo é verde → fio claro
-    let comprimentoTotal = 1;
+    let alturaDoc = 0;
+    let yVerde = Infinity;
+    let faixaEsq = { de: 0, ate: 0 };
+    let faixaDir = { de: 0, ate: 0 };
+    let estreito = false;
 
-    const posicaoDocumento = (el: HTMLElement) => {
-      let y = 0;
-      let node: HTMLElement | null = el;
-      while (node) {
-        y += node.offsetTop;
-        node = node.offsetParent as HTMLElement | null;
-      }
-      return y;
-    };
-
-    const construir = () => {
-      const secoes = Array.from(
-        document.querySelectorAll<HTMLElement>("main section"),
-      );
-      if (secoes.length < 3) return;
-
+    const medir = () => {
       const larguraTela = document.documentElement.clientWidth;
-      const gutter = Math.max((larguraTela - 1152) / 2, 48);
-      const xDireita = larguraTela - gutter * 0.45;
-      const xEsquerda = gutter * 0.45;
-      const xCentro = larguraTela / 2;
-
-      const medidas = secoes.map((el) => {
-        const topo = posicaoDocumento(el);
-        return { topo, base: topo + el.offsetHeight };
-      });
-      const ultima = medidas[medidas.length - 1];
-      yVerde = ultima.topo;
-
-      // waypoints: meio de cada seção no gutter (lados alternados) +
-      // travessia central em cada fronteira
-      const way: { x: number; y: number }[] = [];
-      fronteiras = [];
-      way.push({ x: xDireita, y: medidas[0].topo - 60 });
-      medidas.forEach((medida, i) => {
-        const lado = i % 2 === 0 ? xDireita : xEsquerda;
-        const osc = (k: number) =>
-          entre(mulberry32(i * 977 + k), -1, 1) * gutter * 0.12;
-        const alturaSecao = medida.base - medida.topo;
-        // três pontos abraçando o gutter — o fio segue colado à lateral
-        // e só cruza a largura perto da fronteira
-        way.push({ x: lado + osc(3), y: medida.topo + alturaSecao * 0.24 });
-        way.push({ x: lado + osc(11), y: medida.topo + alturaSecao * 0.5 });
-        way.push({ x: lado + osc(19), y: medida.topo + alturaSecao * 0.78 });
-        if (i < medidas.length - 1) {
-          const fronteira = {
-            x: xCentro + entre(mulberry32(i * 131 + 7), -1, 1) * larguraTela * 0.14,
-            y: medidas[i + 1].topo,
-          };
-          way.push(fronteira);
-          fronteiras.push(fronteira);
+      const gutter = (larguraTela - 1152) / 2;
+      estreito = gutter < 80;
+      // faixa útil: do respiro da borda até antes do conteúdo
+      faixaEsq = { de: 18, ate: Math.max(gutter - 40, 40) };
+      faixaDir = {
+        de: larguraTela - Math.max(gutter - 40, 40),
+        ate: larguraTela - 18,
+      };
+      alturaDoc = document.documentElement.scrollHeight;
+      const secoes = document.querySelectorAll<HTMLElement>("main section");
+      const ultima = secoes[secoes.length - 1];
+      if (ultima) {
+        let y = 0;
+        let node: HTMLElement | null = ultima;
+        while (node) {
+          y += node.offsetTop;
+          node = node.offsetParent as HTMLElement | null;
         }
-      });
-      way.push({ x: xCentro, y: ultima.base + 40 });
-
-      // Catmull-Rom → amostragem densa (~22px)
-      pontosX = [];
-      pontosY = [];
-      for (let i = 0; i < way.length - 1; i++) {
-        const p0 = way[Math.max(0, i - 1)];
-        const p1 = way[i];
-        const p2 = way[i + 1];
-        const p3 = way[Math.min(way.length - 1, i + 2)];
-        const passos = Math.max(
-          6,
-          Math.round(Math.hypot(p2.x - p1.x, p2.y - p1.y) / 22),
-        );
-        for (let s = 0; s < passos; s++) {
-          const u = s / passos;
-          const u2 = u * u;
-          const u3 = u2 * u;
-          pontosX.push(
-            0.5 *
-              (2 * p1.x +
-                (-p0.x + p2.x) * u +
-                (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * u2 +
-                (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * u3),
-          );
-          pontosY.push(
-            0.5 *
-              (2 * p1.y +
-                (-p0.y + p2.y) * u +
-                (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * u2 +
-                (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * u3),
-          );
-        }
-      }
-      comprimentoTotal = 0;
-      for (let i = 1; i < pontosX.length; i++) {
-        comprimentoTotal += Math.hypot(
-          pontosX[i] - pontosX[i - 1],
-          pontosY[i] - pontosY[i - 1],
-        );
+        yVerde = y;
       }
     };
-
-    construir();
-    const observadorDoc = new ResizeObserver(construir);
+    medir();
+    const observadorDoc = new ResizeObserver(medir);
     observadorDoc.observe(document.body);
 
-    const particulas = Array.from({ length: 3 }, () => ({
-      f: rng(),
-      vel: entre(rng, 1 / 90, 1 / 60), // fração do caminho por segundo
+    interface FioLateral {
+      fibra: ParamsFibra;
+      lado: "esq" | "dir";
+      /** posição na faixa útil (0 = borda externa · 1 = borda interna) */
+      posicao: number;
+      alfa: number;
+      peso: number;
+    }
+    const fios: FioLateral[] = [
+      { fibra: criarFibra(rng, 5, 10), lado: "esq", posicao: 0.35, alfa: 0.4, peso: 1.4 },
+      { fibra: criarFibra(rng, 5, 10), lado: "esq", posicao: 0.7, alfa: 0.25, peso: 1 },
+      { fibra: criarFibra(rng, 5, 10), lado: "dir", posicao: 0.65, alfa: 0.4, peso: 1.4 },
+      { fibra: criarFibra(rng, 5, 10), lado: "dir", posicao: 0.3, alfa: 0.25, peso: 1 },
+    ];
+    const particulas = fios.slice(0, 2).map((_, i) => ({
+      fio: i === 0 ? 0 : 2,
+      y: rng() * 4000,
+      vel: entre(rng, 26, 40), // px/s descendo
     }));
 
-    const loop = new LoopCanvas(canvas, (ctx, largura, altura, t, dt) => {
-      if (pontosX.length < 2) return;
+    const xDoFio = (fio: FioLateral, y: number, t: number) => {
+      const faixa = fio.lado === "esq" ? faixaEsq : faixaDir;
+      const base = faixa.de + (faixa.ate - faixa.de) * fio.posicao;
+      const amplitude = Math.min((faixa.ate - faixa.de) * 0.3, 14);
+      return (
+        base +
+        ruido(fio.fibra.canal, y * 0.0016, t / fio.fibra.periodo) * amplitude
+      );
+    };
+
+    const loop = new LoopCanvas(canvas, (ctx, _largura, altura, t, dt) => {
+      if (estreito) return;
       const rolagem = window.scrollY;
-      const de = rolagem - 120;
-      const ate = rolagem + altura + 120;
+      const de = rolagem - 60;
+      const ate = rolagem + altura + 60;
 
-      const desloc = (i: number, canal: number) =>
-        ruido(i * 0.13 + canal, 0, t / 30) * 9;
-
-      // fio em dois tons: verde sobre superfícies claras, off-white sobre
-      // o fechamento verde — cada tom em um path próprio
-      const passadas = [
-        { canal: 0, extra: 0, largura: 1.4, alfaBase: 0.5 },
-        { canal: 57, extra: 13, largura: 1, alfaBase: 0.35 },
-      ];
-      for (const passada of passadas) {
-        for (const tom of ["escuro", "claro"] as const) {
+      for (const tom of ["escuro", "claro"] as const) {
+        for (const fio of fios) {
           ctx.beginPath();
           let caneta = false;
-          for (let i = 0; i < pontosX.length; i++) {
-            const y = pontosY[i];
-            if (y < de || y > ate) {
+          for (let y = de; y <= ate; y += 18) {
+            if (y < 0 || y > alturaDoc) {
               caneta = false;
               continue;
             }
-            const nesteTom =
-              tom === "escuro" ? y < yVerde : y >= yVerde;
+            const nesteTom = tom === "escuro" ? y < yVerde : y >= yVerde;
             if (!nesteTom) {
               caneta = false;
               continue;
             }
-            const x = pontosX[i] + desloc(i, passada.canal) + passada.extra;
-            const yv = y - rolagem;
-            if (caneta) {
-              ctx.lineTo(x, yv);
-            } else {
-              ctx.moveTo(x, yv);
+            const x = xDoFio(fio, y, t);
+            if (caneta) ctx.lineTo(x, y - rolagem);
+            else {
+              ctx.moveTo(x, y - rolagem);
               caneta = true;
             }
           }
           ctx.strokeStyle =
-            tom === "escuro" ? cores.verde : "rgba(250, 249, 246, 0.7)";
-          ctx.globalAlpha = passada.alfaBase;
-          ctx.lineWidth = passada.largura;
+            tom === "escuro" ? cores.verde : "rgba(250, 249, 246, 0.65)";
+          ctx.globalAlpha = fio.alfa;
+          ctx.lineWidth = fio.peso;
           ctx.stroke();
         }
       }
       ctx.globalAlpha = 1;
 
-      // nós verdes ancorando o fio no meio de cada seção — peso e propósito
+      // nós pequenos a cada ~600px de documento, presos ao fio principal
       ctx.beginPath();
-      for (let i = 0; i < pontosX.length; i += 40) {
-        const y = pontosY[i];
-        if (y < de || y > ate) continue;
-        const x = pontosX[i] + desloc(i, 0);
-        ctx.moveTo(x + 3, y - rolagem);
-        ctx.arc(x, y - rolagem, 3, 0, Math.PI * 2);
+      for (const indice of [0, 2]) {
+        const fio = fios[indice];
+        for (let y = 300; y < alturaDoc; y += 620) {
+          if (y < de || y > ate) continue;
+          const x = xDoFio(fio, y, t);
+          ctx.moveTo(x + 2.6, y - rolagem);
+          ctx.arc(x, y - rolagem, 2.6, 0, Math.PI * 2);
+        }
       }
-      ctx.fillStyle = cores.verde;
-      ctx.globalAlpha = 0.55;
+      ctx.fillStyle = cores.sage;
+      ctx.globalAlpha = 0.8;
       ctx.fill();
       ctx.globalAlpha = 1;
 
-      // pontos terracota nas fronteiras — a costura de cada parada
-      ctx.beginPath();
-      for (const fronteira of fronteiras) {
-        if (fronteira.y < de || fronteira.y > ate) continue;
-        const r = 3.4 + 0.9 * ruido(fronteira.y * 0.01, 5, t / 12);
-        ctx.moveTo(fronteira.x + r, fronteira.y - rolagem);
-        ctx.arc(fronteira.x, fronteira.y - rolagem, r, 0, Math.PI * 2);
-      }
-      ctx.fillStyle = cores.terracota;
-      ctx.globalAlpha = 0.85;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-
-      // partículas percorrendo o caminho inteiro
+      // uma partícula por lado, descendo devagar
       if (dt > 0) {
         ctx.beginPath();
         for (const p of particulas) {
-          p.f = (p.f + dt * p.vel) % 1;
-          const indice = p.f * (pontosX.length - 1);
-          const i0 = Math.floor(indice);
-          const frac = indice - i0;
-          const y =
-            pontosY[i0] + (pontosY[Math.min(i0 + 1, pontosY.length - 1)] - pontosY[i0]) * frac;
-          if (y < de || y > ate) continue;
-          const x =
-            pontosX[i0] +
-            (pontosX[Math.min(i0 + 1, pontosX.length - 1)] - pontosX[i0]) * frac +
-            desloc(i0, 0);
-          ctx.moveTo(x + 2.4, y - rolagem);
-          ctx.arc(x, y - rolagem, 2.4, 0, Math.PI * 2);
+          p.y += p.vel * dt;
+          if (p.y > alturaDoc) p.y = -20;
+          if (p.y < de || p.y > ate) continue;
+          const x = xDoFio(fios[p.fio], p.y, t);
+          ctx.moveTo(x + 2.2, p.y - rolagem);
+          ctx.arc(x, p.y - rolagem, 2.2, 0, Math.PI * 2);
         }
-        ctx.fillStyle = cores.sage;
-        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = cores.terracota;
+        ctx.globalAlpha = 0.8;
         ctx.fill();
         ctx.globalAlpha = 1;
       }

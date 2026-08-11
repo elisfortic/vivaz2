@@ -14,7 +14,7 @@ export default function OrganogramaFantasma({
       viewBox="0 0 640 420"
       className={className}
       aria-hidden="true"
-      style={{ opacity: 0.35 }}
+      style={{ opacity: 0.65 }}
     >
       <g strokeWidth="1.5">
         {/* nível 1 */}

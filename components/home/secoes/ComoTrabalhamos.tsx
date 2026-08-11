@@ -41,6 +41,8 @@ const principios = [
  */
 export default function ComoTrabalhamos() {
   const [ativo, setAtivo] = useState<number | null>(null);
+  const [agindo, setAgindo] = useState<number | null>(null);
+  const emFoco = ativo ?? agindo;
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
@@ -53,18 +55,24 @@ export default function ComoTrabalhamos() {
         </h2>
 
         <div className="relative mt-12 hidden md:block">
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2">
-            <OrbitaPrincipios ativo={ativo} />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2">
+            <OrbitaPrincipios ativo={ativo} aoAgir={setAgindo} />
           </div>
-          <div className="relative grid min-h-[560px] grid-cols-2 content-between gap-x-[420px] py-6">
+          <div className="relative grid min-h-[580px] grid-cols-2 content-between gap-x-[400px] py-6">
             {principios.map((p, i) => (
               <div
                 key={p.numero}
-                className={`max-w-xs ${i % 2 === 1 ? "justify-self-end text-right" : ""}`}
+                className={`max-w-xs transition-opacity duration-700 ${
+                  i % 2 === 1 ? "justify-self-end text-right" : ""
+                } ${emFoco !== null && emFoco !== i ? "opacity-60" : ""}`}
                 onMouseEnter={() => setAtivo(i)}
                 onMouseLeave={() => setAtivo(null)}
               >
-                <h3 className="font-montserrat text-xl font-semibold text-verde">
+                <h3
+                  className={`font-montserrat text-xl font-semibold transition-colors duration-700 ${
+                    emFoco === i ? "text-terracota" : "text-verde"
+                  }`}
+                >
                   <span className="text-terracota">{p.numero}</span> ·{" "}
                   {p.titulo}
                 </h3>

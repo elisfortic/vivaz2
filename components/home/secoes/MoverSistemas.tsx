@@ -1,10 +1,13 @@
+import RioDeFibras from "@/components/home/grafismos/RioDeFibras";
+
 export default function MoverSistemas() {
   return (
     <section
       id="definicao"
-      className="relative flex min-h-screen items-center overflow-hidden bg-off-white/90"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-off-white"
     >
-      <div className="relative mx-auto w-full max-w-3xl px-6 py-28">
+      <div className="relative mx-auto w-full max-w-6xl px-6 pt-28 pb-10">
+        <div className="max-w-3xl">
         <p className="mb-10 text-sm uppercase tracking-[0.22em] text-terracota">
           Mover sistemas
         </p>
@@ -21,7 +24,9 @@ export default function MoverSistemas() {
           — para que ela deixe de ser uma intenção no papel e passe a acontecer
           no dia a dia.
         </p>
+        </div>
       </div>
+      <RioDeFibras className="pointer-events-none mt-6 h-52 w-full" />
     </section>
   );
 }

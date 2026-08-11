@@ -73,7 +73,7 @@ export default function TrioAncoragem({
     ANCORAS.forEach((ancora, i) => {
       for (let j = 0; j < 9; j++) {
         const angulo = setores[i] + entre(rng, -1.1, 1.1);
-        const raio = entre(rng, 0.8, 1.3);
+        const raio = entre(rng, 0.95, 1.9);
         feixes.push({
           fibra: criarFibra(rng, 8, 20),
           ox: ancora.nx + Math.cos(angulo) * raio,
@@ -200,36 +200,8 @@ export default function TrioAncoragem({
         ctx.globalAlpha = 1;
       }
 
-      // discos das âncoras — os retratos assentam sobre eles
-      const raioBase = Math.min(largura, altura) * 0.104;
-      for (let i = 0; i < 3; i++) {
-        const respiro = 1 + 0.04 * ruido(300 + i * 17, 0, t / 28);
-        ctx.beginPath();
-        ctx.arc(
-          px(ANCORAS[i].nx),
-          py(ANCORAS[i].ny),
-          raioBase * respiro,
-          0,
-          Math.PI * 2,
-        );
-        ctx.fillStyle = cores.verde;
-        ctx.fill();
-        if (brilho[i] > 0.6) {
-          ctx.beginPath();
-          ctx.arc(
-            px(ANCORAS[i].nx),
-            py(ANCORAS[i].ny),
-            raioBase * respiro + 5,
-            0,
-            Math.PI * 2,
-          );
-          ctx.strokeStyle = cores.terracota;
-          ctx.globalAlpha = (brilho[i] - 0.6) * 2;
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-      }
+      // sem discos de canvas: o anel fino é CSS no próprio retrato —
+      // alinhamento garantido em qualquer tamanho
     });
 
     return () => loop.destruir();

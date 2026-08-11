@@ -60,36 +60,40 @@ export default function QuemSomos() {
             </Link>
           </div>
 
-          <div className="relative h-[420px] md:h-[540px]">
-            <TrioAncoragem ativa={ativa} />
-            {socias.map((socia, i) => (
-              <button
-                key={socia.nome}
-                type="button"
-                className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-default"
-                style={{
-                  left: `${ANCORAS[i].nx * 100}%`,
-                  top: `${ANCORAS[i].ny * 100}%`,
-                }}
-                onMouseEnter={() => setAtiva(i)}
-                onMouseLeave={() => setAtiva(null)}
-                onFocus={() => setAtiva(i)}
-                onBlur={() => setAtiva(null)}
-              >
-                <span className="relative block h-20 w-20 overflow-hidden rounded-full md:h-24 md:w-24">
-                  <Image
-                    src={socia.foto}
-                    alt={socia.nome}
-                    width={96}
-                    height={96}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                  />
-                </span>
-                <span className="font-montserrat absolute left-1/2 top-full mt-3 block w-fit -translate-x-1/2 whitespace-nowrap rounded-full bg-off-white/90 px-2.5 py-0.5 text-xs font-medium text-grafite">
-                  {socia.nome}
-                </span>
-              </button>
-            ))}
+          <div className="relative h-[460px] md:h-[600px]">
+            {/* o quadro do grafismo é maior que a coluna — as fibras
+                entram e saem sem parecer cortadas */}
+            <div className="absolute -inset-x-24 -inset-y-14">
+              <TrioAncoragem ativa={ativa} />
+              {socias.map((socia, i) => (
+                <button
+                  key={socia.nome}
+                  type="button"
+                  className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-default"
+                  style={{
+                    left: `${ANCORAS[i].nx * 100}%`,
+                    top: `${ANCORAS[i].ny * 100}%`,
+                  }}
+                  onMouseEnter={() => setAtiva(i)}
+                  onMouseLeave={() => setAtiva(null)}
+                  onFocus={() => setAtiva(i)}
+                  onBlur={() => setAtiva(null)}
+                >
+                  <span className="relative block h-36 w-36 overflow-hidden rounded-full border-[3px] border-verde md:h-48 md:w-48">
+                    <Image
+                      src={socia.foto}
+                      alt={socia.nome}
+                      width={192}
+                      height={192}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                    />
+                  </span>
+                  <span className="font-montserrat absolute left-1/2 top-full mt-3 block w-fit -translate-x-1/2 whitespace-nowrap rounded-full bg-off-white/90 px-2.5 py-0.5 text-xs font-medium text-grafite">
+                    {socia.nome}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
