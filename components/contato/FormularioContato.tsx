@@ -2,28 +2,39 @@
 
 import { useActionState } from "react";
 import { enviarContato, type EstadoContato } from "@/lib/acoes/contato";
+import { CONTATO_PAGINA } from "@/lib/copy/paginas";
+import type { Idioma } from "@/lib/idiomas";
 
 const inicial: EstadoContato = { status: "inicial" };
 
 const estiloCampo =
   "w-full rounded-md border border-linha bg-off-white px-4 py-3 text-grafite outline-none transition-colors duration-300 focus:border-verde";
 
-function Erro({ mensagem }: { mensagem?: string }) {
-  if (!mensagem) return null;
-  return <p className="mt-1.5 text-sm text-terracota">{mensagem}</p>;
-}
-
-export default function FormularioContato() {
+export default function FormularioContato({
+  lang = "pt",
+}: {
+  lang?: Idioma;
+}) {
   const [estado, agir, enviando] = useActionState(enviarContato, inicial);
-  const erros = estado.errosCampos ?? {};
+  const t = CONTATO_PAGINA[lang];
+  const invalido = (campo: string) =>
+    estado.camposInvalidos?.includes(campo)
+      ? t.erros[campo as keyof typeof t.erros]
+      : undefined;
 
   if (estado.status === "sucesso") {
     return (
       <p className="max-w-xl rounded-md bg-verde px-6 py-5 text-off-white">
-        Mensagem enviada. Respondemos em até dois dias úteis.
+        {t.sucesso}
       </p>
     );
   }
+
+  const Erro = ({ campo }: { campo: string }) => {
+    const mensagem = invalido(campo);
+    if (!mensagem) return null;
+    return <p className="mt-1.5 text-sm text-terracota">{mensagem}</p>;
+  };
 
   return (
     <form action={agir} className="max-w-xl space-y-6" noValidate>
@@ -37,41 +48,41 @@ export default function FormularioContato() {
 
       <div>
         <label htmlFor="nome" className="mb-1.5 block text-sm font-medium text-grafite">
-          Nome
+          {t.campos.nome}
         </label>
         <input id="nome" name="nome" type="text" className={estiloCampo} />
-        <Erro mensagem={erros.nome} />
+        <Erro campo="nome" />
       </div>
 
       <div>
         <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-grafite">
-          E-mail
+          {t.campos.email}
         </label>
         <input id="email" name="email" type="email" className={estiloCampo} />
-        <Erro mensagem={erros.email} />
+        <Erro campo="email" />
       </div>
 
       <div>
         <label htmlFor="empresa" className="mb-1.5 block text-sm font-medium text-grafite">
-          Empresa
+          {t.campos.empresa}
         </label>
         <input id="empresa" name="empresa" type="text" className={estiloCampo} />
-        <Erro mensagem={erros.empresa} />
+        <Erro campo="empresa" />
       </div>
 
       <div>
         <label htmlFor="cargo" className="mb-1.5 block text-sm font-medium text-grafite">
-          Cargo
+          {t.campos.cargo}
         </label>
         <input id="cargo" name="cargo" type="text" className={estiloCampo} />
       </div>
 
       <div>
         <label htmlFor="mensagem" className="mb-1.5 block text-sm font-medium text-grafite">
-          O que está acontecendo
+          {t.campos.mensagem}
         </label>
         <textarea id="mensagem" name="mensagem" rows={5} className={estiloCampo} />
-        <Erro mensagem={erros.mensagem} />
+        <Erro campo="mensagem" />
       </div>
 
       <div>
@@ -81,15 +92,14 @@ export default function FormularioContato() {
             name="consentimento"
             className="mt-1 h-4 w-4 accent-verde"
           />
-          Autorizo a Vivaz a usar meus dados para responder a este contato.
+          {t.campos.consentimento}
         </label>
-        <Erro mensagem={erros.consentimento} />
+        <Erro campo="consentimento" />
       </div>
 
-      {estado.status === "erro" && !estado.errosCampos && (
+      {estado.status === "erro" && !estado.camposInvalidos && (
         <p className="rounded-md bg-terracota/10 px-4 py-3 text-sm text-terracota">
-          Não foi possível enviar agora. Tente novamente ou escreva para{" "}
-          {"{{E-MAIL}}"}.
+          {t.erroEnvio}
         </p>
       )}
 
@@ -98,7 +108,7 @@ export default function FormularioContato() {
         disabled={enviando}
         className="rounded-full bg-verde px-8 py-3.5 text-sm font-medium tracking-wide text-off-white transition-transform duration-300 hover:scale-[1.03] disabled:opacity-60"
       >
-        Enviar mensagem
+        {t.botao}
       </button>
     </form>
   );

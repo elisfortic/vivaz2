@@ -3,14 +3,16 @@ import { NextResponse, type NextRequest } from "next/server";
 const IDIOMAS = ["pt", "es", "en"] as const;
 
 /**
- * Só o espanhol tem página com conteúdo real — navegador em ES vai para
- * /es; qualquer outro idioma vai para /pt. /en (estrutura {{TRADUZIR}})
- * só é alcançável pelo seletor do rodapé, nunca por redirecionamento.
+ * Os três idiomas têm conteúdo completo (traduções autorizadas pelo
+ * cliente em 2026-08-11) — detecta o preferido do navegador; padrão pt.
  */
 function detectar(pedido: NextRequest): string {
   const aceita = pedido.headers.get("accept-language") ?? "";
-  const principal = aceita.split(",")[0]?.trim().slice(0, 2).toLowerCase();
-  return principal === "es" ? "es" : "pt";
+  for (const trecho of aceita.split(",")) {
+    const codigo = trecho.split(";")[0]?.trim().slice(0, 2).toLowerCase();
+    if ((IDIOMAS as readonly string[]).includes(codigo)) return codigo;
+  }
+  return "pt";
 }
 
 export function middleware(pedido: NextRequest) {

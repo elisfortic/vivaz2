@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
-import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
+import { PRIVACIDADE_PAGINA } from "@/lib/copy/paginas";
+import { ehIdioma } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
   title: "Privacidade · Vivaz",
@@ -15,18 +17,18 @@ export default async function PrivacidadePagina({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  if (lang !== "pt") {
-    return <EstruturaTraduzir idioma={lang} rota="privacidade" />;
-  }
+  if (!ehIdioma(lang)) notFound();
+  const t = PRIVACIDADE_PAGINA[lang];
+
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
-      <CabecalhoPagina eyebrow="Privacidade" titulo="Privacidade" />
+      <CabecalhoPagina eyebrow={t.eyebrow} titulo={t.h1} />
       <section className="mx-auto w-full max-w-6xl flex-1 px-6 py-10">
         <div className="max-w-2xl">
-          <MarcadorPendente texto="política de privacidade (LGPD) a ser fornecida pela cliente — nenhum texto legal é redigido pelo site" />
+          <MarcadorPendente texto={t.pendente} />
         </div>
       </section>
-      <Rodape />
+      <Rodape lang={lang} />
     </main>
   );
 }

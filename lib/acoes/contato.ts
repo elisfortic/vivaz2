@@ -4,24 +4,19 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
 
-/** Erros com as mensagens exatas da copy (04-copy-final.md). */
 const esquema = z.object({
-  nome: z.string().trim().min(1, "Informe seu nome."),
-  email: z.string().trim().email("Informe um e-mail válido."),
-  empresa: z.string().trim().min(1, "Informe a empresa."),
+  nome: z.string().trim().min(1),
+  email: z.string().trim().email(),
+  empresa: z.string().trim().min(1),
   cargo: z.string().trim().optional(),
-  mensagem: z
-    .string()
-    .trim()
-    .min(1, "Conte um pouco sobre o momento da organização."),
-  consentimento: z.literal("on", {
-    error: "Precisamos da sua autorização para responder.",
-  }),
+  mensagem: z.string().trim().min(1),
+  consentimento: z.literal("on"),
 });
 
 export interface EstadoContato {
   status: "inicial" | "sucesso" | "erro";
-  errosCampos?: Record<string, string>;
+  /** nomes dos campos inválidos — o cliente traduz as mensagens */
+  camposInvalidos?: string[];
 }
 
 // rate limit simples em memória: 5 envios por IP por hora
@@ -58,20 +53,17 @@ export async function enviarContato(
     consentimento: dados.get("consentimento"),
   });
   if (!resultado.success) {
-    const errosCampos: Record<string, string> = {};
+    const campos = new Set<string>();
     for (const problema of resultado.error.issues) {
       const campo = String(problema.path[0] ?? "");
-      if (campo && !errosCampos[campo]) {
-        errosCampos[campo] = problema.message;
-      }
+      if (campo) campos.add(campo);
     }
-    return { status: "erro", errosCampos };
+    return { status: "erro", camposInvalidos: [...campos] };
   }
 
   const chave = process.env.RESEND_API_KEY;
   const destino = process.env.CONTATO_DESTINO; // {{PENDENTE: contato@}}
   if (!chave || !destino) {
-    // caixas ainda não existem — registra e falha com a mensagem da copy
     console.error("contato: RESEND_API_KEY/CONTATO_DESTINO não configurados");
     return { status: "erro" };
   }
