@@ -34,23 +34,23 @@ export default function PorQueFalham() {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-28">
-        <p className="mb-6 text-sm uppercase tracking-[0.22em] text-terracota">
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-20">
+        <p className="mb-5 text-sm uppercase tracking-[0.22em] text-terracota">
           Nosso ponto de vista
         </p>
         <h2 className="font-montserrat max-w-3xl text-4xl font-semibold leading-tight text-verde md:text-5xl">
           Por que tantas transformações falham
         </h2>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-grafite/85">
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-grafite/85">
           Não por falta de método — mas por tratar partes isoladas de um
           sistema que precisa ser avaliado de maneira coordenada.
         </p>
 
-        <div className="mt-14 space-y-10">
+        <div className="mt-8 space-y-5">
           {linhas.map((linha, i) => (
             <div
               key={linha.titulo}
-              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.85fr)_480px_minmax(0,1fr)]"
+              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.85fr)_460px_minmax(0,1fr)]"
               onMouseEnter={() => setAtiva(i)}
               onMouseLeave={() => setAtiva(null)}
             >
@@ -60,7 +60,7 @@ export default function PorQueFalham() {
               <LinhaRuptura
                 semente={i + 1}
                 intensa={ativa === i}
-                className="hidden h-40 w-full md:block"
+                className="hidden h-36 w-full md:block"
               />
               <div>
                 <p className="font-montserrat text-xl font-semibold text-terracota md:text-2xl">
@@ -76,7 +76,7 @@ export default function PorQueFalham() {
 
         <Link
           href="/ponto-de-vista/por-que-transformacoes-falham"
-          className="mt-16 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+          className="mt-10 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
         >
           Leia o ensaio completo — 8 min →
         </Link>

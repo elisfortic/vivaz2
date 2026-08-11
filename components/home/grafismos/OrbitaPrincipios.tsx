@@ -164,7 +164,14 @@ export default function OrbitaPrincipios({
           const angulo = rotacao + (Math.PI * 2 * s) / AMOSTRAS - Math.PI / 2;
           const serpente =
             Math.sin(angulo * (NOS / 2) + lider.fase * (NOS / 2)) * 18;
-          const wobble = ruido(lider.fase * 7 + 40, s * 0.09, t / 34) * 7;
+          // ruído em coordenadas circulares: periódico no ângulo —
+          // início e fim do anel casam sem emenda visível
+          const wobble =
+            ruido(
+              lider.fase * 7 + 40 + Math.cos(angulo) * 1.4,
+              Math.sin(angulo) * 1.4,
+              t / 34,
+            ) * 7;
           const r = raio + serpente + wobble;
           const x = cx + Math.cos(angulo) * r;
           const y = cy + Math.sin(angulo) * r;

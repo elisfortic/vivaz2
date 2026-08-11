@@ -45,7 +45,7 @@ export default function Cabecalho() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src={
@@ -59,7 +59,7 @@ export default function Cabecalho() {
             priority
           />
           <span
-            className={`font-montserrat text-lg font-semibold tracking-wide transition-colors duration-500 ${
+            className={`font-montserrat text-xl font-semibold tracking-wide transition-colors duration-500 ${
               sobreVerde ? "text-off-white" : "text-verde"
             }`}
           >
@@ -71,7 +71,7 @@ export default function Cabecalho() {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm transition-colors duration-500 ${corLink}`}
+              className={`text-[15px] transition-colors duration-500 ${corLink}`}
             >
               {item.rotulo}
             </Link>
@@ -79,7 +79,7 @@ export default function Cabecalho() {
         </nav>
         <Link
           href="/contato"
-          className={`text-sm transition-colors duration-500 md:hidden ${corLink}`}
+          className={`text-[15px] transition-colors duration-500 md:hidden ${corLink}`}
         >
           Contato
         </Link>

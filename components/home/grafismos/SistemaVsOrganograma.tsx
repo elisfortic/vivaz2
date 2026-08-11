@@ -214,10 +214,10 @@ export default function SistemaVsOrganograma({
                 : "translate(4px, -50%)",
           }}
         >
-          <span className="font-montserrat block text-sm font-semibold text-verde md:text-base">
+          <span className="font-montserrat block text-base font-semibold text-verde md:text-[17px]">
             {rotulo.texto}
           </span>
-          <span className="font-lato mt-1 block text-[14px] leading-normal text-grafite/85">
+          <span className="font-lato mt-1 block text-[15px] leading-normal text-grafite/85">
             {rotulo.linha}
           </span>
         </motion.div>
