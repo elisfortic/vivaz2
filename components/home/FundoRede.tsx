@@ -9,7 +9,8 @@ import RedeViva from "@/components/rede/RedeViva";
  */
 export default function FundoRede() {
   return (
-    <div className="fixed inset-0 z-0" aria-hidden="true">
+    // começa abaixo da faixa do header — nós nunca passam atrás do menu
+    <div className="fixed inset-x-0 bottom-0 top-[88px] z-0" aria-hidden="true">
       <RedeViva variante="claro" />
     </div>
   );
