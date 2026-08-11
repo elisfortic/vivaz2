@@ -9,8 +9,22 @@ import QuemSomos from "@/components/home/secoes/QuemSomos";
 import ComoTrabalhamos from "@/components/home/secoes/ComoTrabalhamos";
 import Fechamento from "@/components/home/secoes/Fechamento";
 import Rodape from "@/components/ui/Rodape";
+import PaginaUnica from "@/components/paginas/PaginaUnica";
+import { dicionarioUnica, ehIdioma } from "@/lib/idiomas";
+import { notFound } from "next/navigation";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!ehIdioma(lang)) notFound();
+
+  if (lang !== "pt") {
+    return <PaginaUnica idioma={lang} dicionario={dicionarioUnica(lang)} />;
+  }
+
   return (
     <main id="conteudo">
       <FundoRede />

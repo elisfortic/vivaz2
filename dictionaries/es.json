@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "quemSomos": "{{TRADUZIR: Quem somos}}",
+    "oQueMovemos": "{{TRADUZIR: O que movemos}}",
+    "pontoDeVista": "{{TRADUZIR: Ponto de vista}}",
+    "contato": "{{TRADUZIR: Contato}}",
+    "privacidade": "{{TRADUZIR: Privacidade}}"
+  },
+  "rodape": {
+    "copyright": "© 2026 Vivaz Consultoria"
+  },
+  "paginaUnica": {
+    "h1Antes": "Personas que ",
+    "h1Destaque": "mueven",
+    "h1Depois": " sistemas",
+    "lead": "Consultoría en cultura, liderazgo y gestión de personas. Conectamos estrategia, cultura y gestión para organizaciones que necesitan moverse.",
+    "quienesSomosTitulo": "Quiénes somos",
+    "quienesSomos": "Tres socias con carrera ejecutiva en Recursos Humanos en algunas de las organizaciones más complejas de Brasil — Natura, Hospital Albert Einstein, Banco Itaú, Grupo Ultra, entre otras. Con base entre Brasil y Europa.",
+    "queHacemosTitulo": "Qué hacemos",
+    "queHacemos": "Cultura y ética · Estructura y estrategia de personas · Liderazgo y desarrollo · Transformación y cambio",
+    "cierre": "Hablemos.",
+    "linkPortugues": "Ver el sitio en portugués →"
+  }
+}

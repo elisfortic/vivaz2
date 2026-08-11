@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import Rodape from "@/components/ui/Rodape";
 import FibraTerritorios from "@/components/home/grafismos/FibraTerritorios";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "O que movemos · Vivaz",
@@ -45,7 +46,15 @@ const territorios = [
   },
 ];
 
-export default function OQueMovemosPagina() {
+export default async function OQueMovemosPagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return <EstruturaTraduzir idioma={lang} rota="o-que-movemos" />;
+  }
   return (
     <main id="conteudo" className="bg-off-white">
       <CabecalhoPagina

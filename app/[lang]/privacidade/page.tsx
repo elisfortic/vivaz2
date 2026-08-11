@@ -2,13 +2,22 @@ import type { Metadata } from "next";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "Privacidade · Vivaz",
   robots: { index: false },
 };
 
-export default function PrivacidadePagina() {
+export default async function PrivacidadePagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return <EstruturaTraduzir idioma={lang} rota="privacidade" />;
+  }
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
       <CabecalhoPagina eyebrow="Privacidade" titulo="Privacidade" />

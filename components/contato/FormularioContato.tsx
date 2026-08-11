@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { enviarContato, type EstadoContato } from "@/app/contato/acoes";
+import { enviarContato, type EstadoContato } from "@/lib/acoes/contato";
 
 const inicial: EstadoContato = { status: "inicial" };
 

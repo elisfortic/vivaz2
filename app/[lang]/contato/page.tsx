@@ -4,12 +4,21 @@ import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
 import FormularioContato from "@/components/contato/FormularioContato";
 import RioDeFibras from "@/components/home/grafismos/RioDeFibras";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "Contato · Vivaz",
 };
 
-export default function ContatoPagina() {
+export default async function ContatoPagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return <EstruturaTraduzir idioma={lang} rota="contato" />;
+  }
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
       <CabecalhoPagina

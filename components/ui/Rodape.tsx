@@ -23,7 +23,21 @@ export default function Rodape() {
             </Link>
           ))}
         </nav>
-        <p className="text-xs text-off-white/60">© 2026 Vivaz Consultoria</p>
+        <div className="flex items-center gap-6">
+          {/* seletor de idioma discreto (spec 3.4) */}
+          <nav className="flex gap-3 text-xs uppercase tracking-wide">
+            {(["pt", "es", "en"] as const).map((idioma) => (
+              <Link
+                key={idioma}
+                href={`/${idioma}`}
+                className="text-off-white/55 transition-colors duration-300 hover:text-off-white"
+              >
+                {idioma}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-xs text-off-white/60">© 2026 Vivaz Consultoria</p>
+        </div>
       </div>
     </footer>
   );

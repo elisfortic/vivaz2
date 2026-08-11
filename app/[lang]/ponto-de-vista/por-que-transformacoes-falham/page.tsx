@@ -2,12 +2,26 @@ import type { Metadata } from "next";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "Por que tantas transformações organizacionais falham · Vivaz",
 };
 
-export default function ArtigoFalhamPagina() {
+export default async function ArtigoFalhamPagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return (
+      <EstruturaTraduzir
+        idioma={lang}
+        rota="ponto-de-vista/por-que-transformacoes-falham"
+      />
+    );
+  }
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
       <CabecalhoPagina

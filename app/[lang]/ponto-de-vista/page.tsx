@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import Rodape from "@/components/ui/Rodape";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "Ponto de vista · Vivaz",
 };
 
-export default function PontoDeVistaPagina() {
+export default async function PontoDeVistaPagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return <EstruturaTraduzir idioma={lang} rota="ponto-de-vista" />;
+  }
   return (
     <main id="conteudo" className="flex min-h-screen flex-col bg-off-white">
       <CabecalhoPagina

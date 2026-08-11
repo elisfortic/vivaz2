@@ -4,6 +4,7 @@ import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
 import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
 import ComoTrabalhamos from "@/components/home/secoes/ComoTrabalhamos";
+import EstruturaTraduzir from "@/components/paginas/EstruturaTraduzir";
 
 export const metadata: Metadata = {
   title: "Quem somos · Vivaz",
@@ -27,7 +28,15 @@ const socias = [
   },
 ];
 
-export default function QuemSomosPagina() {
+export default async function QuemSomosPagina({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (lang !== "pt") {
+    return <EstruturaTraduzir idioma={lang} rota="quem-somos" />;
+  }
   return (
     <main id="conteudo" className="bg-off-white">
       <CabecalhoPagina
