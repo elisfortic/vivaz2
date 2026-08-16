@@ -219,9 +219,16 @@ export default function RedeViva({
       ctx.clearRect(0, 0, largura, altura);
 
       const spanX = largura * (1 - MARGEM * 2);
-      const spanY = altura * (1 - MARGEM * 2);
+      let spanY = altura * (1 - MARGEM * 2);
       const baseX = largura * MARGEM;
-      const baseY = altura * MARGEM;
+      let baseY = altura * MARGEM;
+      // retrato: a malha vive numa banda paisagem centrada — as fibras
+      // seguem lendo na horizontal, como no desktop
+      if (altura > largura * 1.1) {
+        const banda = Math.min(spanY, largura * 1.05);
+        baseY += (spanY - banda) / 2;
+        spanY = banda;
+      }
 
       // posições: base + órbita lenta + ondulação de ruído + repulsão com memória
       for (let i = 0; i < n; i++) {

@@ -70,14 +70,37 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
           </div>
         </div>
 
-        {/* mobile: anel menor no topo, princípios empilhados */}
-        <div className="mt-10 md:hidden">
+        {/* mobile: anel e princípio ativo na MESMA visão — o card troca
+            junto com o gesto do anel; os números permitem pular */}
+        <div className="mt-6 md:hidden">
           <div className="relative mx-auto h-64 w-64">
-            <OrbitaPrincipios ativo={ativo} />
+            <OrbitaPrincipios
+              ativo={ativo}
+              aoAgir={(q) => setAgindo(q < 0 ? null : q)}
+            />
           </div>
-          <div className="mt-10 space-y-8">
-            {t.principios.map((p) => (
-              <div key={p.numero}>
+          <div className="mt-4 flex justify-center gap-5">
+            {t.principios.map((p, i) => (
+              <button
+                key={p.numero}
+                type="button"
+                onClick={() => setAtivo(ativo === i ? null : i)}
+                aria-label={p.titulo}
+                className={`font-montserrat text-base font-medium transition-colors duration-300 ${
+                  (emFoco ?? 0) === i ? "text-terracota" : "text-verde/50"
+                }`}
+              >
+                {p.numero}
+              </button>
+            ))}
+          </div>
+          {(() => {
+            const p = t.principios[emFoco ?? 0];
+            return (
+              <div
+                key={p.numero}
+                className="mx-auto mt-4 min-h-[190px] max-w-sm text-center"
+              >
                 <h3 className="font-montserrat text-lg font-medium text-verde">
                   <span className="text-terracota">{p.numero}</span> ·{" "}
                   {p.titulo}
@@ -85,12 +108,12 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
                 <p className="font-lato mt-1 italic text-grafite">
                   “{p.frase}”
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-grafite/75">
+                <p className="mt-2 text-[15px] leading-relaxed text-grafite">
                   {p.corpo}
                 </p>
               </div>
-            ))}
-          </div>
+            );
+          })()}
         </div>
       </div>
     </section>
