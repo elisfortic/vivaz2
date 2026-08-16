@@ -108,11 +108,13 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-linha pt-8">
+        {/* mobile: centralizado — a lista corrida alinhada à esquerda
+            deixava a mancha irregular no retrato */}
+        <div className="mt-16 border-t border-linha pt-8 text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.22em] text-grafite/60">
             {t.trajetoriaRotulo}
           </p>
-          <p className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm text-grafite">
+          <p className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm text-grafite md:justify-start">
             {trajetoria.map((empresa, i) => (
               <span key={empresa}>
                 {empresa}
