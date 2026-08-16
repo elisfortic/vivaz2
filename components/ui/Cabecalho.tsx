@@ -27,27 +27,43 @@ export default function Cabecalho({
   const pathname = usePathname();
 
   // religa a cada rota: o layout persiste nas navegações e as seções
-  // verdes da página nova precisam ser observadas de novo
+  // verdes da página nova precisam ser medidas de novo.
+  // Medição direta no scroll (rAF-throttled) em vez de IntersectionObserver
+  // com rootMargin percentual — o iOS Safari real perdia a inversão e o
+  // header sumia sobre o verde (visto em 2026-08-16).
   useEffect(() => {
     setSobreVerde(false);
-    const alvos = document.querySelectorAll(
-      "section.bg-verde, footer.bg-verde",
+    const alvos = Array.from(
+      document.querySelectorAll("section.bg-verde, footer.bg-verde"),
     );
     if (alvos.length === 0) return;
-    const visiveis = new Set<Element>();
-    const observador = new IntersectionObserver(
-      (entradas) => {
-        for (const entrada of entradas) {
-          if (entrada.isIntersecting) visiveis.add(entrada.target);
-          else visiveis.delete(entrada.target);
-        }
-        setSobreVerde(visiveis.size > 0);
-      },
-      // só a faixa do header (top ~86px) conta
-      { rootMargin: "0px 0px -92% 0px" },
-    );
-    alvos.forEach((el) => observador.observe(el));
-    return () => observador.disconnect();
+
+    // o centro da faixa do header (~86px de altura) decide a cor
+    const MEIO_HEADER = 43;
+    let pendente = false;
+    const medir = () => {
+      pendente = false;
+      setSobreVerde(
+        alvos.some((el) => {
+          const r = el.getBoundingClientRect();
+          return r.top <= MEIO_HEADER && r.bottom >= MEIO_HEADER;
+        }),
+      );
+    };
+    const agendar = () => {
+      if (!pendente) {
+        pendente = true;
+        requestAnimationFrame(medir);
+      }
+    };
+
+    medir();
+    window.addEventListener("scroll", agendar, { passive: true });
+    window.addEventListener("resize", agendar);
+    return () => {
+      window.removeEventListener("scroll", agendar);
+      window.removeEventListener("resize", agendar);
+    };
   }, [pathname]);
 
   // trava o scroll com o menu aberto
