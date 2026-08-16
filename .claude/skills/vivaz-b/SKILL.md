@@ -56,6 +56,11 @@ outras. O site DEMONSTRA isso com grafismos vivos — nunca fala sobre.
    antes de chamar o cliente. Fast Refresh durante captura gera canvas em
    branco — recapturar limpo. Canvas some = checar erro de console
    (`scripts/erros.mjs` pattern) antes de culpar screenshot.
+   Revisar o screenshot BLOCO A BLOCO, não só o alvo do fix: alinhamento,
+   mancha de texto irregular, grafismo sobre texto. Lição 2026-08-16:
+   "Trajetória construída em" ficou esquerda/irregular no retrato com o
+   screenshot na mão — o cliente pegou, eu não. Regra para o gauntlet:
+   todo bloco de toda captura passa por juízo, sem exceção.
 2. Pareceres de "equipe": spawnar agente diretor-de-arte/designer com
    screenshots + referências do deck; aplicar com triagem fundamentada
    (pode recusar com razão). Cliente valoriza isso explicitamente.
