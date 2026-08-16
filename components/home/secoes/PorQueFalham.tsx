@@ -38,6 +38,13 @@ export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
               <h3 className="font-montserrat text-xl font-medium leading-snug text-verde md:text-right md:text-2xl">
                 {linha.titulo}
               </h3>
+              {/* mobile: a mesma fibra que se rompe, compacta, liga a
+                  causa à consequência — o gesto não pode sumir no retrato */}
+              <LinhaRuptura
+                semente={i + 1}
+                intensa={ativa === i}
+                className="h-24 w-full md:hidden"
+              />
               <LinhaRuptura
                 semente={i + 1}
                 intensa={ativa === i}

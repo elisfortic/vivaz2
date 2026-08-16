@@ -83,7 +83,7 @@ export default function RedeViva({
     const mobile = window.innerWidth < 768;
     const semente = seed ?? 20260811;
     const grafo: Grafo = construirGrafo(
-      quantidade ?? (mobile ? 20 : 48),
+      quantidade ?? (mobile ? 14 : 48),
       terracotas,
       semente,
     );
@@ -130,6 +130,10 @@ export default function RedeViva({
     let largura = 0;
     let altura = 0;
     let escala = 1;
+    /** escala só das amplitudes de movimento — no retrato é calibrada
+        pela banda paisagem, não pela altura da tela, senão a ondulação
+        engole a leitura horizontal das fibras */
+    let escalaAmp = 1;
     let dpr = 1;
 
     const dimensionar = () => {
@@ -141,6 +145,16 @@ export default function RedeViva({
       canvas.height = Math.round(altura * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       escala = Math.min(1.25, Math.max(0.45, altura / ALTURA_REFERENCIA));
+      if (altura > largura * 1.1) {
+        const banda = Math.min(altura, largura * 0.86) * 0.62;
+        escalaAmp = Math.min(
+          1.25,
+          Math.max(0.3, banda / (ALTURA_REFERENCIA * 0.62)),
+        );
+        escala = Math.min(escala, 0.8);
+      } else {
+        escalaAmp = escala;
+      }
     };
     dimensionar();
 
@@ -210,7 +224,7 @@ export default function RedeViva({
           t / (aresta.periodo * 2),
         ) *
         aresta.amp *
-        escala *
+        escalaAmp *
         envelope;
       return { formaS, onda };
     };
@@ -222,22 +236,26 @@ export default function RedeViva({
       let spanY = altura * (1 - MARGEM * 2);
       const baseX = largura * MARGEM;
       let baseY = altura * MARGEM;
-      // retrato: a malha vive numa banda paisagem centrada — as fibras
-      // seguem lendo na horizontal, como no desktop
+      // retrato: a malha vive numa banda paisagem centrada com o MESMO
+      // aspecto da caixa de referência do layout (1000×620) — o mapeamento
+      // não comprime o eixo X mais que o Y e as fibras seguem lendo na
+      // horizontal, como no desktop
       if (altura > largura * 1.1) {
-        const banda = Math.min(spanY, largura * 1.05);
-        baseY += (spanY - banda) / 2;
+        const banda = Math.min(spanY, spanX * 0.62);
+        // levemente acima do centro: a banda ancora atrás do título,
+        // não do bloco de apoio/CTA
+        baseY += (spanY - banda) * 0.42;
         spanY = banda;
       }
 
       // posições: base + órbita lenta + ondulação de ruído + repulsão com memória
       for (let i = 0; i < n; i++) {
         const no = grafo.nos[i];
-        const amp = no.amp * escala;
+        const amp = no.amp * escalaAmp;
         const angulo =
           no.orbitaFase +
           no.orbitaDir * ((Math.PI * 2 * t) / no.orbitaPeriodo);
-        const orbita = no.orbitaRaio * escala;
+        const orbita = no.orbitaRaio * escalaAmp;
         const ox =
           Math.cos(angulo) * orbita +
           ruido(no.canalX, 0, t / no.periodo) * amp;
@@ -341,7 +359,7 @@ export default function RedeViva({
           const perpY = dx / comp;
           const ampForma = Math.min(comp * 0.18, 46 * escala);
           const afastamento =
-            Math.min(aresta.espalhamento * escala, comp * 0.14) * aberto;
+            Math.min(aresta.espalhamento * escalaAmp, comp * 0.14) * aberto;
 
           for (let j = 0; j < aresta.filamentos; j++) {
             // lados alternados: -1, +1, -2…
@@ -359,7 +377,7 @@ export default function RedeViva({
                 ) *
                 aresta.amp *
                 0.7 *
-                escala *
+                escalaAmp *
                 envelope *
                 aberto;
               const desloc =

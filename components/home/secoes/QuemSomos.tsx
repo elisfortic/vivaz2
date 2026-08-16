@@ -60,10 +60,11 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
             </Link>
           </div>
 
-          <div className="relative h-[460px] md:h-[600px]">
+          <div className="relative mt-6 h-[460px] md:mt-0 md:h-[600px]">
             {/* o quadro do grafismo é maior que a coluna — as fibras
-                entram e saem sem parecer cortadas */}
-            <div className="absolute -inset-x-24 -inset-y-14">
+                entram e saem sem parecer cortadas; no retrato ele não
+                sobe além da própria caixa para não brigar com o texto */}
+            <div className="absolute -inset-x-24 inset-y-0 md:-inset-y-14">
               {/* fade elíptico: some antes do texto, do nav e da régua —
                   nunca corte seco */}
               <TrioAncoragem
