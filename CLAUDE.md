@@ -1,3 +1,13 @@
+## rtk
+
+`rtk.exe` (instalado em `C:/Users/House_Fol/.local/bin/rtk.exe`, binário verificado por checksum SHA-256, sem hook automático — o auto-patch do PreToolUse foi tentado e bloqueado pelo classifier de permissões desta sessão) comprime saída ruidosa de CLI antes de chegar ao contexto. Uso manual quando o comando tende a ser verboso:
+
+- `rtk git status` / `rtk git diff` / `rtk git log` no lugar do `git` puro
+- `rtk ls` / `rtk tree` no lugar de listagens grandes
+- Ver `rtk --help` para a lista completa de subcomandos suportados (npm, aws, psql, gh, etc.)
+
+Não é obrigatório — só vale a pena chamar quando a saída normal seria grande.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
