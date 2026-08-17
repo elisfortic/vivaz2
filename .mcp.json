@@ -2,7 +2,7 @@
   "mcpServers": {
     "codegraph": {
       "type": "stdio",
-      "command": "codegraph",
+      "command": "C:/Users/House_Fol/AppData/Roaming/npm/codegraph.cmd",
       "args": [
         "serve",
         "--mcp"
