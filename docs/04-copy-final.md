@@ -268,13 +268,20 @@ Cada sócia tem link para o LinkedIn: `{{PENDENTE: URLs}}`
 
 **Botão:** `Enviar mensagem`
 **Sucesso:** `Mensagem enviada. Respondemos em até dois dias úteis.`
-**Erro:** `Não foi possível enviar agora. Tente novamente ou escreva para {{E-MAIL}}.`
+**Erro:** `Não foi possível enviar agora. Tente novamente ou escreva para contato@vivazconsultoria.com.`
 
 **Máximo de campos: seis.** Não adicionar telefone — derruba conversão em público executivo.
 
 ## Canais diretos
-E-mail: `{{PENDENTE: e-mail corporativo}}`
+E-mail: `contato@vivazconsultoria.com`
 LinkedIn: `{{PENDENTE: URL da página da empresa}}`
+
+> **Nota 2026-08-17 (autorizado pelo cliente):** e-mail corporativo definido
+> como `contato@vivazconsultoria.com` (também destino do formulário). E-mails
+> das sócias no padrão `primeironome@vivazconsultoria.com` — Elisângela usa
+> `elis@`: `elis@`, `flavia@`, `leila@vivazconsultoria.com`, exibidos nos
+> cards de Quem Somos ao lado do LinkedIn. Segue pendente só a URL da página
+> da empresa no LinkedIn.
 
 ---
 

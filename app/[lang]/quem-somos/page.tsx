@@ -18,16 +18,19 @@ const socias = [
     nome: "Elisângela Chitero",
     foto: "/socias/elisangela.jpg",
     linkedin: "https://www.linkedin.com/in/elisangelafortichitero/",
+    email: "elis@vivazconsultoria.com",
   },
   {
     nome: "Flavia Pilan",
     foto: "/socias/flavia.jpg",
     linkedin: "https://www.linkedin.com/in/flaviavassere/",
+    email: "flavia@vivazconsultoria.com",
   },
   {
     nome: "Leila Kido",
     foto: "/socias/leila.jpg",
     linkedin: "https://www.linkedin.com/in/leila-kido-3064179/",
+    email: "leila@vivazconsultoria.com",
   },
 ];
 
@@ -109,14 +112,22 @@ export default async function QuemSomosPagina({
                 <p className="max-w-[680px] text-[15px] leading-relaxed text-grafite">
                   {t.bios[i]}
                 </p>
-                <a
-                  href={socia.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
-                >
-                  LinkedIn →
-                </a>
+                <div className="flex flex-wrap gap-x-5 gap-y-1">
+                  <a
+                    href={socia.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+                  >
+                    LinkedIn →
+                  </a>
+                  <a
+                    href={`mailto:${socia.email}`}
+                    className="text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+                  >
+                    {socia.email}
+                  </a>
+                </div>
               </div>
             </article>
           ))}

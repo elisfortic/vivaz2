@@ -276,8 +276,9 @@ export const CONTATO_PAGINA = {
     botao: "Enviar mensagem",
     sucesso: "Mensagem enviada. Respondemos em até dois dias úteis.",
     erroEnvio:
-      "Não foi possível enviar agora. Tente novamente ou escreva para {{E-MAIL}}.",
-    pendenteEmail: "e-mail corporativo",
+      "Não foi possível enviar agora. Tente novamente ou escreva para contato@vivazconsultoria.com.",
+    rotuloEmail: "E-mail",
+    email: "contato@vivazconsultoria.com",
     pendenteLinkedin: "URL da página da empresa no LinkedIn",
   },
   es: {
@@ -303,8 +304,9 @@ export const CONTATO_PAGINA = {
     botao: "Enviar mensaje",
     sucesso: "Mensaje enviado. Respondemos en un máximo de dos días hábiles.",
     erroEnvio:
-      "No fue posible enviar ahora. Inténtalo de nuevo o escribe a {{E-MAIL}}.",
-    pendenteEmail: "e-mail corporativo",
+      "No fue posible enviar ahora. Inténtalo de nuevo o escribe a contato@vivazconsultoria.com.",
+    rotuloEmail: "E-mail",
+    email: "contato@vivazconsultoria.com",
     pendenteLinkedin: "URL de la página de la empresa en LinkedIn",
   },
   en: {
@@ -329,8 +331,10 @@ export const CONTATO_PAGINA = {
     },
     botao: "Send message",
     sucesso: "Message sent. We reply within two business days.",
-    erroEnvio: "We couldn't send it right now. Try again or write to {{E-MAIL}}.",
-    pendenteEmail: "corporate e-mail",
+    erroEnvio:
+      "We couldn't send it right now. Try again or write to contato@vivazconsultoria.com.",
+    rotuloEmail: "E-mail",
+    email: "contato@vivazconsultoria.com",
     pendenteLinkedin: "company LinkedIn page URL",
   },
 } satisfies Record<IdiomaFuturo, unknown>;

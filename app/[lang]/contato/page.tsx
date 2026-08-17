@@ -29,7 +29,17 @@ export default async function ContatoPagina({
         <div className="grid gap-14 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <FormularioContato lang={lang} />
           <aside className="space-y-4">
-            <MarcadorPendente texto={t.pendenteEmail} />
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-grafite/60">
+                {t.rotuloEmail}
+              </p>
+              <a
+                href={`mailto:${t.email}`}
+                className="mt-1 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+              >
+                {t.email}
+              </a>
+            </div>
             <MarcadorPendente texto={t.pendenteLinkedin} />
           </aside>
         </div>

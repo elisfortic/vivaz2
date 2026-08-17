@@ -62,7 +62,7 @@ export async function enviarContato(
   }
 
   const chave = process.env.RESEND_API_KEY;
-  const destino = process.env.CONTATO_DESTINO; // {{PENDENTE: contato@}}
+  const destino = process.env.CONTATO_DESTINO ?? "contato@vivazconsultoria.com";
   if (!chave || !destino) {
     console.error("contato: RESEND_API_KEY/CONTATO_DESTINO não configurados");
     return { status: "erro" };
