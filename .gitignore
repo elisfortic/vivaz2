@@ -15,6 +15,10 @@
 # debug
 npm-debug.log*
 
+# índices gerados (codegraph/graphify) — recriáveis via `codegraph init` / `graphify .`
+/.codegraph/
+/graphify-out/
+
 # env
 .env
 .env*.local
