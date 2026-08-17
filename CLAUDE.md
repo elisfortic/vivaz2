@@ -1,3 +1,24 @@
+## Ferramentas globais já ativas (escopo do usuário, não deste repo)
+
+Verificado em 2026-08-17 — nada disto precisou ser "instalado" para este projeto, já
+existia na conta:
+
+- **everything-claude-code** (`everything-claude-code@everything-claude-code`,
+  já `enabled: true`) — é a origem dos agentes `planner`, `code-reviewer`,
+  `security-reviewer`, `tdd-guide`, `architect` etc. usados via `Agent`. Não
+  há hook automático de scan de segurança antes de commit — o uso é
+  proativo (chamar `security-reviewer` antes de commits sensíveis), conforme
+  `~/.claude/rules/common/security.md`.
+- **superpowers** (`superpowers@claude-plugins-official`, já ativo) — skill
+  de descoberta de processo (`brainstorming`, `systematic-debugging` etc.),
+  não é um framework de TDD com fases automáticas.
+
+Adicionado nesta sessão (escopo usuário, marketplace
+`alirezarezvani/claude-skills`, só os bundles de engenharia/produtividade —
+não os 88 disponíveis): `engineering-skills`, `engineering-advanced-skills`,
+`a11y-audit`, `zero-hallucination-coder`, `llm-cost-optimizer`,
+`workflow-builder`, `write-a-skill`.
+
 ## rtk
 
 `rtk.exe` (instalado em `C:/Users/House_Fol/.local/bin/rtk.exe`, binário verificado por checksum SHA-256, sem hook automático — o auto-patch do PreToolUse foi tentado e bloqueado pelo classifier de permissões desta sessão) comprime saída ruidosa de CLI antes de chegar ao contexto. Uso manual quando o comando tende a ser verboso:
