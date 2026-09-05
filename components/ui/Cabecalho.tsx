@@ -80,12 +80,20 @@ export default function Cabecalho({
     : "text-grafite/80 hover:text-verde";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div
-        className={`mx-auto flex max-w-6xl items-center justify-between px-6 py-[26px] ${
-          aberto ? "bg-off-white" : ""
-        }`}
-      >
+    <header
+      className={`fixed inset-x-0 top-0 z-50 backdrop-blur-md transition-colors duration-500 ${
+        aberto ? "bg-off-white" : claro ? "bg-verde/70" : "bg-off-white/80"
+      }`}
+    >
+      {/*
+        Fundo translúcido sempre presente — sem ele, no modo sem empilhamento
+        (prefers-reduced-motion, ou qualquer scroll normal futuro) o texto das
+        seções passa livre por baixo do header fixo e se sobrepõe de forma
+        ilegível (achado 2026-09-05: notebook 13" da Elis com "reduzir
+        animações" do SO ativado — PilhaSecoes desliga o empilhamento sticky
+        e nada mais protegia a faixa do header).
+      */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-[26px]">
         <Link href={hrefInicio} className="flex items-center gap-2.5">
           <Image
             src={

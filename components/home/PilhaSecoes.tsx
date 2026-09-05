@@ -43,26 +43,31 @@ export default function PilhaSecoes({
         const proxima = itens[i + 1];
         const conteudo = item.firstElementChild as HTMLElement | null;
         if (!conteudo) return;
+        // As duas janelas são sequenciais, nunca sobrepostas — quando
+        // tinham sobreposição (35%→20%), as duas tweens brigavam pela
+        // mesma propriedade "opacity" no mesmo instante e o texto sumia
+        // de golpe antes da próxima seção cobrir a área de verdade
+        // (achado 2026-09-05, PDF das sócias: "come uma parte da escrita").
+        // O esmaecimento total só termina em "top 10%", quando a próxima
+        // seção já cobre ~90% da tela — nunca some antes de estar coberta.
         gsap.to(conteudo, {
           scale: 0.94,
           opacity: 0.35,
           ease: "none",
           scrollTrigger: {
             trigger: proxima,
-            start: "top 90%",
-            end: "top 20%",
+            start: "top 85%",
+            end: "top 45%",
             scrub: true,
           },
         });
-        // já coberta: some de vez — impede o texto de vazar por
-        // superfícies translúcidas da seção de cima
         gsap.to(conteudo, {
           opacity: 0,
           ease: "none",
           scrollTrigger: {
             trigger: proxima,
-            start: "top 35%",
-            end: "top 5%",
+            start: "top 45%",
+            end: "top 10%",
             scrub: true,
           },
         });
