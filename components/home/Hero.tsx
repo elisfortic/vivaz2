@@ -24,6 +24,12 @@ export default function Hero({ lang = "pt" }: { lang?: Idioma }) {
           transition: { duration: 1.4, delay: atraso, ease: suave },
         };
 
+  // destaque em laranja na primeira palavra ("Pessoas"/"Personas"/"People"),
+  // "movem" passa a herdar a cor padrão do título (verde) — inversão pedida
+  // pelas sócias em 2026-09-05
+  const [primeiraPalavra, ...resto] = t.h1Antes.trim().split(" ");
+  const restanteAntes = " " + resto.join(" ") + " ";
+
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
       <motion.p
@@ -37,8 +43,9 @@ export default function Hero({ lang = "pt" }: { lang?: Idioma }) {
         {...emergir(0.8)}
         className="titulo-h1 max-w-4xl"
       >
-        {t.h1Antes}
-        <strong className="font-bold text-terracota">{t.h1Destaque}</strong>
+        <strong className="font-bold text-terracota">{primeiraPalavra}</strong>
+        {restanteAntes}
+        {t.h1Destaque}
         {t.h1Depois}
         <span className="text-terracota">.</span>
       </motion.h1>

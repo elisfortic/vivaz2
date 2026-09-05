@@ -75,9 +75,11 @@ export default function Cabecalho({
   }, [aberto]);
 
   const claro = sobreVerde && !aberto;
+  // negrito + verde (era grafite/80) — mais destaque, pedido pelas sócias
+  // em 2026-09-05
   const corLink = claro
-    ? "text-off-white/85 hover:text-off-white"
-    : "text-grafite/80 hover:text-verde";
+    ? "text-off-white/85 hover:text-off-white font-semibold"
+    : "text-verde hover:opacity-70 font-semibold";
 
   return (
     <header
@@ -120,7 +122,7 @@ export default function Cabecalho({
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[16px] tracking-[0.01em] transition-colors duration-500 ${corLink}`}
+              className={`text-[16px] tracking-[0.01em] transition-all duration-500 ${corLink}`}
             >
               {item.rotulo}
             </Link>
