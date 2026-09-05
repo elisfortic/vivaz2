@@ -205,20 +205,19 @@ export default function TrioAncoragem({
         ctx.globalAlpha = 1;
       }
 
-      // discos verdes sólidos (versão sem retratos — motivo trio-v2)
+      // discos verdes sólidos (versão sem retratos — motivo trio-v2).
+      // Base menor e um tamanho distinto por âncora — pedido das sócias
+      // 2026-09-05: "diminuir e deixar um de cada tamanho para dar mais
+      // proporção" (eram uniformes e grandes demais).
       if (discos) {
-        const raioDisco = Math.min(largura, altura) * 0.11;
+        const raioBase = Math.min(largura, altura) * 0.075;
+        const escalaPorAncora = [1.15, 0.85, 1];
         ctx.beginPath();
         for (let i = 0; i < 3; i++) {
           const respiro = 1 + 0.04 * ruido(300 + i * 17, 0, t / 28);
-          ctx.moveTo(px(ANCORAS[i].nx) + raioDisco * respiro, py(ANCORAS[i].ny));
-          ctx.arc(
-            px(ANCORAS[i].nx),
-            py(ANCORAS[i].ny),
-            raioDisco * respiro,
-            0,
-            Math.PI * 2,
-          );
+          const raioDisco = raioBase * escalaPorAncora[i] * respiro;
+          ctx.moveTo(px(ANCORAS[i].nx) + raioDisco, py(ANCORAS[i].ny));
+          ctx.arc(px(ANCORAS[i].nx), py(ANCORAS[i].ny), raioDisco, 0, Math.PI * 2);
         }
         ctx.fillStyle = cores.verde;
         ctx.fill();
