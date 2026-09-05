@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
 import ComoTrabalhamos from "@/components/home/secoes/ComoTrabalhamos";
 import TrioAncoragem from "@/components/home/grafismos/TrioAncoragem";
@@ -148,9 +147,6 @@ export default async function QuemSomosPagina({
             frentes={deck.frentesRede}
             className="relative mx-auto mt-12 hidden h-[440px] w-full max-w-[900px] md:block"
           />
-          <div className="mt-12 max-w-2xl">
-            <MarcadorPendente texto={t.pendenteSelos} />
-          </div>
         </div>
       </section>
 

@@ -20,8 +20,6 @@ export const QUEM_SOMOS_PAGINA = {
     redeP1:
       "Acreditamos que o conhecimento circula pelas relações. Por isso a Vivaz opera com uma rede de especialistas convidados em frentes onde a profundidade técnica exige quem vive aquilo todos os dias — de arquitetura de remuneração a temas específicos de cada setor.",
     redeP2: "Cada projeto reúne o time certo, e não o time disponível.",
-    pendenteSelos:
-      "autorização de uso das marcas FIA-USP, IBGC, Barrett Institute, Universidade Israelita Albert Einstein — listar como texto até a liberação",
     bios: [
       "25 anos atuando em Recursos Humanos em Grupo Ultra, Hospital Albert Einstein, Natura, Hering e Nutrien Soluções Agrícolas, com foco em desenvolvimento de liderança, cultura, transformação organizacional, carreira e reestruturação pós-M&A. Desde 2022 atuando como Consultora e Professora convidada da Universidade Israelita Albert Einstein. Formação em Administração pela Universidade Estadual de Maringá. MBA em Recursos Humanos pela FIA-USP. Formação em Coaching, Mentoring e Transformação Cultural pelo Barrett Institute.",
       "Trajetória executiva ao lado de CEOs e lideranças sênior em Credicard, Hospital Albert Einstein, Banco BV e Natura, onde liderou a área de RH do Natura Pay. Atua em transformação organizacional, fortalecimento de liderança e construção de ambientes de alta performance — combinando visão sistêmica, pragmatismo e escuta qualificada para traduzir desafios complexos em decisão e execução. MBA em Recursos Humanos pela FIA-USP. Formação em Conselho Administrativo pelo IBGC.",
@@ -42,8 +40,6 @@ export const QUEM_SOMOS_PAGINA = {
     redeP1:
       "Creemos que el conocimiento circula por las relaciones. Por eso Vivaz opera con una red de especialistas invitados en frentes donde la profundidad técnica exige a quien lo vive todos los días — de arquitectura de remuneración a temas específicos de cada sector.",
     redeP2: "Cada proyecto reúne al equipo correcto, no al equipo disponible.",
-    pendenteSelos:
-      "autorización de uso de las marcas FIA-USP, IBGC, Barrett Institute, Universidade Israelita Albert Einstein — listar como texto hasta la liberación",
     bios: [
       "25 años en Recursos Humanos en Grupo Ultra, Hospital Albert Einstein, Natura, Hering y Nutrien Soluções Agrícolas, con foco en desarrollo de liderazgo, cultura, transformación organizacional, carrera y reestructuración post-M&A. Desde 2022 actúa como Consultora y Profesora invitada de la Universidade Israelita Albert Einstein. Formación en Administración por la Universidade Estadual de Maringá. MBA en Recursos Humanos por FIA-USP. Formación en Coaching, Mentoring y Transformación Cultural por el Barrett Institute.",
       "Trayectoria ejecutiva junto a CEOs y liderazgos sénior en Credicard, Hospital Albert Einstein, Banco BV y Natura, donde lideró el área de RH de Natura Pay. Actúa en transformación organizacional, fortalecimiento del liderazgo y construcción de ambientes de alto desempeño — combinando visión sistémica, pragmatismo y escucha calificada para traducir desafíos complejos en decisión y ejecución. MBA en Recursos Humanos por FIA-USP. Formación en Consejo de Administración por el IBGC.",
@@ -64,8 +60,6 @@ export const QUEM_SOMOS_PAGINA = {
     redeP1:
       "We believe knowledge circulates through relationships. That's why Vivaz operates with a network of invited specialists on fronts where technical depth demands someone who lives it every day — from compensation architecture to sector-specific topics.",
     redeP2: "Each project gathers the right team, not the available team.",
-    pendenteSelos:
-      "authorization to use the FIA-USP, IBGC, Barrett Institute and Universidade Israelita Albert Einstein brands — list as text until released",
     bios: [
       "25 years in Human Resources at Grupo Ultra, Hospital Albert Einstein, Natura, Hering and Nutrien Soluções Agrícolas, focused on leadership development, culture, organizational transformation, careers and post-M&A restructuring. Since 2022, Consultant and guest Professor at Universidade Israelita Albert Einstein. Degree in Business Administration from Universidade Estadual de Maringá. MBA in Human Resources from FIA-USP. Training in Coaching, Mentoring and Cultural Transformation at the Barrett Institute.",
       "Executive track record alongside CEOs and senior leadership at Credicard, Hospital Albert Einstein, Banco BV and Natura, where she led HR for Natura Pay. Works in organizational transformation, leadership strengthening and building high-performance environments — combining systemic vision, pragmatism and qualified listening to turn complex challenges into decision and execution. MBA in Human Resources from FIA-USP. Board training at IBGC.",

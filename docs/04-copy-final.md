@@ -201,7 +201,14 @@ Cada sócia tem link para o LinkedIn: `{{PENDENTE: URLs}}`
 `Cada projeto reúne o time certo, e não o time disponível.`
 
 ## Selos institucionais
-`{{PENDENTE: autorização de uso das marcas FIA-USP, IBGC, Barrett Institute, Universidade Israelita Albert Einstein. Não exibir logotipos até a liberação — enquanto isso, listar como texto.}}`
+Sem logotipos — nunca liberados. Os nomes das instituições (FIA-USP, IBGC,
+Barrett Institute, Universidade Israelita Albert Einstein) já aparecem como
+texto simples nas bios de cada sócia (formação/MBA/consultoria), que é o que
+esta pendência sempre pediu como solução até a liberação.
+
+> **Nota 2026-09-05 (Fabio):** removido o aviso `{{PENDENTE}}` isolado da
+> página Quem Somos — redundante, já que o texto (não o logo) já está nas
+> bios. Segue sem logotipos até autorização formal das marcas.
 
 ---
 
