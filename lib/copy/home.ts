@@ -39,27 +39,24 @@ export const HERO = {
 export const MOVER = {
   pt: {
     eyebrow: "Mover sistemas",
-    frase: "Construir uma governança fluida.",
+    frase: "Construir um modelo de gestão fluido.",
     lead: "Onde o conhecimento circula, onde a confiança sustenta as decisões e onde a diferença de opinião gera ideia nova em vez de conflito.",
-    recusaDestaque: "Não desenvolvemos a estratégia da sua empresa.",
     recusa:
-      " Conectamos a estratégia que já existe à cultura e à gestão de pessoas — para que ela deixe de ser uma intenção no papel e passe a acontecer no dia a dia.",
+      "Conectamos a estratégia que já existe à cultura e à gestão de pessoas — para que ela deixe de ser uma intenção no papel e passe a acontecer no dia a dia.",
   },
   es: {
     eyebrow: "Mover sistemas",
-    frase: "Construir una gobernanza fluida.",
+    frase: "Construir un modelo de gestión fluido.",
     lead: "Donde el conocimiento circula, donde la confianza sostiene las decisiones y donde la diferencia de opinión genera ideas nuevas en lugar de conflicto.",
-    recusaDestaque: "No desarrollamos la estrategia de tu empresa.",
     recusa:
-      " Conectamos la estrategia que ya existe con la cultura y la gestión de personas — para que deje de ser una intención en el papel y empiece a suceder en el día a día.",
+      "Conectamos la estrategia que ya existe con la cultura y la gestión de personas — para que deje de ser una intención en el papel y empiece a suceder en el día a día.",
   },
   en: {
     eyebrow: "Moving systems",
-    frase: "Building fluid governance.",
+    frase: "Building a fluid management model.",
     lead: "Where knowledge circulates, where trust sustains decisions, and where differences of opinion create new ideas instead of conflict.",
-    recusaDestaque: "We do not develop your company's strategy.",
     recusa:
-      " We connect the strategy you already have to culture and people management — so it stops being an intention on paper and starts happening day to day.",
+      "We connect the strategy you already have to culture and people management — so it stops being an intention on paper and starts happening day to day.",
   },
 } satisfies Record<IdiomaFuturo, unknown>;
 

@@ -27,13 +27,19 @@ Onde houver `{{PENDENTE}}`, deixar o marcador e registrar em `11-pendencias.md`.
 **Eyebrow:** `Mover sistemas`
 
 **Frase grande (Lato Light, 23–33px):**
-`Construir uma governança fluida.`
+`Construir um modelo de gestão fluido.`
 
 **Lead:**
 `Onde o conhecimento circula, onde a confiança sustenta as decisões e onde a diferença de opinião gera ideia nova em vez de conflito.`
 
 **Recusa (18px, grafite):**
-`**Não desenvolvemos a estratégia da sua empresa.** Conectamos a estratégia que já existe à cultura e à gestão de pessoas — para que ela deixe de ser uma intenção no papel e passe a acontecer no dia a dia.`
+`Conectamos a estratégia que já existe à cultura e à gestão de pessoas — para que ela deixe de ser uma intenção no papel e passe a acontecer no dia a dia.`
+
+> **Nota 2026-09-05 (autorizado pelo cliente, PDF "Correções site_5_9"):**
+> frase trocada de "Construir uma governança fluida." para "Construir um
+> modelo de gestão fluido."; removida a frase de abertura em negrito "Não
+> desenvolvemos a estratégia da sua empresa." — mantido só o restante do
+> parágrafo.
 
 ---
 

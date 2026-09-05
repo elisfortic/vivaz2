@@ -21,7 +21,6 @@ export default function MoverSistemas({ lang = "pt" }: { lang?: Idioma }) {
             {t.lead}
           </p>
           <p className="mt-12 max-w-2xl text-[18px] leading-relaxed text-grafite">
-            <strong>{t.recusaDestaque}</strong>
             {t.recusa}
           </p>
         </div>
