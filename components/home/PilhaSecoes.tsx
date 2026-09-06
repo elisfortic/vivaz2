@@ -39,10 +39,37 @@ export default function PilhaSecoes({
         ref.current!.querySelectorAll<HTMLElement>("[data-pilha-item]"),
       );
       itens.forEach((item, i) => {
-        if (i === itens.length - 1) return;
-        const proxima = itens[i + 1];
         const conteudo = item.firstElementChild as HTMLElement | null;
         if (!conteudo) return;
+
+        // Revela por dentro o conteúdo que excede a altura do viewport,
+        // usando a própria distância de scroll que o `position: sticky`
+        // já reserva enquanto a seção fica fixada (de "top top" a
+        // "bottom bottom" é exatamente a duração do pino). Sem isto, o
+        // trecho abaixo da dobra fica congelado invisível o tempo todo
+        // em que a seção está fixada — só aparece no instante em que já
+        // está desbotando para a próxima, nunca em opacidade plena.
+        // Achado 2026-09-06 (Fabio, notebook 14"): medido 184px de
+        // excedente em "Por que tantas transformações falham" a 768px
+        // de altura de viewport — a 3ª linha e o link nunca liam.
+        gsap.fromTo(
+          conteudo,
+          { y: 0 },
+          {
+            y: () => -Math.max(0, conteudo.scrollHeight - window.innerHeight),
+            ease: "none",
+            scrollTrigger: {
+              trigger: item,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+
+        if (i === itens.length - 1) return;
+        const proxima = itens[i + 1];
         // As duas janelas são sequenciais, nunca sobrepostas — quando
         // tinham sobreposição (35%→20%), as duas tweens brigavam pela
         // mesma propriedade "opacity" no mesmo instante e o texto sumia
