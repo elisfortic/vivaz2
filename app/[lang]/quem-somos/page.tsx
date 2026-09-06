@@ -52,10 +52,13 @@ export default async function QuemSomosPagina({
     <main id="conteudo" className="bg-off-white">
       {/* abertura + propósito — areia, trio vivo à direita */}
       <section className="overflow-hidden bg-areia">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 short:gap-5 px-6 pb-10 short:pb-5 pt-24 short:pt-20 md:grid-cols-2">
-          <div className="flex flex-col gap-6 short:gap-3">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 short:gap-5 px-6 pb-10 short:pb-2 pt-24 short:pt-28 md:grid-cols-2">
+          <div className="flex flex-col gap-6 short:gap-2">
             <div>
-              <p className="mb-5 short:mb-2 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+              {/* short:pt-28 (112px) garante folga real abaixo do header
+                  (~88px) — pt-20 (80px) deixava o rótulo colado nele
+                  (achado 2026-09-06, Fabio viu "Quem somos" cortando) */}
+              <p className="mb-5 short:mb-1 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
                 {t.eyebrow}
               </p>
               <h1 className="titulo-h2">{t.h1}</h1>
