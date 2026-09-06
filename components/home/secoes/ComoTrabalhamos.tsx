@@ -17,7 +17,7 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-off-white">
-      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:py-12">
+      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:pb-10 short:pt-28">
         <p className="mb-6 short:mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>

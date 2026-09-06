@@ -16,7 +16,7 @@ export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-20 short:py-10">
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-20 short:pb-8 short:pt-28">
         <p className="mb-5 short:mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>

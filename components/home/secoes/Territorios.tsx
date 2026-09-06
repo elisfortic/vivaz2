@@ -14,7 +14,7 @@ export default function Territorios({ lang = "pt" }: { lang?: Idioma }) {
   const t = TERRITORIOS[lang];
   return (
     <section className="relative flex min-h-screen items-center bg-off-white">
-      <div className="relative mx-auto w-full max-w-5xl px-6 py-28 short:py-12">
+      <div className="relative mx-auto w-full max-w-5xl px-6 py-28 short:pb-12 short:pt-28">
         <p className="mb-6 short:mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>

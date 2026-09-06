@@ -38,7 +38,7 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="flex min-h-screen items-center overflow-hidden bg-off-white">
-      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:py-12">
+      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:pb-12 short:pt-28">
         <div className="grid items-center gap-12 short:gap-6 md:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="mb-6 short:mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
