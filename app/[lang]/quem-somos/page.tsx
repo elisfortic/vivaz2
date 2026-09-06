@@ -52,10 +52,10 @@ export default async function QuemSomosPagina({
     <main id="conteudo" className="bg-off-white">
       {/* abertura + propósito — areia, trio vivo à direita */}
       <section className="overflow-hidden bg-areia">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-40 md:grid-cols-2">
-          <div className="flex flex-col gap-6">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 short:gap-5 px-6 pb-10 short:pb-5 pt-24 short:pt-20 md:grid-cols-2">
+          <div className="flex flex-col gap-6 short:gap-3">
             <div>
-              <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+              <p className="mb-5 short:mb-2 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
                 {t.eyebrow}
               </p>
               <h1 className="titulo-h2">{t.h1}</h1>
@@ -63,14 +63,17 @@ export default async function QuemSomosPagina({
             <p className="texto-deck">{t.lead}</p>
             <hr className="m-0 h-px border-0 bg-grafite/20" />
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+              <p className="mb-3 short:mb-1 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
                 Propósito
               </p>
               <p className="titulo-manifesto">{t.proposito}</p>
             </div>
             <p className="leading-relaxed text-verde">{t.descritor}</p>
           </div>
-          <div className="relative hidden h-[560px] md:block">
+          {/* grafismo dimensionado pra caber inteiro como unidade — nunca
+              cortado no meio da forma pela borda da tela (achado 2026-09-06,
+              Fabio: circulos cortando no notebook, mesmo maximizado) */}
+          <div className="relative hidden h-[min(420px,52vh)] md:block">
             <div className="absolute -inset-x-16 -inset-y-10">
               <TrioAncoragem
                 ativa={null}
@@ -137,15 +140,17 @@ export default async function QuemSomosPagina({
 
       {/* rede de especialistas — grafismo vivo (motivo rede.png) */}
       <section className="overflow-hidden bg-areia">
-        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+        <div className="mx-auto w-full max-w-6xl px-6 py-12">
           <h2 className="titulo-h2 max-w-2xl">{t.redeH2}</h2>
-          <div className="mt-6 max-w-[680px] space-y-4 leading-relaxed text-grafite">
+          <div className="mt-3 max-w-[680px] space-y-4 leading-relaxed text-grafite">
             <p>{t.redeP1}</p>
             <p>{t.redeP2}</p>
           </div>
+          {/* mesma lógica: composição inteira cabe como unidade, nunca
+              cortada no meio pela borda da tela */}
           <RedeEspecialistas
             frentes={deck.frentesRede}
-            className="relative mx-auto mt-12 hidden h-[440px] w-full max-w-[900px] md:block"
+            className="relative mx-auto mt-6 hidden h-[min(320px,42vh)] w-full max-w-[900px] md:block"
           />
         </div>
       </section>
