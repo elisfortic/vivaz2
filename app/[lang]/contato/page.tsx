@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CabecalhoPagina from "@/components/ui/CabecalhoPagina";
-import MarcadorPendente from "@/components/ui/MarcadorPendente";
 import Rodape from "@/components/ui/Rodape";
 import FormularioContato from "@/components/contato/FormularioContato";
 import RioDeFibras from "@/components/home/grafismos/RioDeFibras";
@@ -40,7 +39,6 @@ export default async function ContatoPagina({
                 {t.email}
               </a>
             </div>
-            <MarcadorPendente texto={t.pendenteLinkedin} />
           </aside>
         </div>
       </section>

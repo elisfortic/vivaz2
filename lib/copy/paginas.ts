@@ -13,9 +13,6 @@ export const QUEM_SOMOS_PAGINA = {
     proposito:
       "Mover sistemas para que pessoas e organizações cresçam juntas — com profundidade humana e clareza metodológica.",
     descritor: "Transformação organizacional que continua depois que a gente sai.",
-    pendenteGeografia:
-      'Q-I — texto sobre "Entre o Brasil e a Europa" e o modelo de presença nos projetos',
-    pendenteLinkedin: "URL do LinkedIn",
     redeH2: "Ninguém se desenvolve sozinho — inclusive nós.",
     redeP1:
       "Acreditamos que o conhecimento circula pelas relações. Por isso a Vivaz opera com uma rede de especialistas convidados em frentes onde a profundidade técnica exige quem vive aquilo todos os dias — de arquitetura de remuneração a temas específicos de cada setor.",
@@ -33,9 +30,6 @@ export const QUEM_SOMOS_PAGINA = {
     proposito:
       "Mover sistemas para que personas y organizaciones crezcan juntas — con profundidad humana y claridad metodológica.",
     descritor: "Transformación organizacional que continúa después de que nos vamos.",
-    pendenteGeografia:
-      'Q-I — texto sobre "Entre Brasil y Europa" y el modelo de presencia en los proyectos',
-    pendenteLinkedin: "URL de LinkedIn",
     redeH2: "Nadie se desarrolla solo — nosotras tampoco.",
     redeP1:
       "Creemos que el conocimiento circula por las relaciones. Por eso Vivaz opera con una red de especialistas invitados en frentes donde la profundidad técnica exige a quien lo vive todos los días — de arquitectura de remuneración a temas específicos de cada sector.",
@@ -53,9 +47,6 @@ export const QUEM_SOMOS_PAGINA = {
     proposito:
       "Moving systems so that people and organizations grow together — with human depth and methodological clarity.",
     descritor: "Organizational transformation that continues after we leave.",
-    pendenteGeografia:
-      'Q-I — text about "Between Brazil and Europe" and the project presence model',
-    pendenteLinkedin: "LinkedIn URL",
     redeH2: "No one develops alone — neither do we.",
     redeP1:
       "We believe knowledge circulates through relationships. That's why Vivaz operates with a network of invited specialists on fronts where technical depth demands someone who lives it every day — from compensation architecture to sector-specific topics.",
@@ -273,7 +264,6 @@ export const CONTATO_PAGINA = {
       "Não foi possível enviar agora. Tente novamente ou escreva para contato@vivazconsultoria.com.",
     rotuloEmail: "E-mail",
     email: "contato@vivazconsultoria.com",
-    pendenteLinkedin: "URL da página da empresa no LinkedIn",
   },
   es: {
     eyebrow: "Contacto",

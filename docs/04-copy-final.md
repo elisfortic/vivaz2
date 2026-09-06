@@ -287,14 +287,17 @@ esta pendência sempre pediu como solução até a liberação.
 
 ## Canais diretos
 E-mail: `contato@vivazconsultoria.com`
-LinkedIn: `{{PENDENTE: URL da página da empresa}}`
 
 > **Nota 2026-08-17 (autorizado pelo cliente):** e-mail corporativo definido
 > como `contato@vivazconsultoria.com` (também destino do formulário). E-mails
 > das sócias no padrão `primeironome@vivazconsultoria.com` — Elisângela usa
 > `elis@`: `elis@`, `flavia@`, `leila@vivazconsultoria.com`, exibidos nos
-> cards de Quem Somos ao lado do LinkedIn. Segue pendente só a URL da página
-> da empresa no LinkedIn.
+> cards de Quem Somos ao lado do LinkedIn.
+>
+> **Nota 2026-09-06:** removido o marcador `{{PENDENTE: URL da página da
+> empresa no LinkedIn}}` da página de Contato a pedido do cliente — a
+> empresa não tem página própria no LinkedIn por ora, só o LinkedIn pessoal
+> de cada sócia (já exibido em Quem Somos).
 
 ---
 
