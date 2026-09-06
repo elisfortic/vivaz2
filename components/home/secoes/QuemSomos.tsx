@@ -60,7 +60,7 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
             </Link>
           </div>
 
-          <div className="relative h-[460px] md:h-[600px] short:md:h-[400px]">
+          <div className="relative h-[460px] md:h-[600px] short:md:h-[370px]">
             {/* o quadro do grafismo é maior que a coluna — as fibras
                 entram e saem sem parecer cortadas; no retrato ele sobe
                 só um pouco, sem alcançar o texto */}
