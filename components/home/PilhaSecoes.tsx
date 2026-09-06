@@ -101,7 +101,19 @@ export default function PilhaSecoes({
       });
     }, ref);
 
-    return () => contexto.revert();
+    // As fontes carregam com `display: "swap"` (troca depois do 1º
+    // render) — se o GSAP calcular as posições antes da troca, a altura
+    // real do texto muda depois e todos os cálculos de excedente/pino
+    // ficam errados. Recalcula assim que as fontes assentarem.
+    let cancelado = false;
+    document.fonts.ready.then(() => {
+      if (!cancelado) ScrollTrigger.refresh();
+    });
+
+    return () => {
+      cancelado = true;
+      contexto.revert();
+    };
   }, [empilhar]);
 
   return (
