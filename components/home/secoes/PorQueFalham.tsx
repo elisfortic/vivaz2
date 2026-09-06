@@ -16,22 +16,22 @@ export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-areia">
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-20">
-        <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-20 short:py-10">
+        <p className="mb-5 short:mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>
         <h2 className="titulo-h2 max-w-3xl">
           {t.h2}
         </h2>
-        <p className="texto-deck mt-4 max-w-2xl">
+        <p className="texto-deck mt-4 short:mt-2 max-w-2xl">
           {t.lead}
         </p>
 
-        <div className="mt-8 space-y-5">
+        <div className="mt-8 short:mt-5 space-y-5 short:space-y-3">
           {t.linhas.map((linha, i) => (
             <div
               key={linha.titulo}
-              className="grid items-center gap-6 md:grid-cols-[minmax(0,0.85fr)_460px_minmax(0,1fr)]"
+              className="grid items-center gap-6 short:gap-4 md:grid-cols-[minmax(0,0.85fr)_460px_minmax(0,1fr)]"
               onMouseEnter={() => setAtiva(i)}
               onMouseLeave={() => setAtiva(null)}
             >
@@ -48,7 +48,7 @@ export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
               <LinhaRuptura
                 semente={i + 1}
                 intensa={ativa === i}
-                className="hidden h-36 w-full md:block"
+                className="hidden h-36 short:h-24 w-full md:block"
               />
               <div>
                 <p className="font-montserrat text-xl font-medium text-terracota md:text-2xl">
@@ -64,7 +64,7 @@ export default function PorQueFalham({ lang = "pt" }: { lang?: Idioma }) {
 
         <Link
           href={`/${lang}/ponto-de-vista/por-que-transformacoes-falham`}
-          className="mt-10 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+          className="mt-10 short:mt-5 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
         >
           {t.linkEnsaio}
         </Link>

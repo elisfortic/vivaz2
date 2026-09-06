@@ -38,10 +38,10 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="flex min-h-screen items-center overflow-hidden bg-off-white">
-      <div className="mx-auto w-full max-w-6xl px-6 py-28">
-        <div className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr]">
+      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:py-12">
+        <div className="grid items-center gap-12 short:gap-6 md:grid-cols-[1fr_1.1fr]">
           <div>
-            <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+            <p className="mb-6 short:mb-3 text-xs font-bold uppercase tracking-[0.18em] text-terracota">
               {t.eyebrow}
             </p>
             <h2 className="titulo-h2">
@@ -49,18 +49,18 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
               <br />
               {t.h2Linha2}
             </h2>
-            <p className="texto-deck mt-6 max-w-xl">
+            <p className="texto-deck mt-6 short:mt-3 max-w-xl">
               {t.lead}
             </p>
             <Link
               href={`/${lang}/quem-somos`}
-              className="mt-10 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
+              className="mt-10 short:mt-5 inline-block text-sm font-medium text-verde underline-offset-4 transition-colors duration-300 hover:text-terracota"
             >
               {t.link}
             </Link>
           </div>
 
-          <div className="relative h-[460px] md:h-[600px]">
+          <div className="relative h-[460px] md:h-[600px] short:md:h-[400px]">
             {/* o quadro do grafismo é maior que a coluna — as fibras
                 entram e saem sem parecer cortadas; no retrato ele sobe
                 só um pouco, sem alcançar o texto */}
@@ -110,7 +110,7 @@ export default function QuemSomos({ lang = "pt" }: { lang?: Idioma }) {
 
         {/* mobile: centralizado — a lista corrida alinhada à esquerda
             deixava a mancha irregular no retrato */}
-        <div className="mt-16 border-t border-linha pt-8 text-center md:text-left">
+        <div className="mt-16 short:mt-8 border-t border-linha pt-8 short:pt-4 text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.22em] text-grafite/60">
             {t.trajetoriaRotulo}
           </p>

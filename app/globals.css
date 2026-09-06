@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Variante para viewport de altura curta (notebooks 13-15", zoom 100%) —
+   compacta o espaçamento interno das seções empilhadas para que o
+   conteúdo caiba sem exigir rolagem extra dentro da própria seção
+   (achado 2026-09-06: Fabio pediu que o site se ajuste ao tamanho da
+   tela em vez de esconder conteúdo até o usuário rolar mais). */
+@custom-variant short (@media (max-height: 820px));
+
 /*
  * Paleta do brandbook Vivaz (extraída de origem/Brandbook.pptx).
  * --linha é derivada (hairline quente da família areia) — não há hex no deck.

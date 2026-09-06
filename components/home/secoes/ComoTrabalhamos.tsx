@@ -17,15 +17,15 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-off-white">
-      <div className="mx-auto w-full max-w-6xl px-6 py-28">
-        <p className="mb-6 text-center text-xs font-bold uppercase tracking-[0.18em] text-terracota">
+      <div className="mx-auto w-full max-w-6xl px-6 py-28 short:py-12">
+        <p className="mb-6 short:mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-terracota">
           {t.eyebrow}
         </p>
         <h2 className="titulo-h2 text-center">
           {t.h2}
         </h2>
 
-        <div className="relative mt-12 hidden md:block">
+        <div className="relative mt-12 short:mt-6 hidden md:block">
           {/* a cruz que organiza os quadrantes, como no deck */}
           <div
             aria-hidden="true"
@@ -35,13 +35,13 @@ export default function ComoTrabalhamos({ lang = "pt" }: { lang?: Idioma }) {
             aria-hidden="true"
             className="pointer-events-none absolute bottom-4 left-1/2 top-4 w-px bg-grafite/15"
           />
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] short:h-[440px] short:w-[440px] -translate-x-1/2 -translate-y-1/2">
             <OrbitaPrincipios
               ativo={ativo}
               aoAgir={(q) => setAgindo(q < 0 ? null : q)}
             />
           </div>
-          <div className="relative grid min-h-[640px] grid-cols-2 content-between gap-x-[380px] py-6">
+          <div className="relative grid min-h-[640px] short:min-h-[460px] grid-cols-2 content-between gap-x-[380px] py-6 short:py-3">
             {t.principios.map((p, i) => (
               <div
                 key={p.numero}
