@@ -29,12 +29,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${montserrat.variable} ${lato.variable}`}>
       <body>
-        <a
-          href="#conteudo"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-verde focus:px-4 focus:py-2 focus:text-off-white"
-        >
-          Ir para o conteúdo
-        </a>
         <ProvedorLenis />
         {children}
       </body>

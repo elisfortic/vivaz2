@@ -8,5 +8,12 @@
   },
   "rodape": {
     "copyright": "© 2026 Vivaz Consultoria"
+  },
+  "acessibilidade": {
+    "pularParaConteudo": "Skip to content"
+  },
+  "metadados": {
+    "titulo": "Vivaz · People who move systems",
+    "descricao": "We connect strategy, culture and management for organizations that need to move."
   }
 }

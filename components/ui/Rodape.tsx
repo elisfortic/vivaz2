@@ -25,7 +25,6 @@ export default function Rodape({ lang = "pt" }: { lang?: Idioma }) {
             </Link>
           ))}
         </nav>
-        {/* seletor de idioma volta quando a fase ES/EN for aprovada */}
         <p className="text-xs text-off-white/60">{t.rodape.copyright}</p>
       </div>
     </footer>

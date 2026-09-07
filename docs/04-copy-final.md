@@ -328,3 +328,11 @@ Estática, sem CMS, sem blog. Uma rolagem curta.
 | 500 — corpo | `Tente recarregar a página. Se continuar, escreva para {{E-MAIL}}.` |
 | Skip link | `Ir para o conteúdo` |
 | Rodapé | `© 2026 Vivaz Consultoria` |
+
+> **Nota 2026-09-07 (pedido do cliente):** espanhol ativado no ar
+> (`lib/idiomas.ts` → `IDIOMAS = ["pt", "es"]`); inglês segue traduzido em
+> `dictionaries/en.json` mas desligado. Título/descrição da aba e o texto do
+> skip link agora são localizados por idioma via `dictionaries/{pt,es}.json`
+> (chaves `metadados` e `acessibilidade`, novas nesta data) — ES usa
+> `Vivaz · Personas que mueven sistemas` / `Ir al contenido`. Seletor de
+> idioma (PT · ES) adicionado no cabeçalho (desktop e menu mobile).

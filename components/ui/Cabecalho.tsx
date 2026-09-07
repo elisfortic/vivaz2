@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IDIOMAS, caminhoComIdioma, type Idioma } from "@/lib/idiomas";
 
 export interface ItemNav {
   rotulo: string;
   href: string;
 }
+
+const ROTULO_IDIOMA: Record<Idioma, string> = { pt: "PT", es: "ES" };
 
 /**
  * Header fixo que adapta a cor quando uma superfície verde passa por baixo
@@ -18,9 +21,11 @@ export interface ItemNav {
 export default function Cabecalho({
   itens,
   hrefInicio = "/",
+  lang = "pt",
 }: {
   itens: ItemNav[];
   hrefInicio?: string;
+  lang?: Idioma;
 }) {
   const [sobreVerde, setSobreVerde] = useState(false);
   const [aberto, setAberto] = useState(false);
@@ -127,6 +132,34 @@ export default function Cabecalho({
               {item.rotulo}
             </Link>
           ))}
+          <div className="flex items-center gap-1.5 text-[13px] tracking-[0.02em]">
+            {IDIOMAS.map((idioma, i) => (
+              <span key={idioma} className="flex items-center gap-1.5">
+                {i > 0 && (
+                  <span className={claro ? "text-off-white/40" : "text-verde/40"}>
+                    ·
+                  </span>
+                )}
+                {idioma === lang ? (
+                  <span
+                    className={`font-semibold ${claro ? "text-off-white" : "text-verde"}`}
+                    aria-current="true"
+                  >
+                    {ROTULO_IDIOMA[idioma]}
+                  </span>
+                ) : (
+                  <Link
+                    href={caminhoComIdioma(pathname, idioma)}
+                    className={`transition-opacity duration-300 hover:opacity-70 ${
+                      claro ? "text-off-white/70" : "text-verde/70"
+                    }`}
+                  >
+                    {ROTULO_IDIOMA[idioma]}
+                  </Link>
+                )}
+              </span>
+            ))}
+          </div>
         </nav>
 
         {/* menu mobile */}
@@ -167,6 +200,26 @@ export default function Cabecalho({
               {item.rotulo}
             </Link>
           ))}
+          <div className="flex items-center gap-3 text-lg">
+            {IDIOMAS.map((idioma, i) => (
+              <span key={idioma} className="flex items-center gap-3">
+                {i > 0 && <span className="text-verde/30">·</span>}
+                {idioma === lang ? (
+                  <span className="font-semibold text-verde" aria-current="true">
+                    {ROTULO_IDIOMA[idioma]}
+                  </span>
+                ) : (
+                  <Link
+                    href={caminhoComIdioma(pathname, idioma)}
+                    onClick={() => setAberto(false)}
+                    className="text-verde/60"
+                  >
+                    {ROTULO_IDIOMA[idioma]}
+                  </Link>
+                )}
+              </span>
+            ))}
+          </div>
         </nav>
       )}
     </header>
